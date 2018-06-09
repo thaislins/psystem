@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+
+	<title>Users - pSystem</title>
+
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+
+	<link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/colors/blue-dark.css" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border fix-sidebar">
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader__figure"></div>
+			<p class="loader__label">pSystem</p>
+		</div>
+	</div>
+
+	<!-- Logout Form -->
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
+		<button type="submit" class="btn btn-link">Logout</button>
+	</form>
+
+	<div id="main-wrapper">
+		<header class="topbar">
+			<nav class="navbar top-navbar navbar-expand-md navbar-light">
+				<div class="navbar-header">
+					<a class="navbar-brand" th:href="@{/}">
+						<b><img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /></b>
+						<span><img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span>
+					</a>
+				</div>
+				<div class="navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a>
+						</li>
+					</ul>
+					<ul class="navbar-nav my-lg-0">
+						<li class="nav-item dropdown u-pro">
+							<a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img src="/assets/images/users/1.jpg" alt="user" class="" />
+								<span class="hidden-md-down" th:text="${user.name}">Mark Sanders</span>
+								<span class="hidden-md-down">&nbsp;<i class="fa fa-angle-down"></i></span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right animated flipInY">
+								<ul class="dropdown-user">
+									<li>
+										<div class="dw-user-box">
+											<div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
+											<div class="u-text">
+												<h4 th:text="${user.name}"></h4>
+												<p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+											</div>
+										</div>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+									<li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+									<li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#"><i class="ti-settings"></i> Account Settings</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#" onclick="document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>&nbsp; Logout</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<aside class="left-sidebar">
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav">
+						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Dashboard <span class="label label-rounded label-danger">4</span></span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="index.html">Minimal </a></li>
+								<li><a href="index2.html">Analytical</a></li>
+							</ul>
+						</li>
+						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Apps</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="app-calendar.html">Calendar</a></li>
+								<li><a href="app-chat.html">Chat app</a></li>
+							</ul>
+						</li>
+						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Inbox</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="app-email.html">Mailbox</a></li>
+								<li><a href="app-email-detail.html">Mailbox Detail</a></li>
+							</ul>
+						</li>
+						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-On-Off-3"></i><span class="hide-menu">Ui Elements <span class="label label-rounded label-success">25</span></span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="ui-cards.html">Cards</a></li>
+								<li><a href="ui-user-card.html">User Cards</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+
+		<div class="page-wrapper">
+			<div class="container-fluid">
+				<div class="row page-titles">
+					<div class="col-md-5 align-self-center">
+						<h3 class="text-themecolor">Users List</h3>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+							<li class="breadcrumb-item active">Users</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">Users List</h4>
+								<h6 class="card-subtitle">Just a query example</h6>
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">Id</th>
+												<th scope="col">Clinic ID</th>
+												<th scope="col">Name</th>
+												<th scope="col">Email</th>
+												<th scope="col">CPF</th>
+												<th scope="col">Phone</th>
+												<th scope="col">ADMIN</th>
+												<th scope="col">PSYCHOLOGIST</th>
+												<th scope="col">CRP</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="user : ${userList}">
+												<th th:text="${user.id}" scope="row">Id</th>
+												<td th:text="${user.clinicId}">Clinic ID</td>
+												<td th:text="${user.name}">Name</td>
+												<td th:text="${user.email}">Email</td>
+												<td th:text="${user.cpf}">CPF</td>
+												<td th:text="${user.phone}">Phone</td>
+												<td th:text="${user.admin}">ADMIN</td>
+												<td th:text="${user.psychologist}">PSYCHOLOGIST</td>
+												<td th:text="${user.crp}">CRP</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<footer class="footer">&copy; 2018 - pSystem. All Rights Reserved.</footer>
+
+		</div>
+	</div>
+
+	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
+	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+	<script src="/js/custom.min.js"></script>
+</body>
+
+</html>

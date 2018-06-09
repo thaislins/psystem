@@ -20,7 +20,7 @@ CREATE TABLE cep_address (
 -- Table clinic
 -- -----------------------------------------------------
 CREATE TABLE clinic (
-  id		INT				NOT NULL,
+  id		INT				NOT NULL	AUTO_INCREMENT,
   name		VARCHAR(255)	NULL,
   phone		VARCHAR(255)	NULL,
   cep		CHAR(8)			NULL,
@@ -46,7 +46,7 @@ CREATE TABLE user (
   password		VARCHAR(255)	NULL,
   phone			VARCHAR(20)		NULL,
   ADMIN			TINYINT(1)		NULL		DEFAULT 0,
-  PSYCOLHOGIST	TINYINT(1)		NULL,
+  PSYCHOLOGIST	TINYINT(1)		NULL,
   crp			CHAR(6)			NULL,
   PRIMARY KEY (id),
   INDEX fk_user_clinic_idx (clinic_id ASC),
@@ -213,3 +213,14 @@ CREATE TABLE schedule_appointment_notes (
     REFERENCES schedule_appointment (id)
     ON DELETE CASCADE
 );
+
+
+-- INSERT FIRST CLINIC
+START TRANSACTION;
+INSERT INTO cep_address VALUES("59015000", "Av. Senador Salgado Filho", "Natal", "Rio Grande do Norte");
+INSERT INTO clinic(name, phone, cep, number) VALUES("Clinic", "84 9 9999-9999", "59015000", "123");
+COMMIT;
+
+-- INSERT FIRST USER (with an encrypted password - 123456)
+INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
+VALUES("11111111111", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
