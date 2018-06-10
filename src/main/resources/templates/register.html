@@ -22,41 +22,68 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Wrap</p>
+            <p class="loader__label">pSystem</p>
         </div>
     </div>
 
     <section id="wrapper">
         <div class="login-register" style="background-image:url('/assets/images/background/login-register.jpg');">
+        <div class="background-img">
             <div class="login-box card">
                 <div class="card-body">
-                    <form class="form-horizontal form-material" id="loginform" action="index.html">
+                    <form class="form-horizontal form-material" th:action="@{/register}" method="POST" id="loginform" action="index">
                         <h3 class="box-title m-b-20">Sign Up</h3>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="Name">
+                                <input class="form-control" type="text" required="" placeholder="Name" name="name">
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="Email">
+                                <input class="form-control" type="email" required="" placeholder="Email" name="email">
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" required="" placeholder="Password">
+                                <input class="form-control" type="text" required="" placeholder="Cpf" name="cpf">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" required="" placeholder="Phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" required="" placeholder="Crp" name="crp">
+                            </div>
+                        </div>
+                          <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" required="" placeholder="Clinic Id" name="clinicId">
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="password" required="" placeholder="Password" name="password">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" required="" placeholder="Confirm Password">
+                                <input class="form-control" type="password" required="" placeholder="Confirm Password" name="passwordConfirm">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-md-12">
+                            <div class="col-md-5" style="margin-left: 2.6rem;">
                                 <div class="checkbox checkbox-success p-t-0">
-                                    <input id="checkbox-signup" type="checkbox"  class="filled-in chk-col-light-blue">
-                                    <label for="checkbox-signup"> I agree to all <a href="javascript:void(0)">Terms</a></label>
+                                    <input id="checkbox-signup" type="checkbox" name="admin"  class="filled-in chk-col-light-blue">
+                                    <label for="checkbox-signup"> Admin</label>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="checkbox checkbox-success p-t-0">
+                                    <input id="checkbox-signup" type="checkbox" name="psychologist"  class="filled-in chk-col-light-blue">
+                                    <label for="checkbox-signup"> Psychologist</label>
                                 </div>
                             </div>
                         </div>
@@ -74,6 +101,7 @@
                 </div>
             </div>
         </div>
+       </div>
     </section>
 
     <script src="/assets/node_modules/jquery/jquery.min.js"></script>

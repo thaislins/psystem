@@ -1,6 +1,7 @@
 -- -----------------------------------------------------
 -- Schema pSystem
 -- -----------------------------------------------------
+DROP DATABASE psystem_db;
 CREATE DATABASE psystem_db CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE psystem_db;
 
@@ -224,3 +225,6 @@ COMMIT;
 -- INSERT FIRST USER (with an encrypted password - 123456)
 INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
 VALUES("11111111111", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
+
+use psystem_db;
+select * from user;
