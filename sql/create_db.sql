@@ -227,8 +227,5 @@ INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGI
 VALUES("11111111111", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
 
 
-use psystem_db;
-INSERT INTO clinic(name, phone, cep, number) VALUES("Clinic2", "84 9 1111-1111", "59015000", "123");
-
 
 
