@@ -27,7 +27,7 @@
     </div>
 
     <section id="wrapper">
-        <div class="login-register" style="background-image:url('/assets/images/background/login-register.jpg');">
+        <div class="register-class" style="background-image:url('/assets/images/background/login-register.jpg');">
         <div class="background-img">
             <div class="login-box card">
                 <div class="card-body">
@@ -58,11 +58,6 @@
                                 <input class="form-control" type="text" required="" placeholder="Crp" name="crp">
                             </div>
                         </div>
-                          <div class="form-group ">
-                            <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="Clinic Id" name="clinicId">
-                            </div>
-                        </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <input class="form-control" type="password" required="" placeholder="Password" name="password">
@@ -73,6 +68,19 @@
                                 <input class="form-control" type="password" required="" placeholder="Confirm Password" name="passwordConfirm">
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                        <label class="clinic" style="font-size: 12pt; margin-right:3.5em;">Clinic number:</label>
+                            <select class="col-xs-12" style="padding: .3em 5em; margin-top:5px;">
+                                <option th:each="clinic : ${clinicList}" name="clinicId" th:text="${clinic.id}"></option>
+                            </select>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
                         <div class="form-group row">
                             <div class="col-md-5" style="margin-left: 2.6rem;">
                                 <div class="checkbox checkbox-success p-t-0">

@@ -111,5 +111,4 @@ public class UserDAO extends GenericDAO<User> {
 
 		return new User(cpf, clinicId, name, email, password, phone, admin, psychologist, crp);
 	}
-
 }
