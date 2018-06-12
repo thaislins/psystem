@@ -8,14 +8,14 @@ public class User {
 	private String email;
 	private String password;
 	private String phone;
-	private Boolean admin;
-	private Boolean psychologist;
+	private boolean admin;
+	private boolean psychologist;
 	private String crp;
 
 	private String passwordConfirm;
 
-	public User(Integer id, String cpf, Integer clinicId, String name, String email, String password, String phone,
-			Boolean admin, Boolean psychologist, String crp) {
+	public User(String cpf, Integer clinicId, String name, String email, String password, String phone,
+			boolean admin, boolean psychologist, String crp) {
 		this.id = id;
 		this.cpf = cpf;
 		this.clinicId = clinicId;
@@ -60,11 +60,11 @@ public class User {
 		this.admin = admin;
 	}
 
-	public Boolean isPsychologist() {
+	public boolean isPsychologist() {
 		return psychologist;
 	}
 
-	public void setPsychologist(Boolean psychologist) {
+	public void setPsychologist(boolean psychologist) {
 		this.psychologist = psychologist;
 	}
 

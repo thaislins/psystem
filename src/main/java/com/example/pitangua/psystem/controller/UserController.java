@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.pitangua.psystem.dao.ClinicDAO;
+import com.example.pitangua.psystem.dao.UserDAO;
+import com.example.pitangua.psystem.domain.Clinic;
+import com.example.pitangua.psystem.domain.User;
 import com.example.pitangua.psystem.security.IAuthenticationFacade;
 import com.example.pitangua.psystem.service.IUserService;
 
@@ -25,13 +29,26 @@ public class UserController {
 	}
 
 	@GetMapping("/register")
-	public String register() {
-		return "register";
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView();
+		ClinicDAO clinicDAO = new ClinicDAO();
+		
+		mv.addObject("clinicList", clinicDAO.getAllClinics());
+		return mv;
 	}
-
+	
 	@PostMapping("/register")
-	public ModelAndView registerRequest() {
-		return null;
+	public ModelAndView registerRequest(String cpf, Integer clinicId, String name, String email,
+			String password, String phone, boolean admin, boolean psychologist, String crp) {
+		
+		ModelAndView mv = new ModelAndView("login");
+		UserDAO userDAO = new UserDAO();
+		ClinicDAO clinicDao = new ClinicDAO();
+		
+		//Clinic clinic = clinicDao.getByName(clinicName);
+		User user = new User(cpf,clinicId,name,email,password,phone,admin,psychologist,crp);
+		userDAO.insert(user);
+		return mv;
 	}
 
 	@GetMapping("/users")

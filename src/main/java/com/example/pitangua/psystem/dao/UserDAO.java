@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +20,25 @@ public class UserDAO extends GenericDAO<User> {
 
 	@Override
 	public void insert(User user) {
-		// TODO Auto-generated method stub
+		ResultSet resultSet = null;
+		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+		String sql = "INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)" + 
+				"VALUES(?,?,?,?,?,?,?,?,?);";
+		
+		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql)) {
+		       stmt.setString(1, user.getCpf());
+		       stmt.setInt(2, user.getClinicId());
+		       stmt.setString(3, user.getName());
+		       stmt.setString(4, user.getEmail());
+		       stmt.setString(5, bcrypt.encode(user.getPassword()));
+		       stmt.setString(6, user.getPhone());
+		       stmt.setBoolean(7, user.isAdmin());
+		       stmt.setBoolean(8, user.isPsychologist());
+		       stmt.setString(9, user.getCrp());
+		       stmt.execute();
+			} catch (SQLException e) {
+				throw new UnhandledException("DB Error", e);
+			}
 	}
 
 	@Override
@@ -40,7 +60,7 @@ public class UserDAO extends GenericDAO<User> {
 		String sql = "SELECT * FROM user WHERE email=?";
 		ResultSet resultSet = null;
 
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);) {
+		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql)) {
 			stmt.setString(1, email);
 			resultSet = stmt.executeQuery();
 			while (resultSet.next()) {
@@ -89,7 +109,6 @@ public class UserDAO extends GenericDAO<User> {
 		Boolean psychologist = rs.getBoolean("PSYCHOLOGIST");
 		String crp = rs.getString("crp");
 
-		return new User(id, cpf, clinicId, name, email, password, phone, admin, psychologist, crp);
+		return new User(cpf, clinicId, name, email, password, phone, admin, psychologist, crp);
 	}
-
 }

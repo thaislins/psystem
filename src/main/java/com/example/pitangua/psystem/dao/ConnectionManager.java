@@ -17,6 +17,7 @@ public class ConnectionManager {
 	private static ConnectionManager instance = null;
 
 	private ConnectionManager() {
+		
 	}
 
 	public static synchronized Connection getConnection() {

@@ -18,6 +18,15 @@ File: scss
 /*******************
 Login register and recover password Page
 ******************/
+.register-class {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  position:fixed;
+}
+
 .login-register {
   background-size: cover;
   background-repeat: no-repeat;
@@ -26,6 +35,12 @@ Login register and recover password Page
   width: 100%;
   padding: 10% 0;
   position: fixed; }
+  
+.background-img {
+	padding: 10% 0;
+	overflow-y: scroll;
+	height:100%;
+}
 
 .login-box {
   width: 400px;
