@@ -96,6 +96,22 @@ public class UserDAO extends GenericDAO<User> {
 
 		return users;
 	}
+	
+	public Integer getPsychologistCount() {
+		int count = 0;
+
+		String sql = "SELECT count(*) FROM user WHERE PSYCHOLOGIST=true;";
+		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
+				ResultSet resultSet = stmt.executeQuery();) {
+			while (resultSet.next()) {
+				count = resultSet.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return count;
+	}
 
 	private User fromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
