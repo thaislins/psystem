@@ -9,7 +9,6 @@ import java.util.List;
 
 import com.example.pitangua.psystem.domain.CepAdress;
 import com.example.pitangua.psystem.domain.Client;
-import com.example.pitangua.psystem.domain.Clinic;
 import com.example.pitangua.psystem.exception.UnhandledException;
 
 public class ClientDAO extends GenericDAO<Client> {
@@ -27,20 +26,13 @@ public class ClientDAO extends GenericDAO<Client> {
 	}
 
 	@Override
-	public void find(Client entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void update(Client entity) {
 		// TODO Auto-generated method stub
 		
 	}
 	
 	public Integer getClientCount() {
-		List<Client> clients = getAllClients();
-		return clients.size();
+		return getAllClients().size();
 	}
 	
 	public List<Client> getAllClients() {

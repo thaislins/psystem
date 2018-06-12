@@ -1,7 +1,6 @@
 package com.example.pitangua.psystem.domain;
 
 public class Clinic {
-
 	private Integer id;
 	private String name;
 	private String phone;

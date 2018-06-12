@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.pitangua.psystem.dao.ClientDAO;
+import com.example.pitangua.psystem.dao.DocumentDAO;
+import com.example.pitangua.psystem.dao.ScheduleAppointmentDAO;
 import com.example.pitangua.psystem.dao.UserDAO;
 import com.example.pitangua.psystem.domain.User;
 import com.example.pitangua.psystem.security.IAuthenticationFacade;
@@ -19,7 +21,6 @@ import com.example.pitangua.psystem.security.IAuthenticationFacade;
 public class IndexController {
 
 	private UserDAO userDAO;
-	private ClientDAO clientDAO;
 	
 	@Autowired
 	private IAuthenticationFacade authFacade;
@@ -27,9 +28,9 @@ public class IndexController {
 	public IndexController() {
 		userDAO = new UserDAO();
 	}
-	
-	@GetMapping("/")
-	public ModelAndView index(HttpServletResponse http) {
+		
+	@GetMapping("/dashboard")
+	public ModelAndView dashboard(HttpServletResponse http) {
 		ModelAndView mv = new ModelAndView("index");
 		displayActiveUser(mv);
 		displayCount(mv);
@@ -61,19 +62,19 @@ public class IndexController {
 	
 	public void displayCount(ModelAndView mv) {
 		ClientDAO clientDAO = new ClientDAO();
+		ScheduleAppointmentDAO appointmentDAO = new ScheduleAppointmentDAO();
+		DocumentDAO documentDAO = new DocumentDAO();
 		HashMap<String,String> countMap = new HashMap<String,String>();
-		String[] countNames = new String[4];
 		
-		countNames[0] = userDAO.getPsychologistCount() == 1 ? "Psychologist" : "Psychologists";
-		countNames[1] = clientDAO.getClientCount() == 1 ? "Clients" : "Clients";
-		//countNames[2] = userDao.getPsychologistCount() == 1 ? "Appointment" : "Appointments";
-		//countNames[3] = userDao.getPsychologistCount() == 1 ? "Document" : "Documents";
-
-		countMap.put("psychologist", countNames[0]);
-		countMap.put("client", countNames[1]);
+		countMap.put("psychologist", userDAO.getPsychologistCount() == 1 ? "Psychologist" : "Psychologists");
+		countMap.put("client", clientDAO.getClientCount() == 1 ? "Clients" : "Clients");
+		countMap.put("appointment", appointmentDAO.getAppointmentCount() == 1 ? "Appointment" : "Appointments");
+		countMap.put("document", documentDAO.getDocumentCount() == 1 ? "Document" : "Documents");
 		
 		mv.addObject("psychologistCount", userDAO.getPsychologistCount());
-		mv.addObject("clientCount", clientDAO.getClientCount());	
+		mv.addObject("clientCount", clientDAO.getClientCount());
+		mv.addObject("appointmentCount", appointmentDAO.getAppointmentCount());
+		mv.addObject("documentCount", documentDAO.getDocumentCount());
 		mv.addAllObjects(countMap);
 	}
 }

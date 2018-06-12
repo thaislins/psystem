@@ -1,7 +1,5 @@
 package com.example.pitangua.psystem.domain;
 
-import com.example.pitangua.psystem.dao.GenericDAO;
-
 public class CepAdress {
 
 	private String cep;

@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.example.pitangua.psystem.domain.CepAdress;
 import com.example.pitangua.psystem.domain.Clinic;
-import com.example.pitangua.psystem.domain.User;
 import com.example.pitangua.psystem.exception.UnhandledException;
 
 public class ClinicDAO extends GenericDAO<Clinic> {
@@ -21,12 +20,6 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 
 	@Override
 	public void remove(Clinic entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void find(Clinic entity) {
 		// TODO Auto-generated method stub
 		
 	}

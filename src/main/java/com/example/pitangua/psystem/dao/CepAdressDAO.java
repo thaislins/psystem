@@ -22,12 +22,6 @@ public class CepAdressDAO extends GenericDAO<CepAdress> {
 	}
 
 	@Override
-	public void find(CepAdress entity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void update(CepAdress entity) {
 		// TODO Auto-generated method stub
 
