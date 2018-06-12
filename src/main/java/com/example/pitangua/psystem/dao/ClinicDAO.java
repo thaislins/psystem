@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.pitangua.psystem.domain.CepAdress;
 import com.example.pitangua.psystem.domain.Clinic;
-import com.example.pitangua.psystem.domain.User;
 import com.example.pitangua.psystem.exception.UnhandledException;
 
 public class ClinicDAO extends GenericDAO<Clinic> {
@@ -25,23 +25,17 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 	}
 
 	@Override
-	public void find(Clinic entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void update(Clinic entity) {
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public Clinic getByName(String name) {
+	public Clinic getById(Integer id) {
 		String sql = "SELECT * FROM clinic WHERE name=?";
 		ResultSet resultSet = null;
 
 		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql)) {
-			stmt.setString(1, name);
+			stmt.setInt(1, id);
 			resultSet = stmt.executeQuery();
 			while (resultSet.next()) {
 				return fromResultSet(resultSet);
@@ -77,13 +71,16 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 		return clinics;
 	}
 
-	private Clinic fromResultSet(ResultSet rs) throws SQLException {
+	private Clinic fromResultSet(ResultSet rs) throws SQLException {		
 		Integer id = rs.getInt("id");
 		String name = rs.getString("name");
 		String phone = rs.getString("phone");
 		String cep = rs.getString("cep");
 		Integer number = rs.getInt("number");
 
-		return new Clinic(id,name,phone,cep, number);
+		CepAdressDAO cepAdressDAO = new CepAdressDAO();
+		CepAdress cepAdress = cepAdressDAO.getByCep(cep);
+		
+		return new Clinic(id,name,phone,cepAdress,number);
 	}
 }

@@ -1154,7 +1154,6 @@ sidebar navigation
 
 .sidebar-nav>ul>li>a.active {
     font-weight: 400;
-    background: #242933;
     color: #26c6da;
     border-left: 3px solid #20aee3;
 }

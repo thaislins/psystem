@@ -16,7 +16,6 @@ public class User {
 
 	public User(String cpf, Integer clinicId, String name, String email, String password, String phone,
 			boolean admin, boolean psychologist, String crp) {
-		this.id = id;
 		this.cpf = cpf;
 		this.clinicId = clinicId;
 		this.name = name;

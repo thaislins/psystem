@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +19,6 @@ public class UserDAO extends GenericDAO<User> {
 
 	@Override
 	public void insert(User user) {
-		ResultSet resultSet = null;
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 		String sql = "INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)" + 
 				"VALUES(?,?,?,?,?,?,?,?,?);";
@@ -43,11 +41,6 @@ public class UserDAO extends GenericDAO<User> {
 
 	@Override
 	public void remove(User user) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void find(User user) {
 		// TODO Auto-generated method stub
 	}
 
@@ -96,9 +89,24 @@ public class UserDAO extends GenericDAO<User> {
 
 		return users;
 	}
+	
+	public Integer getPsychologistCount() {
+		int count = 0;
+
+		String sql = "SELECT count(*) FROM user WHERE PSYCHOLOGIST=true;";
+		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
+				ResultSet resultSet = stmt.executeQuery();) {
+			while (resultSet.next()) {
+				count = resultSet.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return count;
+	}
 
 	private User fromResultSet(ResultSet rs) throws SQLException {
-		Integer id = rs.getInt("id");
 		String cpf = rs.getString("cpf");
 		Integer clinicId = rs.getInt("clinic_id");
 		String name = rs.getString("name");
