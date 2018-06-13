@@ -19,13 +19,15 @@ import com.example.pitangua.psystem.security.IAuthenticationFacade;
 @Controller
 public class IndexController {
 
+	@Autowired
 	private UserDAO userDAO;
 
 	@Autowired
 	private IAuthenticationFacade authFacade;
 
-	public IndexController() {
-		userDAO = new UserDAO();
+	@GetMapping("/")
+	public String index() {
+		return "redirect:/dashboard";
 	}
 
 	@GetMapping("/dashboard")
@@ -76,4 +78,5 @@ public class IndexController {
 
 		mv.addAllObjects(countMap);
 	}
+
 }
