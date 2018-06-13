@@ -3,21 +3,21 @@ package com.example.pitangua.psystem.domain;
 import java.util.Date;
 
 public class Client {
-    private Integer id;            
-    private String pcpf;          
-    private String cpf;           
-    private String name;          
-    private Date birth_date;    
-    private String phone;         
-    private CepAdress cep;           
-    private String number;        
-    private String occupation;    
-    private String gender;        
-    private String blood_type;    
-    private String nationality;   
-    private String scholarity;
-    
-	public Client(Integer id, String pcpf, String cpf, String name, Date birth_date, String phone, CepAdress cep,
+	private Integer id;
+	private String pcpf;
+	private String cpf;
+	private String name;
+	private Date birth_date;
+	private String phone;
+	private CepAddress cep;
+	private String number;
+	private String occupation;
+	private String gender;
+	private String blood_type;
+	private String nationality;
+	private String scholarity;
+
+	public Client(Integer id, String pcpf, String cpf, String name, Date birth_date, String phone, CepAddress cep,
 			String number, String occupation, String gender, String blood_type, String nationality, String scholarity) {
 		super();
 		this.id = id;
@@ -71,11 +71,11 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public CepAdress getCep() {
+	public CepAddress getCep() {
 		return cep;
 	}
 
-	public void setCep(CepAdress cep) {
+	public void setCep(CepAddress cep) {
 		this.cep = cep;
 	}
 
@@ -125,5 +125,5 @@ public class Client {
 
 	public void setScholarity(String scholarity) {
 		this.scholarity = scholarity;
-	}  
+	}
 }

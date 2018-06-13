@@ -8,29 +8,25 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.pitangua.psystem.domain.Document;
-import com.example.pitangua.psystem.domain.ScheduleAppointment;
 import com.example.pitangua.psystem.exception.UnhandledException;
 
-public class DocumentDAO extends GenericDAO<DocumentDAO> {
+public class DocumentDAO extends GenericDAO<Document> {
 
 	@Override
-	public void insert(DocumentDAO entity) {
+	public void insert(Document entity) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void remove(DocumentDAO entity) {
+	public void remove(Document entity) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void update(DocumentDAO entity) {
+	public void update(Document entity) {
 		// TODO Auto-generated method stub
-		
 	}
-	
+
 	public Integer getDocumentCount() {
 		return getAllDocuments().size();
 	}
@@ -51,14 +47,14 @@ public class DocumentDAO extends GenericDAO<DocumentDAO> {
 		return documents;
 	}
 
-	private Document fromResultSet(ResultSet rs) throws SQLException {		
+	private Document fromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
 		Integer psychologist_id = rs.getInt("psychologist_id");
 		Integer client_id = rs.getInt("client_id");
 		Integer type = rs.getInt("type");
 		Date date = rs.getDate("date");
 		String text = rs.getString("text");
-				
-		return new Document(id,psychologist_id,client_id,type,date,text);
+
+		return new Document(id, psychologist_id, client_id, type, date, text);
 	}
 }

@@ -14,6 +14,9 @@ public class User {
 
 	private String passwordConfirm;
 
+	public User() {
+	}
+
 	public User(String cpf, Integer clinicId, String name, String email, String password, String phone,
 			boolean admin, boolean psychologist, String crp) {
 		this.cpf = cpf;
@@ -83,8 +86,16 @@ public class User {
 		return clinicId;
 	}
 
+	public void setClinicId(Integer clinicId) {
+		this.clinicId = clinicId;
+	}
+
 	public String getEmail() {
 		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {

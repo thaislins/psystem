@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.pitangua.psystem.domain.CepAdress;
+import com.example.pitangua.psystem.domain.CepAddress;
 import com.example.pitangua.psystem.domain.Client;
 import com.example.pitangua.psystem.exception.UnhandledException;
 
@@ -66,8 +66,8 @@ public class ClientDAO extends GenericDAO<Client> {
 		String nationality = rs.getString("nationality");
 		String scholarity = rs.getString("scholarity");
 
-		CepAdressDAO cepAdressDAO = new CepAdressDAO();
-		CepAdress cepAdress = cepAdressDAO.getByCep(cep);
+		CepAddressDAO cepAdressDAO = new CepAddressDAO();
+		CepAddress cepAdress = cepAdressDAO.getByCep(cep);
 		
 		return new Client(id,pcpf,cpf,name,birth_date,phone,cepAdress,number,occupation,gender,blood_type,nationality,scholarity);
 	}
