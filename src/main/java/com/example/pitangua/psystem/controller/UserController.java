@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +51,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
@@ -75,11 +74,6 @@ public class UserController {
 		// Validate result
 		if (result.hasErrors()) {
 			model.addAttribute("clinicList", clinicService.getAll());
-			System.out.println("Error!");
-			for (ObjectError err : result.getAllErrors()) {
-				System.out.println(">>> " + err);
-			}
-
 			return "register";
 		}
 
@@ -88,13 +82,10 @@ public class UserController {
 		} catch (SQLException e) {
 			model.addAttribute("clinicList", clinicService.getAll());
 			model.addAttribute("errorMessage", "Error: " + e.getMessage());
-			System.out.println("DB Error!");
-
 			return "register";
 		}
 
 		redirectAttributes.addFlashAttribute("registerSuccess", true);
-		System.out.println("Success!");
 
 		return "redirect:/login";
 	}
