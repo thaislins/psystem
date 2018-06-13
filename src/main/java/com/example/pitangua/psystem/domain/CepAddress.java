@@ -1,13 +1,13 @@
 package com.example.pitangua.psystem.domain;
 
-public class CepAdress {
+public class CepAddress {
 
 	private String cep;
 	private String street;
 	private String city;
 	private String state;
 	
-	public CepAdress(String cep, String street, String city, String state) {
+	public CepAddress(String cep, String street, String city, String state) {
 		super();
 		this.cep = cep;
 		this.street = street;

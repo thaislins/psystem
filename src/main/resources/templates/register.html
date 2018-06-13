@@ -31,62 +31,73 @@
         <div class="background-img">
             <div class="login-box card">
                 <div class="card-body">
-                    <form class="form-horizontal form-material" th:action="@{/register}" method="POST" id="loginform" action="index">
+                	<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
+                    <form class="form-horizontal form-material" th:action="@{/register}" method="POST" id="registerform" action="index" th:object="${userForm}">
                         <h3 class="box-title m-b-20">Sign Up</h3>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" required="" placeholder="Name" name="name">
+                                <input class="form-control" type="text" placeholder="Name" name="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{name}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="email" required="" placeholder="Email" name="email">
+                                <input class="form-control" type="email" placeholder="Email" name="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{email}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="number" required="" placeholder="Cpf" maxlength="11" name="cpf">
+                                <input class="form-control" type="number" placeholder="Cpf" maxlength="11" name="cpf" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{cpf}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="number" required="" placeholder="Phone" name="phone">
+                                <input class="form-control" type="number" placeholder="Phone" name="phone" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{phone}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="number" required="" placeholder="Crp" maxlength="6" name="crp">
+                                <input class="form-control" type="number" placeholder="Crp" maxlength="6" name="crp" th:field="*{crp}" th:classappend="${#fields.hasErrors('crp')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{crp}">...</div>
                             </div>
                         </div>
                         <div class="form-group">
-                        <label class="clinic" style="font-size: 12pt; margin-right:2.5em;">Clinic:</label>
-                            <select class="col-xs-12" style="padding: .3em 5em; margin-top:5px;" name="clinicId">
-                                <option th:each="clinic : ${clinicList}" th:value="*{clinic.id}"  th:text="${clinic.name}"></option>
-                            </select>
+                        	<div class="col-xs-12">
+	                            <select class="form-control" name="clinicId" th:field="*{clinicId}" th:classappend="${#fields.hasErrors('clinicId')} ? is-invalid : ''" required>
+	                            	<option value="" selected disabled>User Clinic</option>
+	                                <option th:each="clinic : ${clinicList}" th:value="${clinic.id}" th:text="${clinic.name}"></option>
+	                            </select>
+	                            <div class="invalid-feedback" th:errors="*{clinicId}">...</div>
+                        	</div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" required="" placeholder="Password" name="password">
+                                <input class="form-control" type="password" placeholder="Password" name="password" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{password}">...</div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" required="" placeholder="Confirm Password" name="passwordConfirm">
+                                <input class="form-control" type="password" placeholder="Confirm Password" name="passwordConfirm" th:field="*{passwordConfirm}" th:classappend="${#fields.hasErrors('passwordConfirm')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{passwordConfirm}">...</div>
                             </div>
                         </div>
-                        
-                        
+
+
                         <div class="form-group row">
                             <div class="col-md-5" style="margin-left: 2.6rem;">
                                 <div class="checkbox checkbox-success p-t-0">
-                                    <input id="checkbox-signup" type="checkbox" name="admin"  class="filled-in chk-col-light-blue">
-                                    <label for="checkbox-signup"> Admin</label>
+                                    <input id="checkbox-admin" type="checkbox" name="admin"  class="filled-in chk-col-light-blue">
+                                    <label for="checkbox-admin"> Admin</label>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="checkbox checkbox-success p-t-0">
-                                    <input id="checkbox-signup" type="checkbox" name="psychologist"  class="filled-in chk-col-light-blue">
-                                    <label for="checkbox-signup"> Psychologist</label>
+                                    <input id="checkbox-psychologist" type="checkbox" name="psychologist"  class="filled-in chk-col-light-blue">
+                                    <label for="checkbox-psychologist"> Psychologist</label>
                                 </div>
                             </div>
                         </div>

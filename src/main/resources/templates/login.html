@@ -32,6 +32,7 @@
 			<div class="login-box card">
 				<div class="card-body">
 					<div class="alert alert-danger" role="alert" th:if="${param.error}">Invalid Login!</div>
+					<div class="alert alert-success" role="alert" th:if="${registerSuccess}">User successfully registered!</div>
 					<form class="form-horizontal form-material" id="loginform" th:action="@{/auth}" method="POST">
 						<h3 class="box-title m-b-20">Sign In</h3>
 						<div class="form-group ">

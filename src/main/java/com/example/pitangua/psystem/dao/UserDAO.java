@@ -18,25 +18,23 @@ import com.example.pitangua.psystem.exception.UnhandledException;
 public class UserDAO extends GenericDAO<User> {
 
 	@Override
-	public void insert(User user) {
+	public void insert(User user) throws SQLException {
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-		String sql = "INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)" + 
+		String sql = "INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)" +
 				"VALUES(?,?,?,?,?,?,?,?,?);";
-		
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql)) {
-		       stmt.setString(1, user.getCpf());
-		       stmt.setInt(2, user.getClinicId());
-		       stmt.setString(3, user.getName());
-		       stmt.setString(4, user.getEmail());
-		       stmt.setString(5, bcrypt.encode(user.getPassword()));
-		       stmt.setString(6, user.getPhone());
-		       stmt.setBoolean(7, user.isAdmin());
-		       stmt.setBoolean(8, user.isPsychologist());
-		       stmt.setString(9, user.getCrp());
-		       stmt.execute();
-			} catch (SQLException e) {
-				throw new UnhandledException("DB Error", e);
-			}
+
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, user.getCpf());
+			ps.setInt(2, user.getClinicId());
+			ps.setString(3, user.getName());
+			ps.setString(4, user.getEmail());
+			ps.setString(5, bcrypt.encode(user.getPassword()));
+			ps.setString(6, user.getPhone());
+			ps.setBoolean(7, user.isAdmin());
+			ps.setBoolean(8, user.isPsychologist());
+			ps.setString(9, user.getCrp());
+			ps.execute();
+		}
 	}
 
 	@Override
@@ -51,35 +49,55 @@ public class UserDAO extends GenericDAO<User> {
 
 	public User getByEmail(String email) {
 		String sql = "SELECT * FROM user WHERE email=?";
-		ResultSet resultSet = null;
 
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql)) {
-			stmt.setString(1, email);
-			resultSet = stmt.executeQuery();
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, email);
+				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				return fromResultSet(resultSet);
 			}
 		} catch (SQLException e) {
 			throw new UnhandledException("DB Error", e);
-		} finally {
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					throw new UnhandledException("DB Error", e);
-				}
-			}
 		}
 
 		return null;
 	}
 
-	public List<User> getAllUsers() {
+	public User getByCrp(String crp) {
+		String sql = "SELECT * FROM user WHERE crp=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, crp);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
+	}
+
+	public User getByCpf(String cpf) {
+		String sql = "SELECT * FROM user WHERE cpf=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, cpf);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
+	}
+
+	public List<User> getByClinic(int clinic) {
 		List<User> users = new ArrayList<>();
 
-		String sql = "SELECT * FROM user";
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
-				ResultSet resultSet = stmt.executeQuery();) {
+		String sql = "SELECT * FROM user WHERE clinic_id=?";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, clinic);
+				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				users.add(fromResultSet(resultSet));
 			}
@@ -89,13 +107,29 @@ public class UserDAO extends GenericDAO<User> {
 
 		return users;
 	}
-	
+
+	public List<User> getAllUsers() {
+		List<User> users = new ArrayList<>();
+
+		String sql = "SELECT * FROM user";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				users.add(fromResultSet(resultSet));
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return users;
+	}
+
 	public Integer getPsychologistCount() {
 		int count = 0;
 
 		String sql = "SELECT count(*) FROM user WHERE PSYCHOLOGIST=true;";
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
-				ResultSet resultSet = stmt.executeQuery();) {
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql);
+				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				count = resultSet.getInt("count(*)");
 			}
@@ -119,4 +153,5 @@ public class UserDAO extends GenericDAO<User> {
 
 		return new User(cpf, clinicId, name, email, password, phone, admin, psychologist, crp);
 	}
+
 }
