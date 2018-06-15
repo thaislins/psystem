@@ -1,5 +1,6 @@
 package com.example.pitangua.psystem.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,11 @@ public class ClinicService implements IClinicService {
 
 	@Autowired
 	private ClinicDAO clinicDAO;
+
+	@Override
+	public void update(Clinic clinic) throws SQLException {
+		clinicDAO.update(clinic);
+	}
 
 	@Override
 	public List<Clinic> getAll() {

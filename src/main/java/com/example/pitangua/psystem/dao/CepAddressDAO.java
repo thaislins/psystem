@@ -4,9 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.pitangua.psystem.domain.CepAddress;
 import com.example.pitangua.psystem.exception.UnhandledException;;
 
+@Repository
+@Transactional
 public class CepAddressDAO extends GenericDAO<CepAddress> {
 
 	@Override
