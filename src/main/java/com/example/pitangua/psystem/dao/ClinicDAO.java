@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,26 +18,44 @@ import com.example.pitangua.psystem.exception.UnhandledException;
 @Transactional
 public class ClinicDAO extends GenericDAO<Clinic> {
 
-	@Override
-	public void insert(Clinic entity) {
-		// TODO Auto-generated method stub
+	@Autowired
+	private CepAddressDAO cepAddressDAO;
 
+	@Override
+	public void insert(Clinic entity) throws SQLException {
+		cepAddressDAO.insert(entity.getCep());
+
+		String sql = "INSERT INTO clinic(name, phone, cep, number) VALUES(?, ?, ?, ?)";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, entity.getName());
+			ps.setString(2, entity.getPhone());
+			ps.setString(3, entity.getCep().getCep());
+			ps.setString(4, entity.getNumber());
+			ps.execute();
+		}
 	}
 
 	@Override
 	public void remove(Clinic entity) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	public void update(Clinic entity) {
-		// TODO Auto-generated method stub
+	public void update(Clinic entity) throws SQLException {
+		cepAddressDAO.update(entity.getCep());
 
+		String sql = "UPDATE clinic SET name=?, phone=?, cep=?, number=? WHERE id=?";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, entity.getName());
+			ps.setString(2, entity.getPhone());
+			ps.setString(3, entity.getCep().getCep());
+			ps.setString(4, entity.getNumber());
+			ps.setInt(5, entity.getId());
+			ps.execute();
+		}
 	}
 
 	public Clinic getById(Integer id) {
-		String sql = "SELECT * FROM clinic WHERE id=?";
+		String sql = "SELECT * FROM clinic NATURAL JOIN cep_address WHERE id=?";
 
 		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, id);
 				ResultSet resultSet = ps.executeQuery()) {
@@ -53,7 +72,7 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 	public List<Clinic> getAll() {
 		List<Clinic> clinics = new ArrayList<>();
 
-		String sql = "SELECT * FROM clinic";
+		String sql = "SELECT * FROM clinic NATURAL JOIN cep_address";
 		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql);
 				ResultSet resultSet = ps.executeQuery();) {
 			while (resultSet.next()) {
@@ -71,11 +90,14 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 		String name = rs.getString("name");
 		String phone = rs.getString("phone");
 		String cep = rs.getString("cep");
-		Integer number = rs.getInt("number");
+		String street = rs.getString("street");
+		String city = rs.getString("city");
+		String state = rs.getString("state");
+		String number = rs.getString("number");
 
-		CepAddressDAO cepAdressDAO = new CepAddressDAO();
-		CepAddress cepAdress = cepAdressDAO.getByCep(cep);
+		CepAddress cepAdress = new CepAddress(cep, street, city, state);
 
 		return new Clinic(id, name, phone, cepAdress, number);
 	}
+
 }

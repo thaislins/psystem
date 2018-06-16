@@ -5,9 +5,12 @@ public class Clinic {
 	private String name;
 	private String phone;
 	private CepAddress cep;
-	private Integer number;
-	
-	public Clinic(Integer id, String name, String phone, CepAddress cep, Integer number) {
+	private String number;
+
+	public Clinic() {
+	}
+
+	public Clinic(Integer id, String name, String phone, CepAddress cep, String number) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,11 +51,11 @@ public class Clinic {
 		this.cep = cep;
 	}
 
-	public Integer getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 }

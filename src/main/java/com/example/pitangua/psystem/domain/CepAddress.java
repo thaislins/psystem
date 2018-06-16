@@ -6,7 +6,10 @@ public class CepAddress {
 	private String street;
 	private String city;
 	private String state;
-	
+
+	public CepAddress() {
+	}
+
 	public CepAddress(String cep, String street, String city, String state) {
 		super();
 		this.cep = cep;
