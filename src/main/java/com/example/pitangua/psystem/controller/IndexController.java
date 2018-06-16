@@ -18,14 +18,15 @@ import com.example.pitangua.psystem.security.IAuthenticationFacade;
 
 @Controller
 public class IndexController {
-
+	@Autowired
 	private UserDAO userDAO;
 
 	@Autowired
 	private IAuthenticationFacade authFacade;
 
-	public IndexController() {
-		userDAO = new UserDAO();
+	@GetMapping("/")
+	public String index() {
+		return "redirect:/dashboard";
 	}
 
 	@GetMapping("/dashboard")
@@ -52,28 +53,30 @@ public class IndexController {
 	}
 
 	public void displayActiveUser(ModelAndView mv) {
-		User user = authFacade.getUser();
-
-		mv.addObject("activeUser", user.getName());
-		mv.addObject("userEmail", user.getEmail());
+		User activeUser = authFacade.getUser();
+		mv.addObject("user", activeUser);
 	}
 
 	public void displayCount(ModelAndView mv) {
+		User activeUser = authFacade.getUser();
 		ClientDAO clientDAO = new ClientDAO();
 		ScheduleAppointmentDAO appointmentDAO = new ScheduleAppointmentDAO();
 		DocumentDAO documentDAO = new DocumentDAO();
 		HashMap<String, String> countMap = new HashMap<>();
 
-		countMap.put("psychologist", userDAO.getPsychologistCount() == 1 ? "Psychologist" : "Psychologists");
-		countMap.put("client", clientDAO.getClientCount() == 1 ? "Client" : "Clients");
-		countMap.put("appointment", appointmentDAO.getAppointmentCount() == 1 ? "Appointment" : "Appointments");
-		countMap.put("document", documentDAO.getDocumentCount() == 1 ? "Document" : "Documents");
+		countMap.put("psychologist",
+				userDAO.getPsychologistCount(activeUser.getClinicId()) == 1 ? "Psychologist" : "Psychologists");
+		countMap.put("client", clientDAO.getClientCount(activeUser.getId()) == 1 ? "Client" : "Clients");
+		countMap.put("appointment",
+				appointmentDAO.getAppointmentCount(activeUser.getId()) == 1 ? "Appointment" : "Appointments");
+		countMap.put("document", documentDAO.getDocumentCount(activeUser.getId()) == 1 ? "Document" : "Documents");
 
-		mv.addObject("psychologistCount", userDAO.getPsychologistCount());
-		mv.addObject("clientCount", clientDAO.getClientCount());
-		mv.addObject("appointmentCount", appointmentDAO.getAppointmentCount());
-		mv.addObject("documentCount", documentDAO.getDocumentCount());
+		mv.addObject("psychologistCount", userDAO.getPsychologistCount(activeUser.getClinicId()));
+		mv.addObject("clientCount", clientDAO.getClientCount(activeUser.getId()));
+		mv.addObject("appointmentCount", appointmentDAO.getAppointmentCount(activeUser.getId()));
+		mv.addObject("documentCount", documentDAO.getDocumentCount(activeUser.getId()));
 
 		mv.addAllObjects(countMap);
 	}
+
 }

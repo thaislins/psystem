@@ -4,33 +4,34 @@ import java.util.Date;
 
 public class Client {
 	private Integer id;
-	private String pcpf;
+	private Integer psychologistId;
 	private String cpf;
 	private String name;
-	private Date birth_date;
+	private Date birthDate;
 	private String phone;
 	private CepAddress cep;
 	private String number;
 	private String occupation;
 	private String gender;
-	private String blood_type;
+	private String bloodType;
 	private String nationality;
 	private String scholarity;
 
-	public Client(Integer id, String pcpf, String cpf, String name, Date birth_date, String phone, CepAddress cep,
-			String number, String occupation, String gender, String blood_type, String nationality, String scholarity) {
+	public Client(Integer id, Integer psychologistId, String cpf, String name, Date birthDate, String phone,
+			CepAddress cep, String number, String occupation, String gender, String bloodType, String nationality,
+			String scholarity) {
 		super();
 		this.id = id;
-		this.pcpf = pcpf;
+		this.psychologistId = psychologistId;
 		this.cpf = cpf;
 		this.name = name;
-		this.birth_date = birth_date;
+		this.birthDate = birthDate;
 		this.phone = phone;
 		this.cep = cep;
 		this.number = number;
 		this.occupation = occupation;
 		this.gender = gender;
-		this.blood_type = blood_type;
+		this.bloodType = bloodType;
 		this.nationality = nationality;
 		this.scholarity = scholarity;
 	}
@@ -39,12 +40,12 @@ public class Client {
 		return id;
 	}
 
-	public String getPcpf() {
-		return pcpf;
+	public Integer getPsychologistId() {
+		return psychologistId;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public void setPsychologistId(Integer psychologistId) {
+		this.psychologistId = psychologistId;
 	}
 
 	public String getName() {
@@ -55,12 +56,12 @@ public class Client {
 		this.name = name;
 	}
 
-	public Date getBirth_date() {
-		return birth_date;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setBirth_date(Date birth_date) {
-		this.birth_date = birth_date;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getPhone() {
@@ -103,12 +104,12 @@ public class Client {
 		this.gender = gender;
 	}
 
-	public String getBlood_type() {
-		return blood_type;
+	public String getBloodType() {
+		return bloodType;
 	}
 
-	public void setBlood_type(String blood_type) {
-		this.blood_type = blood_type;
+	public void setBloodType(String bloodType) {
+		this.bloodType = bloodType;
 	}
 
 	public String getNationality() {

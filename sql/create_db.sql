@@ -65,26 +65,26 @@ CREATE TABLE user (
 -- Table client
 -- -----------------------------------------------------
 CREATE TABLE client (
-  id			INT				NOT NULL	AUTO_INCREMENT,
-  pcpf			CHAR(11)		NOT NULL,
-  cpf			CHAR(11) 		NULL,
-  name			VARCHAR(255)	NULL,
-  birth_date	DATE			NULL,
-  phone			VARCHAR(20)		NULL,
-  cep			CHAR(8)			NULL,
-  number		VARCHAR(10)		NULL,
-  occupation	VARCHAR(255)	NULL,
-  gender		CHAR			NULL,
-  blood_type	VARCHAR(3)		NULL,
-  nationality	VARCHAR(255)	NULL,
-  scholarity	VARCHAR(255)	NULL,
+  id			    INT				NOT NULL	AUTO_INCREMENT,
+  psychologist_id	INT				NOT NULL,
+  cpf				CHAR(11) 		NULL,
+  name				VARCHAR(255)	NULL,
+  birth_date		DATE			NULL,
+  phone				VARCHAR(20)		NULL,
+  cep				CHAR(8)			NULL,
+  number			VARCHAR(10)		NULL,
+  occupation		VARCHAR(255)	NULL,
+  gender			CHAR			NULL,
+  blood_type		VARCHAR(3)		NULL,
+  nationality		VARCHAR(255)	NULL,
+  scholarity		VARCHAR(255)	NULL,
   PRIMARY KEY (id),
-  INDEX fk_client_new_user1_idx (pcpf ASC),
+  INDEX fk_client_new_user1_idx (psychologist_id ASC),
   INDEX fk_client_cep_1_idx (cep ASC),
   UNIQUE INDEX cpf_UNIQUE (cpf ASC),
   CONSTRAINT fk_client_user
-    FOREIGN KEY (pcpf)
-    REFERENCES user (cpf)
+    FOREIGN KEY (psychologist_id)
+    REFERENCES user (id)
     ON DELETE RESTRICT,
   CONSTRAINT fk_client_cep
     FOREIGN KEY (cep)
@@ -226,7 +226,18 @@ COMMIT;
 INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
 VALUES("11111111111", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
 
+INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
+VALUES("444444444444", 2, "Thais Lins", "thaislin@gmail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
 
 
 
+use psystem_db;
+select name, clinic_id from user;
 
+SELECT count(*) FROM user WHERE PSYCHOLOGIST=true and clinic_id=2;
+select email,name,cpf from user;
+SELECT count(*) FROM schedule_appointment WHERE psychologist_id=12;
+
+SELECT count(*) FROM client WHERE pcpf=11111111111;
+
+SELECT count(*) FROM document WHERE psychologist_id=1;

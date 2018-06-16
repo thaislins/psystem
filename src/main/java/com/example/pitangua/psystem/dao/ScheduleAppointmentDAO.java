@@ -15,23 +15,34 @@ public class ScheduleAppointmentDAO extends GenericDAO<ScheduleAppointment> {
 	@Override
 	public void insert(ScheduleAppointment entity) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void remove(ScheduleAppointment entity) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(ScheduleAppointment entity) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	public Integer getAppointmentCount() {
-		return getAllAppointments().size();
+
+	public Integer getAppointmentCount(int psychologistId) {
+		int count = 0;
+		String sql = "SELECT count(*) FROM schedule_appointment WHERE psychologist_id=?;";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				count = resultSet.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return count;
 	}
 
 	public List<ScheduleAppointment> getAllAppointments() {
@@ -50,12 +61,12 @@ public class ScheduleAppointmentDAO extends GenericDAO<ScheduleAppointment> {
 		return appointments;
 	}
 
-	private ScheduleAppointment fromResultSet(ResultSet rs) throws SQLException {		
+	private ScheduleAppointment fromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
 		Integer psychologist_id = rs.getInt("psychologist_id");
 		Integer client_id = rs.getInt("client_id");
 		Date date = rs.getDate("date");
-		
-		return new ScheduleAppointment(id,psychologist_id,client_id,date);
+
+		return new ScheduleAppointment(id, psychologist_id, client_id, date);
 	}
 }
