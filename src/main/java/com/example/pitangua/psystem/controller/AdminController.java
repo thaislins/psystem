@@ -73,7 +73,7 @@ public class AdminController {
 	@PostMapping("/admin/clinic")
 	public String editClinicRequest(Model model, @ModelAttribute("clinicForm") @Validated Clinic clinicForm,
 			BindingResult result, final RedirectAttributes redirectAttributes) {
-		System.out.println("id: " + clinicForm.getId());
+		clinicForm.setId(authFacade.getUser().getClinicId());
 		if (!result.hasErrors()) {
 			try {
 				clinicService.update(clinicForm);
@@ -85,6 +85,33 @@ public class AdminController {
 		model.addAttribute("user", authFacade.getUser());
 
 		return "admin/edit-clinic";
+	}
+
+	@GetMapping("/register-clinic")
+	public ModelAndView registerClinic() {
+		ModelAndView mv = new ModelAndView("register-clinic");
+
+		Clinic clinicForm = new Clinic();
+		mv.addObject("clinicForm", clinicForm);
+
+		return mv;
+	}
+
+	@PostMapping("/register-clinic")
+	public String registerClinicRequest(Model model, @ModelAttribute("clinicForm") @Validated Clinic clinicForm,
+			BindingResult result, final RedirectAttributes redirectAttributes) {
+		if (!result.hasErrors()) {
+			try {
+				clinicService.insert(clinicForm);
+
+				redirectAttributes.addFlashAttribute("registerSuccess", true);
+				return "redirect:/register-clinic";
+			} catch (SQLException e) {
+				model.addAttribute("errorMessage", "Error: " + e.getMessage());
+			}
+		}
+
+		return "register-clinic";
 	}
 
 }

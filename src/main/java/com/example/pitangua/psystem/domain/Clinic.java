@@ -7,6 +7,9 @@ public class Clinic {
 	private CepAddress cep;
 	private String number;
 
+	public Clinic() {
+	}
+
 	public Clinic(Integer id, String name, String phone, CepAddress cep, String number) {
 		super();
 		this.id = id;

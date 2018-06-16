@@ -16,6 +16,11 @@ public class ClinicService implements IClinicService {
 	private ClinicDAO clinicDAO;
 
 	@Override
+	public void insert(Clinic clinic) throws SQLException {
+		clinicDAO.insert(clinic);
+	}
+
+	@Override
 	public void update(Clinic clinic) throws SQLException {
 		clinicDAO.update(clinic);
 	}

@@ -22,7 +22,17 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 	private CepAddressDAO cepAddressDAO;
 
 	@Override
-	public void insert(Clinic entity) {
+	public void insert(Clinic entity) throws SQLException {
+		cepAddressDAO.insert(entity.getCep());
+
+		String sql = "INSERT INTO clinic(name, phone, cep, number) VALUES(?, ?, ?, ?)";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, entity.getName());
+			ps.setString(2, entity.getPhone());
+			ps.setString(3, entity.getCep().getCep());
+			ps.setString(4, entity.getNumber());
+			ps.execute();
+		}
 	}
 
 	@Override
