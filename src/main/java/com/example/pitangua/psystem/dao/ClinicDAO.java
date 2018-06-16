@@ -31,7 +31,6 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 
 	@Override
 	public void update(Clinic entity) throws SQLException {
-		System.out.println("Haloi!");
 		cepAddressDAO.update(entity.getCep());
 
 		String sql = "UPDATE clinic SET name=?, phone=?, cep=?, number=? WHERE id=?";
@@ -41,9 +40,7 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 			ps.setString(3, entity.getCep().getCep());
 			ps.setString(4, entity.getNumber());
 			ps.setInt(5, entity.getId());
-			System.out.println("6");
 			ps.execute();
-			System.out.println("7");
 		}
 	}
 
