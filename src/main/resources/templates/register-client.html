@@ -112,7 +112,7 @@
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
+       <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
@@ -122,197 +122,44 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">--- PERSONAL</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Dashboard <span class="label label-rounded label-danger">4</span></span></a>
+                        <li> <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">Minimal </a></li>
-                                <li><a href="index2.html">Analytical</a></li>
-                                <li><a href="index3.html">Demographical</a></li>
-                                <li><a href="index4.html">Modern</a></li>
+                                <li><a href="/clients/register" method="GET">Register Client</a></li>
+                                <li><a href="#">Registered Clients</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Apps</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-calendar.html">Calendar</a></li>
-                                <li><a href="app-chat.html">Chat app</a></li>
-                                <li><a href="app-ticket.html">Support Ticket</a></li>
-                                <li><a href="app-contact.html">Contact / Employee</a></li>
-                                <li><a href="app-contact2.html">Contact Grid</a></li>
-                                <li><a href="app-contact-detail.html">Contact Detail</a></li>
+                                <li><a href="#">Registered Psychologists</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Inbox</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-email.html">Mailbox</a></li>
-                                <li><a href="app-email-detail.html">Mailbox Detail</a></li>
-                                <li><a href="app-compose.html">Compose Mail</a></li>
+                                <li><a href="#">Schedule Appointment</a></li>
+                                <li><a href="#">Scheduled Appointments</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-On-Off-3"></i><span class="hide-menu">Ui Elements <span class="label label-rounded label-success">25</span></span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="ui-cards.html">Cards</a></li>
-                                <li><a href="ui-user-card.html">User Cards</a></li>
-                                <li><a href="ui-buttons.html">Buttons</a></li>
-                                <li><a href="ui-modals.html">Modals</a></li>
-                                <li><a href="ui-tab.html">Tab</a></li>
-                                <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
-                                <li><a href="ui-tooltip-stylish.html">Tooltip stylish</a></li>
-                                <li><a href="ui-sweetalert.html">Sweet Alert</a></li>
-                                <li><a href="ui-notification.html">Notification</a></li>
-                                <li><a href="ui-progressbar.html">Progressbar</a></li>
-                                <li><a href="ui-nestable.html">Nestable</a></li>
-                                <li><a href="ui-range-slider.html">Range slider</a></li>
-                                <li><a href="ui-timeline.html">Timeline</a></li>
-                                <li><a href="ui-typography.html">Typography</a></li>
-                                <li><a href="ui-horizontal-timeline.html">Horizontal Timeline</a></li>
-                                <li><a href="ui-session-timeout.html">Session Timeout</a></li>
-                                <li><a href="ui-session-ideal-timeout.html">Session Ideal Timeout</a></li>
-                                <li><a href="ui-bootstrap.html">Bootstrap Ui</a></li>
-                                <li><a href="ui-breadcrumb.html">Breadcrumb</a></li>
-                                <li><a href="ui-bootstrap-switch.html">Bootstrap Switch</a></li>
-                                <li><a href="ui-list-media.html">List Media</a></li>
-                                <li><a href="ui-ribbons.html">Ribbons</a></li>
-                                <li><a href="ui-grid.html">Grid</a></li>
-                                <li><a href="ui-carousel.html">Carousel</a></li>
-                                <li><a href="ui-date-paginator.html">Date-paginator</a></li>
-                                <li><a href="ui-dragable-portlet.html">Dragable Portlet</a></li>
+                                <li><a href="#">Register Payment</a></li>
+                                <li><a href="#">Fulfilled Payments</a></li>
                             </ul>
                         </li>
-                        <li class="nav-small-cap">--- FORMS, TABLE &amp; WIDGETS</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Receipt-4"></i><span class="hide-menu">Forms</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="form-basic.html">Basic Forms</a></li>
-                                <li><a href="form-layout.html">Form Layouts</a></li>
-                                <li><a href="form-addons.html">Form Addons</a></li>
-                                <li><a href="form-material.html">Form Material</a></li>
-                                <li><a href="form-float-input.html">Floating Lable</a></li>
-                                <li><a href="form-pickers.html">Form Pickers</a></li>
-                                <li><a href="form-upload.html">File Upload</a></li>
-                                <li><a href="form-mask.html">Form Mask</a></li>
-                                <li><a href="form-validation.html">Form Validation</a></li>
-                                <li><a href="form-dropzone.html">File Dropzone</a></li>
-                                <li><a href="form-icheck.html">Icheck control</a></li>
-                                <li><a href="form-img-cropper.html">Image Cropper</a></li>
-                                <li><a href="form-bootstrapwysihtml5.html">HTML5 Editor</a></li>
-                                <li><a href="form-typehead.html">Form Typehead</a></li>
-                                <li><a href="form-wizard.html">Form Wizard</a></li>
-                                <li><a href="form-xeditable.html">Xeditable Editor</a></li>
-                                <li><a href="form-summernote.html">Summernote Editor</a></li>
-                                <li><a href="form-tinymce.html">Tinymce Editor</a></li>
+                                <li><a href="#">Issue Document</a></li>
+                                <li><a href="#">Issued Document</a></li>
+                                <li><a href="#">Anamnesis</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Split-Vertical"></i><span class="hide-menu">Tables</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="table-basic.html">Basic Tables</a></li>
-                                <li><a href="table-layout.html">Table Layouts</a></li>
-                                <li><a href="table-data-table.html">Data Tables</a></li>
-                                <li><a href="table-footable.html">Footable</a></li>
-                                <li><a href="table-jsgrid.html">Js Grid Table</a></li>
-                                <li><a href="table-responsive.html">Responsive Table</a></li>
-                                <li><a href="table-bootstrap.html">Bootstrap Tables</a></li>
-                                <li><a href="table-editable-table.html">Editable Table</a></li>
+                                <li><a href="#">Data Widgets</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Windows-2"></i><span class="hide-menu">Widgets</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="widget-data.html">Data Widgets</a></li>
-                                <li><a href="widget-apps.html">Apps Widgets</a></li>
-                                <li><a href="widget-charts.html">Charts Widgets</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-small-cap">--- EXTRA COMPONENTS</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File"></i><span class="hide-menu">Page Layout</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="layout-single-column.html">1 Column</a></li>
-                                <li><a href="layout-fix-header.html">Fix header</a></li>
-                                <li><a href="layout-fix-sidebar.html">Fix sidebar</a></li>
-                                <li><a href="layout-fix-header-sidebar.html">Fixe header &amp; Sidebar</a></li>
-                                <li><a href="layout-boxed.html">Boxed Layout</a></li>
-                                <li><a href="layout-logo-center.html">Logo in Center</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Files"></i><span class="hide-menu">Sample Pages <span class="label label-rounded label-info">25</span></span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="starter-kit.html">Starter Kit</a></li>
-                                <li><a href="pages-blank.html">Blank page</a></li>
-                                <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success pull-right">6</span></a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="pages-login.html">Login 1</a></li>
-                                        <li><a href="pages-login-2.html">Login 2</a></li>
-                                        <li><a href="pages-register.html">Register</a></li>
-                                        <li><a href="pages-register2.html">Register 2</a></li>
-                                        <li><a href="pages-lockscreen.html">Lockscreen</a></li>
-                                        <li><a href="pages-recover-password.html">Recover password</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="pages-profile.html">Profile page</a></li>
-                                <li><a href="pages-animation.html">Animation</a></li>
-                                <li><a href="pages-fix-innersidebar.html">Sticky Left sidebar</a></li>
-                                <li><a href="pages-fix-inner-right-sidebar.html">Sticky Right sidebar</a></li>
-                                <li><a href="pages-invoice.html">Invoice</a></li>
-                                <li><a href="pages-treeview.html">Treeview</a></li>
-                                <li><a href="pages-utility-classes.html">Helper Classes</a></li>
-                                <li><a href="pages-search-result.html">Search result</a></li>
-                                <li><a href="pages-scroll.html">Scrollbar</a></li>
-                                <li><a href="pages-pricing.html">Pricing</a></li>
-                                <li><a href="pages-lightbox-popup.html">Lighbox popup</a></li>
-                                <li><a href="pages-gallery.html">Gallery</a></li>
-                                <li><a href="pages-faq.html">Faqs</a></li>
-                                <li><a href="#" class="has-arrow">Error Pages</a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="pages-error-400.html">400</a></li>
-                                        <li><a href="pages-error-403.html">403</a></li>
-                                        <li><a href="pages-error-404.html">404</a></li>
-                                        <li><a href="pages-error-500.html">500</a></li>
-                                        <li><a href="pages-error-503.html">503</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Pie-Chart"></i><span class="hide-menu">Charts</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="chart-morris.html">Morris Chart</a></li>
-                                <li><a href="chart-chartist.html">Chartis Chart</a></li>
-                                <li><a href="chart-echart.html">Echarts</a></li>
-                                <li><a href="chart-flot.html">Flot Chart</a></li>
-                                <li><a href="chart-knob.html">Knob Chart</a></li>
-                                <li><a href="chart-chart-js.html">Chartjs</a></li>
-                                <li><a href="chart-sparkline.html">Sparkline Chart</a></li>
-                                <li><a href="chart-extra-chart.html">Extra chart</a></li>
-                                <li><a href="chart-peity.html">Peity Charts</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Prater"></i><span class="hide-menu">Icons</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="icon-material.html">Material Icons</a></li>
-                                <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
-                                <li><a href="icon-themify.html">Themify Icons</a></li>
-                                <li><a href="icon-weather.html">Weather Icons</a></li>
-                                <li><a href="icon-iconmind.html">Mind Icons</a></li>
-                                <li><a href="icon-simple-lineicon.html">Simple Line icons</a></li>
-                                <li><a href="icon-flag.html">Flag Icons</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Map-Marker2"></i><span class="hide-menu">Maps</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="map-google.html">Google Maps</a></li>
-                                <li><a href="map-vector.html">Vector Maps</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-El-Castillo"></i><span class="hide-menu">Multi level dd</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">item 1.1</a></li>
-                                <li><a href="#">item 1.2</a></li>
-                                <li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
-                                    <ul aria-expanded="false" class="collapse">
-                                        <li><a href="#">item 1.3.1</a></li>
-                                        <li><a href="#">item 1.3.2</a></li>
-                                        <li><a href="#">item 1.3.3</a></li>
-                                        <li><a href="#">item 1.3.4</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">item 1.4</a></li>
-                            </ul>
-                        </li>
+            
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -359,32 +206,33 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="#">
+                                <form method="POST" th:action="@{/clients/register}" th:object="${clientForm}">
                                     <div class="form-body">
                                         <h3 class="card-title">Person Info</h3>
                                         <hr>
                                         <div class="row p-t-20">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-danger : ''">
                                                     <label class="control-label">Name</label>
-                                                    <input name="name" type="text" class="form-control" placeholder="Client Name">
-                                                    <small class="form-control-feedback"> This is inline help </small> </div>
+                                                    <input name="name" type="text" class="form-control" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{name}">...</div>
+                                                </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-danger : ''">
                                                     <label class="control-label">CPF</label>
-                                                    <input name="cpf" type="text" id="lastName" class="form-control form-control-danger" placeholder="CPF">
-                                                     </div>
+                                                    <input name="cpf" type="text" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{cpf}">...</div></div>
                                             </div>
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('gender')} ? has-danger : ''">
                                                     <label class="control-label">Gender</label>
-                                                    <select name="gender" class="form-control custom-select">
+                                                    <select name="gender" class="form-control custom-select" th:field="*{gender}" th:classappend="${#fields.hasErrors('gender')} ? is-invalid : ''">
                                                         <option value="M">Male</option>
                                                         <option value="F">Female</option>
                                                     </select>
@@ -392,12 +240,12 @@
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('birthDate')} ? has-danger : ''">
                                                     <label class="control-label">Date of Birth</label>
-                                                    <input name="birthDate" type="date" class="form-control" placeholder="dd/mm/yyyy">
+                                                    <input name="birthDate" type="date" class="form-control" th:field="*{birthDate}" th:classappend="${#fields.hasErrors('birthDate')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{birthDate}">...</div>
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                         </div>
                                         <!--/row-->
                                         
@@ -419,9 +267,10 @@
                                             </div>
                                             <!--/span-->
                                            <div class="col-md-6">
-                                                <div class="form-group">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('occupation')} ? has-danger : ''">
                                                     <label class="control-label">Occupation</label>
-                                                    <input name="occupation" type="text" id="lastName" class="form-control form-control-danger" placeholder="Occupation">
+                                                    <input name="occupation" type="text" class="form-control" th:field="*{occupation}" th:classappend="${#fields.hasErrors('occupation')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{occupation}">...</div>
                                                      </div>
                                             </div>
                                             </div>
@@ -448,10 +297,15 @@
                                                 </div>
                                             </div>
                                         	</div>
-                                        	
-                                        	
                                             <!--/span-->
                                             <div class="row">
+                                            <div class="col-md-6">
+                                            	<div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? has-danger : ''">
+                                            	<label class="control-label">Phone Number</label>
+                                            	<input name="phone" type="text" class="form-control" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                            	<div class="invalid-feedback" th:errors="*{phone}">...</div>
+                                            	</div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Psychologist</label>
@@ -471,13 +325,13 @@
                                             <div class="col-md-3 ">
                                                 <div class="form-group">
                                                     <label>CEP</label>
-                                                    <input name="cep" type="text" class="form-control">
+                                                    <input name="cep" type="text" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="form-group">
                                                     <label>Street</label>
-                                                    <input name="street" type="text" class="form-control">
+                                                    <input type="text" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -485,14 +339,14 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>City</label>
-                                                    <input name="city" type="text" class="form-control">
+                                                    <input type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>State</label>
-                                                    <select class="form-control custom-select" name="state">
+                                                    <select class="form-control custom-select">
                                                     	<option value="AC">Acre</option>
                                                     	<option value="Al">Alagoas</option>
                                                     	<option value="AP">Amapá</option>
@@ -512,7 +366,7 @@
 														<option value="PE">Pernambuco</option>
 														<option value="PI">Piauí</option>
 														<option value="RJ">Rio de Janeiro</option>
-														<option value="RN">Rio Grande do Norte</option>
+														<option value="Rio Grande do Norte">Rio Grande do Norte</option>
 														<option value="RS">Rio Grande do Sul</option>
 														<option value="RO">Rondônia</option>
 														<option value="RR">Roraima</option>
@@ -523,19 +377,23 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            
+                                            <!--/span-->
                                             <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Number</label>
-                                                    <input name="number" type="text" class="form-control">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('number')} ? has-danger : ''">
+                                                    <label class="control-label">Number</label>
+                                                    <input name="number" type="text" id="client-number" class="form-control" th:field="*{number}" th:classappend="${#fields.hasErrors('number')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{number}">...</div>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                         <div class="form-actions">
                                         	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                     	</div>
+	                                	</form>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>

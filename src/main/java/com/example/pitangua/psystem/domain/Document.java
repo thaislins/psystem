@@ -1,6 +1,6 @@
 package com.example.pitangua.psystem.domain;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Document {
 	private Integer id;

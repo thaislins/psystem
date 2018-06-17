@@ -1,13 +1,11 @@
 package com.example.pitangua.psystem.domain;
 
-import java.util.Date;
-
 public class Client {
 	private Integer id;
 	private Integer psychologistId;
 	private String cpf;
 	private String name;
-	private Date birthDate;
+	private String birthDate;
 	private String phone;
 	private CepAddress cep;
 	private String number;
@@ -17,11 +15,12 @@ public class Client {
 	private String nationality;
 	private String scholarity;
 
-	public Client(Integer id, Integer psychologistId, String cpf, String name, Date birthDate, String phone,
-			CepAddress cep, String number, String occupation, String gender, String bloodType, String nationality,
-			String scholarity) {
+	public Client() {
+	}
+
+	public Client(Integer psychologistId, String cpf, String clientName, String birthDate, String phone, CepAddress cep,
+			String number, String occupation, String gender, String bloodType, String nationality, String scholarity) {
 		super();
-		this.id = id;
 		this.psychologistId = psychologistId;
 		this.cpf = cpf;
 		this.name = name;
@@ -40,12 +39,24 @@ public class Client {
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getPsychologistId() {
 		return psychologistId;
 	}
 
 	public void setPsychologistId(Integer psychologistId) {
 		this.psychologistId = psychologistId;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getName() {
@@ -56,11 +67,11 @@ public class Client {
 		this.name = name;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 
