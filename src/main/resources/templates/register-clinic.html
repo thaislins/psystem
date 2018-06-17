@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <title>Register Clinic - pSystem</title>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+
+    <link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/pages/login-register-lock.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/colors/default.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="card-no-border">
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">pSystem</p>
+        </div>
+    </div>
+
+    <section id="wrapper">
+        <div class="register-class" style="background-image:url('/assets/images/background/login-register.jpg');">
+        <div class="background-img">
+            <div class="login-box card">
+                <div class="card-body">
+                	<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
+                	<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Clinic successfully registered!</div>
+                    <form class="form-horizontal form-material" th:action="@{/register-clinic}" method="POST" id="registerform" action="index" th:object="${clinicForm}">
+                        <h3 class="box-title m-b-20">Register Clinic</h3>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" placeholder="Clinic Name" name="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{name}">...</div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" placeholder="Phone" name="phone" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{phone}">...</div>
+                            </div>
+                        </div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input class="form-control" type="text" placeholder="CEP" name="cep" th:field="*{cep.cep}" th:classappend="${#fields.hasErrors('cep.cep')} ? is-invalid : ''" required>
+								<div class="invalid-feedback" th:errors="*{cep.cep}">...</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input class="form-control" type="text" placeholder="Street" name="street" th:field="*{cep.street}" th:classappend="${#fields.hasErrors('cep.street')} ? is-invalid : ''" required>
+								<div class="invalid-feedback" th:errors="*{cep.street}">...</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input class="form-control" type="text" placeholder="City" name="city" th:field="*{cep.city}" th:classappend="${#fields.hasErrors('cep.city')} ? is-invalid : ''" required>
+								<div class="invalid-feedback" th:errors="*{cep.city}">...</div>
+							</div>
+						</div>
+						<div class="form-group">
+                        	<div class="col-xs-12">
+	                            <select class="form-control" name="state" th:field="*{cep.state}" th:classappend="${#fields.hasErrors('cep.state')} ? is-invalid : ''" required>
+	                            	<option value="" selected>State</option>
+	                                <option value="AC">Acre</option>
+									<option value="AL">Alagoas</option>
+									<option value="AP">Amapá</option>
+									<option value="AM">Amazonas</option>
+									<option value="BA">Bahia</option>
+									<option value="CE">Ceará</option>
+									<option value="DF">Distrito Federal</option>
+									<option value="ES">Espírito Santo</option>
+									<option value="GO">Goiás</option>
+									<option value="MA">Maranhão</option>
+									<option value="MT">Mato Grosso</option>
+									<option value="MS">Mato Grosso do Sul</option>
+									<option value="MG">Minas Gerais</option>
+									<option value="PA">Pará</option>
+									<option value="PB">Paraíba</option>
+									<option value="PR">Paraná</option>
+									<option value="PE">Pernambuco</option>
+									<option value="PI">Piauí</option>
+									<option value="RJ">Rio de Janeiro</option>
+									<option value="RN">Rio Grande do Norte</option>
+									<option value="RS">Rio Grande do Sul</option>
+									<option value="RO">Rondônia</option>
+									<option value="RR">Roraima</option>
+									<option value="SC">Santa Catarina</option>
+									<option value="SP">São Paulo</option>
+									<option value="SE">Sergipe</option>
+									<option value="TO">Tocantins</option>
+	                            </select>
+								<div class="invalid-feedback" th:errors="*{cep.state}">...</div>
+                        	</div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input class="form-control" type="text" placeholder="Number" name="number" th:field="*{number}" th:classappend="${#fields.hasErrors('number')} ? is-invalid : ''" required>
+                                <div class="invalid-feedback" th:errors="*{number}">...</div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center p-b-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" type="submit">Register Clinic</button>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                Already have an account? <a th:href="@{/login}" class="text-info m-l-5"><b>Sign In</b></a>
+                            </div>
+                            <div class="col-sm-12 text-center">
+								Don't have an account? <a th:href="@{/register}" class="text-info m-l-5"><b>Sign up</b></a>
+							</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+       </div>
+    </section>
+
+    <script src="/assets/node_modules/jquery/jquery.min.js"></script>
+    <script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".preloader").fadeOut();
+        });
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+</body>
+
+</html>

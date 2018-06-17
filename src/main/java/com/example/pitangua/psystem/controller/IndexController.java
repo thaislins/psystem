@@ -18,6 +18,7 @@ import com.example.pitangua.psystem.security.IAuthenticationFacade;
 
 @Controller
 public class IndexController {
+
 	@Autowired
 	private UserDAO userDAO;
 
