@@ -4,32 +4,32 @@ import java.util.Date;
 
 public class ScheduleAppointment {
 	private Integer id;
-	private Integer psychologist_id;
-	private Integer client_id;
+	private Integer psychologistId;
+	private Integer clientId;
 	private Date date;
-	
-	public ScheduleAppointment(Integer id, Integer psychologist_id, Integer client_id, Date date) {
+
+	public ScheduleAppointment(Integer id, Integer psychologistId, Integer clientId, Date date) {
 		super();
 		this.id = id;
-		this.psychologist_id = psychologist_id;
-		this.client_id = client_id;
+		this.psychologistId = psychologistId;
+		this.clientId = clientId;
 		this.date = date;
 	}
 
-	public Integer getPsychologist_id() {
-		return psychologist_id;
+	public Integer getPsychologistId() {
+		return psychologistId;
 	}
 
-	public void setPsychologist_id(Integer psychologist_id) {
-		this.psychologist_id = psychologist_id;
+	public void setPsychologistId(Integer psychologistId) {
+		this.psychologistId = psychologistId;
 	}
 
-	public Integer getClient_id() {
-		return client_id;
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setClient_id(Integer client_id) {
-		this.client_id = client_id;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 
 	public Date getDate() {

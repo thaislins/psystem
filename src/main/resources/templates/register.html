@@ -42,25 +42,25 @@
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="email" placeholder="Email" name="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''" required>
+                                <input class="form-control" type="email" placeholder="E-mail" name="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''" required>
                                 <div class="invalid-feedback" th:errors="*{email}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="number" placeholder="Cpf" maxlength="11" name="cpf" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                <input class="form-control" type="text" placeholder="CPF" maxlength="11" name="cpf" data-mask="999.999.999-99" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
                                 <div class="invalid-feedback" th:errors="*{cpf}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="number" placeholder="Phone" name="phone" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                <input class="form-control" type="text" placeholder="Phone" data-mask="(99) 99999-9999" maxlength="11" name="phone" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
                                 <div class="invalid-feedback" th:errors="*{phone}">...</div>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="number" placeholder="Crp" maxlength="6" name="crp" th:field="*{crp}" th:classappend="${#fields.hasErrors('crp')} ? is-invalid : ''" required>
+                                <input class="form-control" type="text" placeholder="CRP" maxlength="6" name="crp" th:field="*{crp}" data-mask="99/9999" th:classappend="${#fields.hasErrors('crp')} ? is-invalid : ''" required>
                                 <div class="invalid-feedback" th:errors="*{crp}">...</div>
                             </div>
                         </div>
@@ -85,19 +85,17 @@
                                 <div class="invalid-feedback" th:errors="*{passwordConfirm}">...</div>
                             </div>
                         </div>
-
-
                         <div class="form-group row">
                             <div class="col-md-5" style="margin-left: 2.6rem;">
-                                <div class="checkbox checkbox-success p-t-0">
-                                    <input id="checkbox-admin" type="checkbox" name="admin"  class="filled-in chk-col-light-blue">
-                                    <label for="checkbox-admin"> Admin</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox-admin" type="checkbox" name="admin"  class="custom-control-input admin-check">
+                                    <label for="checkbox-admin" class="custom-control-label"> Admin</label>
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <div class="checkbox checkbox-success p-t-0">
-                                    <input id="checkbox-psychologist" type="checkbox" name="psychologist"  class="filled-in chk-col-light-blue">
-                                    <label for="checkbox-psychologist"> Psychologist</label>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox-psychologist" type="checkbox" name="psychologist"  class="custom-control-input psychologist-check">
+                                    <label for="checkbox-psychologist" class="custom-control-label"> Psychologist</label>
                                 </div>
                             </div>
                         </div>
@@ -124,12 +122,26 @@
     <script src="/assets/node_modules/jquery/jquery.min.js"></script>
     <script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
     <script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/mask.js"></script>
     <script type="text/javascript">
         $(function() {
             $(".preloader").fadeOut();
         });
+        
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
+        });
+        
+        $('.admin-check').click(function() {
+            if ($(this).is(':checked')) {
+                $('input:checkbox').prop('checked', true);
+            } 
+        });
+        
+        $('.psychologist-check').click(function() {
+            if (!$(this).is(':checked')) {
+                $('input:checkbox').prop('checked', false);
+            }
         });
     </script>
 </body>

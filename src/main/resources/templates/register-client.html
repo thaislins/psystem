@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+
+	<title>Register Client - pSystem</title>
+
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+
+	<link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/colors/default.css" id="theme" rel="stylesheet">
+	<link href="/css/countrySelect.css" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border fix-sidebar">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">pSystem</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                         <!-- dark Logo text -->
+                         <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                         <!-- Light Logo text -->    
+                         <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="icon-Magnifi-Glass2"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4 th:text="${user.name}"></h4>
+                                                <p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" onclick="document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>&nbsp; Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+       <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">--- PERSONAL</li>
+                        <li> <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="/clients/register" method="GET">Register Client</a></li>
+                                <li><a href="#">Registered Clients</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Registered Psychologists</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Schedule Appointment</a></li>
+                                <li><a href="#">Scheduled Appointments</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Register Payment</a></li>
+                                <li><a href="#">Fulfilled Payments</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Issue Document</a></li>
+                                <li><a href="#">Issued Document</a></li>
+                                <li><a href="#">Anamnesis</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Data Widgets</a></li>
+                            </ul>
+                        </li>
+            
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Register Client</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active">Register Client</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 align-self-center text-right d-none d-md-block">
+                        
+                    </div>
+                    <div class="">
+                        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST" th:action="@{/clients/register}" th:object="${clientForm}">
+                                    <div class="form-body">
+                                        <h3 class="card-title">Person Info</h3>
+                                        <hr>
+                                        <div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-danger : ''">
+                                                    <label class="control-label">Name</label>
+                                                    <input name="name" type="text" class="form-control" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{name}">...</div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-danger : ''">
+                                                    <label class="control-label">CPF</label>
+                                                    <input name="cpf" type="text" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{cpf}">...</div></div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('gender')} ? has-danger : ''">
+                                                    <label class="control-label">Gender</label>
+                                                    <select name="gender" class="form-control custom-select" th:field="*{gender}" th:classappend="${#fields.hasErrors('gender')} ? is-invalid : ''">
+                                                        <option value="M">Male</option>
+                                                        <option value="F">Female</option>
+                                                    </select>
+                                                    <small class="form-control-feedback"> Select your gender </small> </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('birthDate')} ? has-danger : ''">
+                                                    <label class="control-label">Date of Birth</label>
+                                                    <input name="birthDate" type="date" class="form-control" th:field="*{birthDate}" th:classappend="${#fields.hasErrors('birthDate')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{birthDate}">...</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/row-->
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Blood Type</label>
+                                                    <select name="bloodType" class="form-control custom-select" tabindex="1">
+                                                        <option value="O+">O+</option>
+                                                        <option value="O-">O-</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value="AB-">AB-</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                           <div class="col-md-6">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('occupation')} ? has-danger : ''">
+                                                    <label class="control-label">Occupation</label>
+                                                    <input name="occupation" type="text" class="form-control" th:field="*{occupation}" th:classappend="${#fields.hasErrors('occupation')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{occupation}">...</div>
+                                                     </div>
+                                            </div>
+                                            </div>
+                                            <!-- row -->
+                                            <div class="row">
+                                            <div class="col-md-6">
+                                                    <label class="control-label">Nationality</label>
+                                                <div class="form-group country-select inside">
+                                                    <label class="control-label"> </label>
+                                                    <input name="nationality" type="text" id="country-selector" class="form-control" placeholder="Nationality">
+ 			                                   </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Education Level</label>
+                                                    <select name="scholarity" class="form-control custom-select" data-placeholder="" tabindex="1">
+                                                        <option value="Primary Education">Primary Education</option>
+                                                        <option value="Secondary Education">Secondary Education</option>
+                                                        <option value="Undergraduate">Undergraduate</option>
+                                                        <option value="Masters">Masters</option>
+                                                        <option value="Doctorate">Doctorate</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        	</div>
+                                            <!--/span-->
+                                            <div class="row">
+                                            <div class="col-md-6">
+                                            	<div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? has-danger : ''">
+                                            	<label class="control-label">Phone Number</label>
+                                            	<input name="phone" type="text" class="form-control" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                            	<div class="invalid-feedback" th:errors="*{phone}">...</div>
+                                            	</div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Psychologist</label>
+                                                    <select name="psychologistId" class="form-control custom-select" data-placeholder="" tabindex="1">
+                                                        <option th:each="user : ${userList}" th:value="${user.id}" th:text="${user.name}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        	</div>
+                                            <!--/span-->
+                                        
+                                        </div>
+                                        <!--/row-->
+                                        <h3 class="box-title m-t-40">Address</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-3 ">
+                                                <div class="form-group">
+                                                    <label>CEP</label>
+                                                    <input name="cep" type="text" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <label>Street</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>State</label>
+                                                    <select class="form-control custom-select">
+                                                    	<option value="AC">Acre</option>
+                                                    	<option value="Al">Alagoas</option>
+                                                    	<option value="AP">Amapá</option>
+                                                    	<option value="AM">Amazonas</option>
+                                                    	<option value="BA">Bahia</option>
+                                                    	<option value="CE">Ceará</option>
+                                                    	<option value="DF">Distrito Federal</option>
+                                                    	<option value="ES">Espírito Santo</option>
+                                                    	<option value="GO">Goiás</option>
+                                                    	<option value="MA">Maranhão</option>
+                                                    	<option value="MT">Mato Grosso</option>
+                                                    	<option value="MS">Mato Grosso do Sul</option>
+                                                    	<option value="MG">Minas Gerais</option>
+                                                    	<option value="PA">Pará</option>
+                                                    	<option value="PB">Paraíba</option>
+														<option value="PR">Paraná</option>
+														<option value="PE">Pernambuco</option>
+														<option value="PI">Piauí</option>
+														<option value="RJ">Rio de Janeiro</option>
+														<option value="Rio Grande do Norte">Rio Grande do Norte</option>
+														<option value="RS">Rio Grande do Sul</option>
+														<option value="RO">Rondônia</option>
+														<option value="RR">Roraima</option>
+														<option value="SC">Santa Catarina</option>
+														<option value="SP">São Paulo</option>
+														<option value="SE">Sergipe</option>
+														<option value="TO">Tocantins</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <!--/span-->
+                                            <div class="col-md-2">
+                                                <div class="form-group" th:classappend="${#fields.hasErrors('number')} ? has-danger : ''">
+                                                    <label class="control-label">Number</label>
+                                                    <input name="number" type="text" id="client-number" class="form-control" th:field="*{number}" th:classappend="${#fields.hasErrors('number')} ? is-invalid : ''" required>
+                                                    <div class="invalid-feedback" th:errors="*{number}">...</div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-actions">
+                                        	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    	</div>
+	                                	</form>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <div class="right-sidebar">
+                    <div class="slimscrollright">
+                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                        <div class="r-panel-body">
+                            <ul id="themecolors" class="m-t-20">
+                                <li><b>With Light sidebar</b></li>
+                                <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                                <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
+                                <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme working">7</a></li>
+                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                                <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                            </ul>
+                            <ul class="m-t-20 chatonline">
+                                <li><b>Chat option</b></li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/3.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/5.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/6.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/7.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)"><img src="../assets/images/users/8.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer">
+                © 2017 Adminwrap by wrappixel.com
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
+	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
+	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/js/waves.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
+	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
+	<script src="/js/custom.min.js"></script>
+	<script src="/js/countrySelect.js"></script>
+	<script>
+
+	$("#country-selector").countrySelect({
+		defaultCountry: "br",
+		onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
+		//preferredCountries: ['ca', 'gb', 'us']
+	});
+
+	</script>
+</body>
+
+</html>

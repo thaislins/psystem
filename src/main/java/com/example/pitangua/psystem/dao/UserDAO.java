@@ -20,8 +20,8 @@ public class UserDAO extends GenericDAO<User> {
 	@Override
 	public void insert(User user) throws SQLException {
 		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-		String sql = "INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)" +
-				"VALUES(?,?,?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)"
+				+ "VALUES(?,?,?,?,?,?,?,?,?);";
 
 		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
 			ps.setString(1, user.getCpf());
@@ -124,11 +124,10 @@ public class UserDAO extends GenericDAO<User> {
 		return users;
 	}
 
-	public Integer getPsychologistCount() {
+	public Integer getPsychologistCount(int clinic) {
 		int count = 0;
-
-		String sql = "SELECT count(*) FROM user WHERE PSYCHOLOGIST=true;";
-		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql);
+		String sql = "SELECT count(*) FROM user WHERE PSYCHOLOGIST=true and clinic_id=?;";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, clinic);
 				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				count = resultSet.getInt("count(*)");
@@ -141,6 +140,7 @@ public class UserDAO extends GenericDAO<User> {
 	}
 
 	private User fromResultSet(ResultSet rs) throws SQLException {
+		Integer id = rs.getInt("id");
 		String cpf = rs.getString("cpf");
 		Integer clinicId = rs.getInt("clinic_id");
 		String name = rs.getString("name");
@@ -150,8 +150,10 @@ public class UserDAO extends GenericDAO<User> {
 		Boolean admin = rs.getBoolean("ADMIN");
 		Boolean psychologist = rs.getBoolean("PSYCHOLOGIST");
 		String crp = rs.getString("crp");
+		User user = new User(cpf, clinicId, name, email, password, phone, admin, psychologist, crp);
+		user.setId(id);
 
-		return new User(cpf, clinicId, name, email, password, phone, admin, psychologist, crp);
+		return user;
 	}
 
 }

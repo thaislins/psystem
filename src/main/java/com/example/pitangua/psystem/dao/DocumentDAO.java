@@ -1,10 +1,10 @@
 package com.example.pitangua.psystem.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.example.pitangua.psystem.domain.Document;
@@ -27,8 +27,19 @@ public class DocumentDAO extends GenericDAO<Document> {
 		// TODO Auto-generated method stub
 	}
 
-	public Integer getDocumentCount() {
-		return getAllDocuments().size();
+	public Integer getDocumentCount(int psychologistId) {
+		int count = 0;
+		String sql = "SELECT count(*) FROM document WHERE psychologist_id=?;";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				count = resultSet.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return count;
 	}
 
 	public List<Document> getAllDocuments() {
