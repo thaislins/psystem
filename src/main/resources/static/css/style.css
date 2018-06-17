@@ -1381,16 +1381,24 @@ File: scss
 }
 
 .card-count:hover {
-	background: rgba(0,0,0,.04);
+	background: rgba(255,255,255,.7);
 	
 }
 
 .card-count:hover h3 {
-	color: #20AEE4;
+	color: #36B6ED;
 }
 
 .card-count:hover h5 {
-	color: #20AEE4;
+	color: #36B6ED;
+}
+
+.card-count .icon-wrapper {
+	transition: all .3s linear;
+}
+
+.card-count:hover .icon-wrapper {
+	font-size:20px;
 }
 
 
