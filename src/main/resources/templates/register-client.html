@@ -67,13 +67,6 @@
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
                         <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="icon-Magnifi-Glass2"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -225,7 +218,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-danger : ''">
                                                     <label class="control-label">CPF</label>
-                                                    <input maxlength="11" name="cpf" type="text" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                                    <input name="cpf" type="text" class="form-control" data-mask="999.999.999-99" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
                                                     <div class="invalid-feedback" th:errors="*{cpf}">...</div></div>
                                             </div>
                                             <!--/span-->
@@ -306,7 +299,7 @@
                                             <div class="col-md-6">
                                             	<div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? has-danger : ''">
                                             	<label class="control-label">Phone Number</label>
-                                            	<input maxlength="11" name="phone" type="text" class="form-control" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                            	<input name="phone" type="text" class="form-control" data-mask="(99) 99999-9999" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
                                             	<div class="invalid-feedback" th:errors="*{phone}">...</div>
                                             	</div>
                                             </div>
@@ -329,7 +322,7 @@
 											<div class="col-md-3">
 												<div class="form-group" th:classappend="${#fields.hasErrors('cep.cep')} ? has-danger : ''">
 													<label class="control-label">CEP</label>
-													<input maxlength="8" type="text" class="form-control" placeholder="" name="cep" th:field="*{cep.cep}" th:classappend="${#fields.hasErrors('cep.cep')} ? is-invalid : ''" required>
+													<input type="text" class="form-control" placeholder="" data-mask="99999-999" name="cep" th:field="*{cep.cep}" th:classappend="${#fields.hasErrors('cep.cep')} ? is-invalid : ''" required>
 													<div class="invalid-feedback" th:errors="*{cep.cep}">...</div>
 												</div>
 											</div>
@@ -430,6 +423,7 @@
 	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
 	<script src="/js/custom.min.js"></script>
 	<script src="/js/countrySelect.js"></script>
+	<script src="/js/jquery.mask.js"></script>
 	<script>
 
 	$("#country-selector").countrySelect({

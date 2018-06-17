@@ -18,7 +18,7 @@ public class Client {
 	public Client() {
 	}
 
-	public Client(Integer psychologistId, String cpf, String clientName, String birthDate, String phone, CepAddress cep,
+	public Client(Integer psychologistId, String cpf, String name, String birthDate, String phone, CepAddress cep,
 			String number, String occupation, String gender, String bloodType, String nationality, String scholarity) {
 		super();
 		this.psychologistId = psychologistId;

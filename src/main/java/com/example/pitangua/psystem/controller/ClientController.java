@@ -62,9 +62,10 @@ public class ClientController {
 	public ModelAndView registeredClients() {
 		ModelAndView mv = new ModelAndView("registered-clients");
 
-		mv.addObject("user", authFacade.getUser());
+		mv.addObject("activeUser", authFacade.getUser().getName());
+		mv.addObject("userEmail", authFacade.getUser().getEmail());
 		mv.addObject("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
-		mv.addObject("userList", userService.getAll());
+		mv.addObject("clientList", clientService.getAll());
 		return mv;
 	}
 
@@ -92,6 +93,7 @@ public class ClientController {
 				redirectAttributes.addFlashAttribute("registerSuccess", true);
 				return new ModelAndView("register-client");
 			} catch (SQLException e) {
+				System.out.println(e.getMessage());
 				model.addAttribute("errorMessage", "Error: " + e.getMessage());
 			}
 		}

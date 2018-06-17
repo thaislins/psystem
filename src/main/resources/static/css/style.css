@@ -1380,6 +1380,20 @@ File: scss
     padding: 25px 25px;
 }
 
+.card-count:hover {
+	background: rgba(0,0,0,.04);
+	
+}
+
+.card-count:hover h3 {
+	color: #20AEE4;
+}
+
+.card-count:hover h5 {
+	color: #20AEE4;
+}
+
+
 .card {
     margin-bottom: 30px;
 }

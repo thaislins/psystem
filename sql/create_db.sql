@@ -9,7 +9,7 @@ USE psystem_db;
 -- Table cep_address
 -- -----------------------------------------------------
 CREATE TABLE cep_address (
-  cep CHAR(8) NOT NULL,
+  cep CHAR(9) NOT NULL,
   street VARCHAR(255) NULL,
   city VARCHAR(255) NULL,
   state VARCHAR(255) NULL,
@@ -24,7 +24,7 @@ CREATE TABLE clinic (
   id		INT				NOT NULL	AUTO_INCREMENT,
   name		VARCHAR(255)	NULL,
   phone		VARCHAR(255)	NULL,
-  cep		CHAR(8)			NULL,
+  cep		CHAR(9)			NULL,
   number	VARCHAR(10)		NULL,
   PRIMARY KEY (id),
   INDEX fk_clinic_cep_idx (cep ASC),
@@ -40,7 +40,7 @@ CREATE TABLE clinic (
 -- -----------------------------------------------------
 CREATE TABLE user (
   id			INT 			NOT NULL	AUTO_INCREMENT,
-  cpf			CHAR(11)		NULL,
+  cpf			CHAR(14)		NULL,
   clinic_id		INT				NOT NULL,
   name			VARCHAR(255)	NULL,
   email			VARCHAR(255)	NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE user (
   phone			VARCHAR(20)		NULL,
   ADMIN			TINYINT(1)		NULL		DEFAULT 0,
   PSYCHOLOGIST	TINYINT(1)		NULL,
-  crp			CHAR(6)			NULL,
+  crp			CHAR(7)			NULL,
   PRIMARY KEY (id),
   INDEX fk_user_clinic_idx (clinic_id ASC),
   UNIQUE INDEX crp_UNIQUE (crp ASC),
@@ -67,11 +67,11 @@ CREATE TABLE user (
 CREATE TABLE client (
   id			    INT				NOT NULL	AUTO_INCREMENT,
   psychologist_id	INT				NOT NULL,
-  cpf				CHAR(11) 		NULL,
+  cpf				CHAR(14) 		NULL,
   name				VARCHAR(255)	NULL,
   birth_date		DATE			NULL,
   phone				VARCHAR(20)		NULL,
-  cep				CHAR(8)			NULL,
+  cep				CHAR(9)			NULL,
   number			VARCHAR(10)		NULL,
   occupation		VARCHAR(255)	NULL,
   gender			CHAR			NULL,
@@ -224,10 +224,11 @@ COMMIT;
 
 -- INSERT FIRST USER (with an encrypted password - 123456)
 INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
-VALUES("11111111111", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
+VALUES("111.111.111-11", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "11/1111");
 
 
 
 
 select cep from cep_address;
-select * from client;
+select name from client;
+delete from client where id=7;

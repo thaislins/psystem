@@ -67,13 +67,6 @@
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
                         <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="icon-Magnifi-Glass2"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -83,15 +76,15 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                        <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${activeUser}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
-                                                <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <h4 th:text="${activeUser}"></h4>
+                                                <p class="text-muted" th:text="${userEmail}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -211,156 +204,21 @@
                                     <table class="table table-hover table-striped ">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                                <th>Role</th>
+                                                <th>Name</th>
+                                                <th>Phone Number</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Deshmukh</td>
-                                                <td>Prohaska</td>
-                                                <td>@Genelia</td>
-                                                <td><span class="label label-danger">admin</span> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Deshmukh</td>
-                                                <td>Gaylord</td>
-                                                <td>@Ritesh</td>
-                                                <td><span class="label label-info">member</span> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sanghani</td>
-                                                <td>Gusikowski</td>
-                                                <td>@Govinda</td>
-                                                <td><span class="label label-warning">developer</span> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Roshan</td>
-                                                <td>Rogahn</td>
-                                                <td>@Hritik</td>
-                                                <td><span class="label label-success">supporter</span> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Joshi</td>
-                                                <td>Hickle</td>
-                                                <td>@Maruti</td>
-                                                <td><span class="label label-info">member</span> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Nigam</td>
-                                                <td>Eichmann</td>
-                                                <td>@Sonu</td>
-                                                <td><span class="label label-success">supporter</span> </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Bordered Table</h4>
-                                <h6 class="card-subtitle">Add<code>.table-bordered</code>for borders on all sides of the table and cells.</h6>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Task</th>
-                                                <th>Progress</th>
-                                                <th>Deadline</th>
-                                                <th class="text-nowrap">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Lunar probe project</td>
-                                                <td>
-                                                    <div class="progress progress-xs margin-vertical-10 ">
-                                                        <div class="progress-bar bg-danger" style="width: 35%; height:6px;"></div>
-                                                    </div>
-                                                </td>
-                                                <td>May 15, 2015</td>
+                                            <tr th:each="client : ${clientList}">
+                                                <td th:text="${client.name}"></td>
+                                                <td th:text="${client.phone}" placeholder="(99)99999-9999"></td>	
                                                 <td class="text-nowrap">
+                                                	<a href="#" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                                     <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                     <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dream successful plan</td>
-                                                <td>
-                                                    <div class="progress progress-xs margin-vertical-10 ">
-                                                        <div class="progress-bar bg-warning" style="width: 50%; height:6px;"></div>
-                                                    </div>
-                                                </td>
-                                                <td>July 1, 2015</td>
-                                                <td class="text-nowrap">
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Office automatization</td>
-                                                <td>
-                                                    <div class="progress progress-xs margin-vertical-10 ">
-                                                        <div class="progress-bar bg-success" style="width: 100%; height:6px;"></div>
-                                                    </div>
-                                                </td>
-                                                <td>Apr 12, 2015</td>
-                                                <td class="text-nowrap">
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>The sun climbing plan</td>
-                                                <td>
-                                                    <div class="progress progress-xs margin-vertical-10 ">
-                                                        <div class="progress-bar bg-primary" style="width: 70%; height:6px;"></div>
-                                                    </div>
-                                                </td>
-                                                <td>Aug 9, 2015</td>
-                                                <td class="text-nowrap">
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Open strategy</td>
-                                                <td>
-                                                    <div class="progress progress-xs margin-vertical-10 ">
-                                                        <div class="progress-bar bg-info" style="width: 85%; height:6px;"></div>
-                                                    </div>
-                                                </td>
-                                                <td>Apr 2, 2015</td>
-                                                <td class="text-nowrap">
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tantas earum numeris</td>
-                                                <td>
-                                                    <div class="progress progress-xs margin-vertical-10 ">
-                                                        <div class="progress-bar bg-inverse" style="width: 50%; height:6px;"></div>
-                                                    </div>
-                                                </td>
-                                                <td>July 11, 2015</td>
-                                                <td class="text-nowrap">
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
-                                                </td>
+                                                <!--<td><span class="label label-danger">admin</span> </td>-->
                                             </tr>
                                         </tbody>
                                     </table>
