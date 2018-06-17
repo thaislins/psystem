@@ -26,7 +26,13 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
+	public Integer getClientCount(int psychologistId) {
+		return clientDAO.getClientCount(psychologistId);
+	}
+
+	@Override
 	public Client getByCpf(String cpf) {
 		return clientDAO.getByCpf(cpf);
 	}
+
 }

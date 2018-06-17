@@ -226,18 +226,8 @@ COMMIT;
 INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
 VALUES("11111111111", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
 
-INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
-VALUES("444444444444", 2, "Thais Lins", "thaislin@gmail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "111111");
 
 
 
-use psystem_db;
-select name, clinic_id from user;
-
-SELECT count(*) FROM user WHERE PSYCHOLOGIST=true and clinic_id=2;
-select email,name,cpf from user;
-SELECT count(*) FROM schedule_appointment WHERE psychologist_id=12;
-
-SELECT count(*) FROM client WHERE pcpf=11111111111;
-
-SELECT count(*) FROM document WHERE psychologist_id=1;
+select cep from cep_address;
+select * from client;

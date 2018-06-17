@@ -115,57 +115,62 @@
        <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-small-cap">--- PERSONAL</li>
-                        <li> <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="/clients/register" method="GET">Register Client</a></li>
-                                <li><a href="#">Registered Clients</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Registered Psychologists</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Schedule Appointment</a></li>
-                                <li><a href="#">Scheduled Appointments</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Register Payment</a></li>
-                                <li><a href="#">Fulfilled Payments</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Issue Document</a></li>
-                                <li><a href="#">Issued Document</a></li>
-                                <li><a href="#">Anamnesis</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Data Widgets</a></li>
-                            </ul>
-                        </li>
-            
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+       <aside class="left-sidebar">
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav">
+						<li class="nav-small-cap">--- PERSONAL</li>
+						<li>
+							<a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="/clients/register" method="GET">Register Client</a></li>
+								<li><a href="/clients/registered" method="GET">Registered Clients</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Registered Psychologists</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Schedule Appointment</a></li>
+								<li><a href="#">Scheduled Appointments</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Register Payment</a></li>
+								<li><a href="#">Fulfilled Payments</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Issue Document</a></li>
+								<li><a href="#">Issued Document</a></li>
+								<li><a href="#">Anamnesis</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
+
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -185,14 +190,12 @@
                         <h3 class="text-themecolor">Register Client</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item">Clients</li>
                             <li class="breadcrumb-item active">Register Client</li>
                         </ol>
                     </div>
                     <div class="col-md-7 align-self-center text-right d-none d-md-block">
                         
-                    </div>
-                    <div class="">
-                        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -222,7 +225,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-danger : ''">
                                                     <label class="control-label">CPF</label>
-                                                    <input name="cpf" type="text" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                                    <input maxlength="11" name="cpf" type="text" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
                                                     <div class="invalid-feedback" th:errors="*{cpf}">...</div></div>
                                             </div>
                                             <!--/span-->
@@ -254,15 +257,16 @@
                                                 <div class="form-group">
                                                     <label class="control-label">Blood Type</label>
                                                     <select name="bloodType" class="form-control custom-select" tabindex="1">
-                                                        <option value="O+">O+</option>
-                                                        <option value="O-">O-</option>
                                                         <option value="A+">A+</option>
                                                         <option value="A-">A-</option>
                                                         <option value="B+">B+</option>
                                                         <option value="B-">B-</option>
+                                                        <option value="O+">O+</option>
+                                                        <option value="O-">O-</option>
                                                         <option value="AB+">AB+</option>
                                                         <option value="AB-">AB-</option>
                                                     </select>
+                                                     <small class="form-control-feedback"> Select your blood type </small>
                                                 </div>
                                             </div>
                                             <!--/span-->
@@ -302,15 +306,15 @@
                                             <div class="col-md-6">
                                             	<div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? has-danger : ''">
                                             	<label class="control-label">Phone Number</label>
-                                            	<input name="phone" type="text" class="form-control" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
+                                            	<input maxlength="11" name="phone" type="text" class="form-control" th:field="*{phone}" th:classappend="${#fields.hasErrors('phone')} ? is-invalid : ''" required>
                                             	<div class="invalid-feedback" th:errors="*{phone}">...</div>
                                             	</div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Psychologist</label>
-                                                    <select name="psychologistId" class="form-control custom-select" data-placeholder="" tabindex="1">
-                                                        <option th:each="user : ${userList}" th:value="${user.id}" th:text="${user.name}"></option>
+                                                    <select readonly name="psychologistId" class="form-control custom-select" data-placeholder="" tabindex="1">
+                                                        <option th:value="${user.id}" th:text="${user.name}"></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -319,54 +323,56 @@
                                         
                                         </div>
                                         <!--/row-->
-                                        <h3 class="box-title m-t-40">Address</h3>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-3 ">
-                                                <div class="form-group">
-                                                    <label>CEP</label>
-                                                    <input name="cep" type="text" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="form-group">
-                                                    <label>Street</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>City</label>
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>State</label>
-                                                    <select class="form-control custom-select">
-                                                    	<option value="AC">Acre</option>
-                                                    	<option value="Al">Alagoas</option>
-                                                    	<option value="AP">Amapá</option>
-                                                    	<option value="AM">Amazonas</option>
-                                                    	<option value="BA">Bahia</option>
-                                                    	<option value="CE">Ceará</option>
-                                                    	<option value="DF">Distrito Federal</option>
-                                                    	<option value="ES">Espírito Santo</option>
-                                                    	<option value="GO">Goiás</option>
-                                                    	<option value="MA">Maranhão</option>
-                                                    	<option value="MT">Mato Grosso</option>
-                                                    	<option value="MS">Mato Grosso do Sul</option>
-                                                    	<option value="MG">Minas Gerais</option>
-                                                    	<option value="PA">Pará</option>
-                                                    	<option value="PB">Paraíba</option>
+                                      <h3 class="box-title m-t-10">Address</h3>
+										<hr>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="form-group" th:classappend="${#fields.hasErrors('cep.cep')} ? has-danger : ''">
+													<label class="control-label">CEP</label>
+													<input maxlength="8" type="text" class="form-control" placeholder="" name="cep" th:field="*{cep.cep}" th:classappend="${#fields.hasErrors('cep.cep')} ? is-invalid : ''" required>
+													<div class="invalid-feedback" th:errors="*{cep.cep}">...</div>
+												</div>
+											</div>
+											<div class="col-md-9">
+												<div class="form-group" th:classappend="${#fields.hasErrors('cep.street')} ? has-danger : ''">
+													<label class="control-label">Street</label>
+													<input type="text" class="form-control" placeholder="" name="street" th:field="*{cep.street}" th:classappend="${#fields.hasErrors('cep.street')} ? is-invalid : ''" required>
+													<div class="invalid-feedback" th:errors="*{cep.street}">...</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-5">
+												<div class="form-group" th:classappend="${#fields.hasErrors('cep.city')} ? has-danger : ''">
+													<label class="control-label">City</label>
+													<input type="text" class="form-control" placeholder="" name="city" th:field="*{cep.city}" th:classappend="${#fields.hasErrors('cep.city')} ? is-invalid : ''" required>
+													<div class="invalid-feedback" th:errors="*{cep.city}">...</div>
+												</div>
+											</div>
+											<div class="col-md-5">
+												<div class="form-group" th:classappend="${#fields.hasErrors('cep.state')} ? has-danger : ''">
+													<label class="control-label">State</label>
+													<select class="form-control custom-select" name="state" th:field="*{cep.state}" th:classappend="${#fields.hasErrors('cep.state')} ? is-invalid : ''" required>
+														<option value="AC">Acre</option>
+														<option value="AL">Alagoas</option>
+														<option value="AP">Amapá</option>
+														<option value="AM">Amazonas</option>
+														<option value="BA">Bahia</option>
+														<option value="CE">Ceará</option>
+														<option value="DF">Distrito Federal</option>
+														<option value="ES">Espírito Santo</option>
+														<option value="GO">Goiás</option>
+														<option value="MA">Maranhão</option>
+														<option value="MT">Mato Grosso</option>
+														<option value="MS">Mato Grosso do Sul</option>
+														<option value="MG">Minas Gerais</option>
+														<option value="PA">Pará</option>
+														<option value="PB">Paraíba</option>
 														<option value="PR">Paraná</option>
 														<option value="PE">Pernambuco</option>
 														<option value="PI">Piauí</option>
 														<option value="RJ">Rio de Janeiro</option>
-														<option value="Rio Grande do Norte">Rio Grande do Norte</option>
+														<option value="RN">Rio Grande do Norte</option>
 														<option value="RS">Rio Grande do Sul</option>
 														<option value="RO">Rondônia</option>
 														<option value="RR">Roraima</option>
@@ -374,26 +380,26 @@
 														<option value="SP">São Paulo</option>
 														<option value="SE">Sergipe</option>
 														<option value="TO">Tocantins</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            
-                                            <!--/span-->
-                                            <div class="col-md-2">
-                                                <div class="form-group" th:classappend="${#fields.hasErrors('number')} ? has-danger : ''">
-                                                    <label class="control-label">Number</label>
-                                                    <input name="number" type="text" id="client-number" class="form-control" th:field="*{number}" th:classappend="${#fields.hasErrors('number')} ? is-invalid : ''" required>
-                                                    <div class="invalid-feedback" th:errors="*{number}">...</div>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
+													</select>
+													 <small class="form-control-feedback"> Select your state </small>
+													<div class="invalid-feedback" th:errors="*{cep.state}">...</div>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group" th:classappend="${#fields.hasErrors('number')} ? has-danger : ''">
+													<label class="control-label" for="client-number">Number</label>
+													<input type="text" id="client-number" class="form-control" name="number" th:field="*{number}" th:classappend="${#fields.hasErrors('number')} ? is-invalid : ''" required>
+													<div class="invalid-feedback" th:errors="*{number}">...</div>
+												</div>
+											</div>
+										</div>
                                         <div class="form-actions">
                                         	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                     	</div>
-	                                	</form>
-                                        </div>
+	                             </form>
+									</div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -401,81 +407,19 @@
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <div class="right-sidebar">
-                    <div class="slimscrollright">
-                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-                        <div class="r-panel-body">
-                            <ul id="themecolors" class="m-t-20">
-                                <li><b>With Light sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                                <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme working">7</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                                <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
-                            </ul>
-                            <ul class="m-t-20 chatonline">
-                                <li><b>Chat option</b></li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/3.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/5.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/6.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/7.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/8.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
-            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer">
-                © 2017 Adminwrap by wrappixel.com
-            </footer>
+            <footer class="footer">&copy; 2018 - pSystem. All Rights Reserved;</footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
-        </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-    </div>
 	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>

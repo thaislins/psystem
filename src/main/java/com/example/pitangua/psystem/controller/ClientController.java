@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.pitangua.psystem.domain.CepAddress;
 import com.example.pitangua.psystem.domain.Client;
 import com.example.pitangua.psystem.security.IAuthenticationFacade;
 import com.example.pitangua.psystem.service.IClientService;
 import com.example.pitangua.psystem.service.IUserService;
+import com.example.pitangua.psystem.validation.CepAddressValidator;
 import com.example.pitangua.psystem.validation.ClientValidator;
 
 @Controller
@@ -36,6 +38,9 @@ public class ClientController {
 	@Autowired
 	private ClientValidator clientValidator;
 
+	@Autowired
+	private CepAddressValidator cepAddressValidator;
+
 	@InitBinder
 	protected void initBinder(WebDataBinder dataBinder) {
 		Object target = dataBinder.getTarget();
@@ -48,7 +53,19 @@ public class ClientController {
 
 		if (target instanceof Client) {
 			dataBinder.setValidator(clientValidator);
+		} else if (target instanceof CepAddress) {
+			dataBinder.setValidator(cepAddressValidator);
 		}
+	}
+
+	@GetMapping("/clients/registered")
+	public ModelAndView registeredClients() {
+		ModelAndView mv = new ModelAndView("registered-clients");
+
+		mv.addObject("user", authFacade.getUser());
+		mv.addObject("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
+		mv.addObject("userList", userService.getAll());
+		return mv;
 	}
 
 	@GetMapping("/clients/register")
@@ -58,27 +75,27 @@ public class ClientController {
 		mv.addObject("clientForm", clientForm);
 
 		mv.addObject("user", authFacade.getUser());
-		mv.addObject("userList", userService.getAll());
 		return mv;
 	}
 
 	@PostMapping("/clients/register")
-	public String registerClientRequest(Model model, @ModelAttribute("clientForm") @Validated Client clientForm,
+	public ModelAndView registerClientRequest(Model model, @ModelAttribute("clientForm") @Validated Client clientForm,
 			BindingResult result, final RedirectAttributes redirectAttributes) throws SQLException {
 
 		model.addAttribute("user", authFacade.getUser());
 		model.addAttribute("userList", userService.getAll());
 
-		try {
-			clientService.insert(clientForm);
+		if (!result.hasErrors()) {
+			try {
+				clientService.insert(clientForm);
 
-			redirectAttributes.addFlashAttribute("registerSuccess", true);
-			return "redirect:/register-client";
-		} catch (SQLException e) {
-			model.addAttribute("errorMessage", "Error: " + e.getMessage());
+				redirectAttributes.addFlashAttribute("registerSuccess", true);
+				return new ModelAndView("register-client");
+			} catch (SQLException e) {
+				model.addAttribute("errorMessage", "Error: " + e.getMessage());
+			}
 		}
 
-		return "register-client";
-
+		return new ModelAndView("register-client");
 	}
 }

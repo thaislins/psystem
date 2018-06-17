@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>pSystem</title>
+    <title>Dashboard - pSystem</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
@@ -134,67 +134,67 @@
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
+        <!-- ===============
+        
+        
+        =============================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-small-cap">--- PERSONAL</li>
-                        <li>
-                        	<a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
-                        </li>
-                        <li>
-                        	<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="/clients/register" method="GET">Register Client</a></li>
-                                <li><a href="#">Registered Clients</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                        	<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Registered Psychologists</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                        	<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Schedule Appointment</a></li>
-                                <li><a href="#">Scheduled Appointments</a></li>
-                            </ul>
-                        </li>
-                        <li>
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav">
+						<li class="nav-small-cap">--- PERSONAL</li>
+						<li>
+							<a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="/clients/register" method="GET">Register Client</a></li>
+								<li><a href="/clients/registered" method="GET">Registered Clients</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Registered Psychologists</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Schedule Appointment</a></li>
+								<li><a href="#">Scheduled Appointments</a></li>
+							</ul>
+						</li>
+						<li>
 							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Register Payment</a></li>
-                                <li><a href="#">Fulfilled Payments</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                        	<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="#">Issue Document</a></li>
-                                <li><a href="#">Issued Document</a></li>
-                                <li><a href="#">Anamnesis</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                        	<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
-                            </ul>
-                        </li>
-            
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Register Payment</a></li>
+								<li><a href="#">Fulfilled Payments</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Issue Document</a></li>
+								<li><a href="#">Issued Document</a></li>
+								<li><a href="#">Anamnesis</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</aside>
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -216,9 +216,6 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                    </div>
-                    <div class="">
-                        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -842,71 +839,13 @@
                 <!-- ============================================================== -->
                 <!-- End Page Content -->
                 <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <div class="right-sidebar">
-                    <div class="slimscrollright">
-                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
-                        <div class="r-panel-body">
-                            <ul id="themecolors" class="m-t-20">
-                                <li><b>With Light sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
-                                <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
-                                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
-                                <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme working">7</a></li>
-                                <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
-                                <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
-                                <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
-                                <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
-                                <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
-                            </ul>
-                            <ul class="m-t-20 chatonline">
-                                <li><b>Chat option</b></li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/3.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/4.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/5.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/6.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/7.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)"><img src="../assets/images/users/8.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
-            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer"> © 2017 Adminwrap by wrappixel.com </footer>
+            <footer class="footer">&copy; 2018 - pSystem. All Rights Reserved;</footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
