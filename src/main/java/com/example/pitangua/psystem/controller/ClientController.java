@@ -11,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -56,6 +57,17 @@ public class ClientController {
 		} else if (target instanceof CepAddress) {
 			dataBinder.setValidator(cepAddressValidator);
 		}
+	}
+
+	@GetMapping("/clients/view/{id}")
+	public ModelAndView viewClient(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("view-client");
+		mv.addObject("id", id);
+
+		mv.addObject("client", clientService.getById(id));
+		mv.addObject("activeUser", authFacade.getUser().getName());
+		mv.addObject("userEmail", authFacade.getUser().getEmail());
+		return mv;
 	}
 
 	@GetMapping("/clients/registered")

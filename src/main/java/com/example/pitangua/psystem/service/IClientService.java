@@ -15,4 +15,6 @@ public interface IClientService {
 
 	Client getByCpf(String cpf);
 
+	Client getById(int id);
+
 }

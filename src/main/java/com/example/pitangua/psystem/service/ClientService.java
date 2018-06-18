@@ -35,4 +35,9 @@ public class ClientService implements IClientService {
 		return clientDAO.getByCpf(cpf);
 	}
 
+	@Override
+	public Client getById(int id) {
+		return clientDAO.getById(id);
+	}
+
 }

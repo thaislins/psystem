@@ -66,6 +66,21 @@ public class ClientDAO extends GenericDAO<Client> {
 
 	}
 
+	public Client getById(int id) {
+		String sql = "SELECT * FROM client WHERE id=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, id);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
+	}
+
 	public Client getByCpf(String cpf) {
 		String sql = "SELECT * FROM client WHERE cpf=?";
 

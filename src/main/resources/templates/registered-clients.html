@@ -216,7 +216,7 @@
                                                 <td th:text="${client.phone}" placeholder="(99)99999-9999"></td>
                                                 <td><span class="label label-success">active</span> </td>	
                                                 <td class="text-nowrap">
-                                                	<a href="#" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                	<a th:href="@{/clients/view/__${client.id}__}" method="GET" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                                     <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                     <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
