@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Register Client - pSystem</title>
+	<title>Edit Client - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -45,16 +45,16 @@
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
-                         <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                         <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                          <!-- Light Logo text -->    
-                         <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                         <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -76,12 +76,12 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
                                                 <p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -117,8 +117,8 @@
                         <li class="nav-small-cap">--- PERSONAL</li>
                         <li> <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-                            <ul aria-expanded="false" class="collapse">
+                        <li class="active"> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="true"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+                            <ul aria-expanded="true" class="collapse in">
                                 <li><a href="/clients/register" method="GET">Register Client</a></li>
                                 <li><a href="/clients/registered" method="GET">Registered Clients</a></li>
                             </ul>
@@ -175,11 +175,11 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Register Client</h3>
+                        <h3 class="text-themecolor">Edit Client</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item">Clients</li>
-                            <li class="breadcrumb-item active">Register Client</li>
+                            <li class="breadcrumb-item active">Edit Client</li>
                         </ol>
                     </div>
                 </div>
@@ -195,9 +195,9 @@
                         <div class="card">
                             <div class="card-body">
                             <div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
-                			<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Client successfully registered!</div>
-                                <form method="POST" th:action="@{/clients/register}" th:object="${clientForm}">
-                                    <div class="form-body">
+                			<div class="alert alert-success" role="alert" th:if="${updateSuccess}">Client information successfully updated!</div>
+                             <form th:object="${clientForm}" th:value="${id}" method="POST" th:action="@{/clients/edit/__${id}__}">
+                             <div class="form-body">
                                         <h3 class="card-title">Client Info</h3>
                                         <hr>
                                         <div class="row p-t-20">
@@ -244,7 +244,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Blood Type</label>
-                                                    <select name="bloodType" th:field="*{bloodType}" class="form-control custom-select" tabindex="1">
+                                                    <select th:field="*{bloodType}" name="bloodType" class="form-control custom-select" tabindex="1">
                                                      	<option value=""></option>
                                                         <option value="A+">A+</option>
                                                         <option value="A-">A-</option>
@@ -280,7 +280,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Education Level</label>
-                                                    <select  name="scholarity" class="form-control custom-select" data-placeholder="" tabindex="1">
+                                                    <select th:field="*{scholarity}"  name="scholarity" class="form-control custom-select" data-placeholder="" tabindex="1">
                                                         <option value=""></option>
                                                         <option value="Primary Education">Primary Education</option>
                                                         <option value="Secondary Education">Secondary Education</option>
@@ -386,7 +386,6 @@
                                         	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                     	</div>
 	                             	</form>
-										</div>
 									</div>
                                     </div>
                                 </div>

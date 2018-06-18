@@ -138,4 +138,11 @@ public class Client {
 	public void setScholarity(String scholarity) {
 		this.scholarity = scholarity;
 	}
+
+	@Override
+	public String toString() {
+		return "" + this.psychologistId + ", " + this.cpf + ", " + this.name + ", " + this.birthDate + ", " + this.phone
+				+ ", " + this.cep + ", " + this.number + ", " + this.occupation + ", " + this.gender + ", "
+				+ this.bloodType + ", " + this.nationality + ", " + this.scholarity;
+	}
 }

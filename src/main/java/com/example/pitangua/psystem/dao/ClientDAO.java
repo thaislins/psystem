@@ -61,9 +61,26 @@ public class ClientDAO extends GenericDAO<Client> {
 	}
 
 	@Override
-	public void update(Client client) {
-		// TODO Auto-generated method stub
+	public void update(Client client) throws SQLException {
+		cepAddressDAO.update(client.getCep());
 
+		String sql = "UPDATE client SET cpf=?, name=?, birth_date=?, phone=?, cep=?, number=?, "
+				+ "occupation=?, gender=?, blood_type=?, nationality=?, scholarity=? WHERE id=?";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, client.getCpf());
+			ps.setString(2, client.getName());
+			ps.setString(3, client.getBirthDate());
+			ps.setString(4, client.getPhone());
+			ps.setString(5, client.getCep().getCep());
+			ps.setString(6, client.getNumber());
+			ps.setString(7, client.getOccupation());
+			ps.setString(8, client.getGender());
+			ps.setString(9, client.getBloodType());
+			ps.setString(10, client.getNationality());
+			ps.setString(11, client.getScholarity());
+			ps.setInt(12, client.getId());
+			ps.execute();
+		}
 	}
 
 	public Client getById(int id) {

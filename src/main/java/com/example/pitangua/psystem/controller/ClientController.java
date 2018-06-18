@@ -59,17 +59,6 @@ public class ClientController {
 		}
 	}
 
-	@GetMapping("/clients/view/{id}")
-	public ModelAndView viewClient(@PathVariable int id) {
-		ModelAndView mv = new ModelAndView("view-client");
-		mv.addObject("id", id);
-
-		mv.addObject("client", clientService.getById(id));
-		mv.addObject("activeUser", authFacade.getUser().getName());
-		mv.addObject("userEmail", authFacade.getUser().getEmail());
-		return mv;
-	}
-
 	@GetMapping("/clients/registered")
 	public ModelAndView registeredClients() {
 		ModelAndView mv = new ModelAndView("registered-clients");
@@ -103,13 +92,58 @@ public class ClientController {
 				clientService.insert(clientForm);
 
 				redirectAttributes.addFlashAttribute("registerSuccess", true);
+				model.addAttribute("registerSuccess");
 				return new ModelAndView("register-client");
 			} catch (SQLException e) {
-				System.out.println(e.getMessage());
 				model.addAttribute("errorMessage", "Error: " + e.getMessage());
 			}
 		}
 
 		return new ModelAndView("register-client");
 	}
+
+	@GetMapping("/clients/view/{id}")
+	public ModelAndView viewClient(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("view-client");
+		mv.addObject("id", id);
+
+		mv.addObject("client", clientService.getById(id));
+		mv.addObject("activeUser", authFacade.getUser().getName());
+		mv.addObject("userEmail", authFacade.getUser().getEmail());
+		return mv;
+	}
+
+	@GetMapping("/clients/edit/{id}")
+	public ModelAndView editClient(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("edit-client");
+		mv.addObject("id", id);
+
+		mv.addObject("user", authFacade.getUser());
+		mv.addObject("clientForm", clientService.getById(id));
+		return mv;
+	}
+
+	@PostMapping("/clients/edit/{id}")
+	public ModelAndView editClientRequest(@PathVariable int id, Model model,
+			@ModelAttribute("clientForm") @Validated Client clientForm, BindingResult result,
+			final RedirectAttributes redirectAttributes) {
+
+		model.addAttribute("id", id);
+		model.addAttribute("user", authFacade.getUser());
+		clientForm.setId(id);
+
+		if (!result.hasErrors()) {
+			try {
+				clientService.update(clientForm);
+				model.addAttribute("clientForm", clientService.getById(id));
+				model.addAttribute("updateSuccess", true);
+				return new ModelAndView("edit-client");
+			} catch (SQLException e) {
+				model.addAttribute("errorMessage", "Error: " + e.getMessage());
+			}
+		}
+
+		return new ModelAndView("edit-client");
+	}
+
 }

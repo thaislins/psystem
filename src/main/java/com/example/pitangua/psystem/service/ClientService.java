@@ -21,6 +21,11 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
+	public void update(Client client) throws SQLException {
+		clientDAO.update(client);
+	}
+
+	@Override
 	public List<Client> getAll() {
 		return clientDAO.getAllClients();
 	}

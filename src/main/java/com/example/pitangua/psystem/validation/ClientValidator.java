@@ -33,21 +33,14 @@ public class ClientValidator implements Validator {
 
 		// CPF validation
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cpf", "field.required", "CPF is required.");
-		if (clientService.getByCpf(client.getCpf()) != null) {
+		Client cc = clientService.getByCpf(client.getCpf());
+		if (cc != null && cc.getId() != client.getId()) {
 			errors.rejectValue("cpf", "field.duplicate", "This CPF is already taken.");
 		}
-
-		// Birth Date validation
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthDate", "field.required", "Birth is required.");
-
-		// Occupation Validation
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "occupation", "field.required", "Ocuupation is required.");
 
 		// Phone Validation
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "field.required", "Phone Number is required.");
 
-		// Number Validation
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "number", "field.required", "Phone Number is required.");
 	}
 
 }
