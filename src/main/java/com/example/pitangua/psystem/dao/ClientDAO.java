@@ -27,11 +27,11 @@ public class ClientDAO extends GenericDAO<Client> {
 
 	@Override
 	public void insert(Client client) throws SQLException {
-		// cepAddressDAO.insert(client.getCep());
+		cepAddressDAO.insert(client.getCep());
 		Date date = null;
 		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 
-		String sql = "INSERT INTO cient(psychologist_id, cpf, name, birth_date, phone, cep, number, occupation, gender, blood_type, nationality, scholarity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO client(psychologist_id, cpf, name, birth_date, phone, cep, number, occupation, gender, blood_type, nationality, scholarity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
 			try {
 				ps.setInt(1, client.getPsychologistId());
@@ -45,8 +45,8 @@ public class ClientDAO extends GenericDAO<Client> {
 				ps.setString(8, client.getOccupation());
 				ps.setString(9, client.getGender());
 				ps.setString(10, client.getBloodType());
-				ps.setString(9, client.getNationality());
-				ps.setString(9, client.getScholarity());
+				ps.setString(11, client.getNationality());
+				ps.setString(12, client.getScholarity());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -61,9 +61,41 @@ public class ClientDAO extends GenericDAO<Client> {
 	}
 
 	@Override
-	public void update(Client client) {
-		// TODO Auto-generated method stub
+	public void update(Client client) throws SQLException {
+		cepAddressDAO.update(client.getCep());
 
+		String sql = "UPDATE client SET cpf=?, name=?, birth_date=?, phone=?, cep=?, number=?, "
+				+ "occupation=?, gender=?, blood_type=?, nationality=?, scholarity=? WHERE id=?";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, client.getCpf());
+			ps.setString(2, client.getName());
+			ps.setString(3, client.getBirthDate());
+			ps.setString(4, client.getPhone());
+			ps.setString(5, client.getCep().getCep());
+			ps.setString(6, client.getNumber());
+			ps.setString(7, client.getOccupation());
+			ps.setString(8, client.getGender());
+			ps.setString(9, client.getBloodType());
+			ps.setString(10, client.getNationality());
+			ps.setString(11, client.getScholarity());
+			ps.setInt(12, client.getId());
+			ps.execute();
+		}
+	}
+
+	public Client getById(int id) {
+		String sql = "SELECT * FROM client WHERE id=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, id);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
 	}
 
 	public Client getByCpf(String cpf) {

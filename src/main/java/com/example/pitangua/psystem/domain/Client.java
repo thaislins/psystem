@@ -18,7 +18,7 @@ public class Client {
 	public Client() {
 	}
 
-	public Client(Integer psychologistId, String cpf, String clientName, String birthDate, String phone, CepAddress cep,
+	public Client(Integer psychologistId, String cpf, String name, String birthDate, String phone, CepAddress cep,
 			String number, String occupation, String gender, String bloodType, String nationality, String scholarity) {
 		super();
 		this.psychologistId = psychologistId;
@@ -137,5 +137,12 @@ public class Client {
 
 	public void setScholarity(String scholarity) {
 		this.scholarity = scholarity;
+	}
+
+	@Override
+	public String toString() {
+		return "" + this.psychologistId + ", " + this.cpf + ", " + this.name + ", " + this.birthDate + ", " + this.phone
+				+ ", " + this.cep + ", " + this.number + ", " + this.occupation + ", " + this.gender + ", "
+				+ this.bloodType + ", " + this.nationality + ", " + this.scholarity;
 	}
 }
