@@ -64,7 +64,6 @@ public class ClientController {
 		ModelAndView mv = new ModelAndView("register-client");
 		Client clientForm = new Client();
 		mv.addObject("clientForm", clientForm);
-
 		mv.addObject("user", authFacade.getUser());
 		return mv;
 	}
@@ -80,7 +79,7 @@ public class ClientController {
 			try {
 				clientService.insert(clientForm);
 				redirectAttributes.addFlashAttribute("registerSuccess", true);
-				model.addAttribute("registerSuccess");
+				model.addAttribute("registerSuccess", true);
 				return new ModelAndView("register-client");
 			} catch (SQLException e) {
 				model.addAttribute("errorMessage", "Error: " + e.getMessage());

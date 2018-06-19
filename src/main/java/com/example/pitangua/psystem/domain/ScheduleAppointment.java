@@ -1,14 +1,16 @@
 package com.example.pitangua.psystem.domain;
 
-import java.util.Date;
-
 public class ScheduleAppointment {
 	private Integer id;
 	private Integer psychologistId;
 	private Integer clientId;
-	private Date date;
+	private String date;
 
-	public ScheduleAppointment(Integer id, Integer psychologistId, Integer clientId, Date date) {
+	public ScheduleAppointment() {
+
+	}
+
+	public ScheduleAppointment(Integer id, Integer psychologistId, Integer clientId, String date) {
 		super();
 		this.id = id;
 		this.psychologistId = psychologistId;
@@ -32,11 +34,11 @@ public class ScheduleAppointment {
 		this.clientId = clientId;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

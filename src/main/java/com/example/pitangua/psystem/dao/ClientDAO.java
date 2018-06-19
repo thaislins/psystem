@@ -34,25 +34,25 @@ public class ClientDAO extends GenericDAO<Client> {
 		String sql = "INSERT INTO client(psychologist_id, cpf, name, birth_date, phone, cep, number, occupation, "
 				+ "gender, blood_type, nationality, scholarity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
-			try {
-				ps.setInt(1, client.getPsychologistId());
-				ps.setString(2, client.getCpf());
-				ps.setString(3, client.getName());
-				date = new java.sql.Date(formatter.parse(client.getBirthDate()).getTime());
-				ps.setDate(4, date);
-				ps.setString(5, client.getPhone());
-				ps.setString(6, client.getCep().getCep());
-				ps.setString(7, client.getNumber());
-				ps.setString(8, client.getOccupation());
-				ps.setString(9, client.getGender());
-				ps.setString(10, client.getBloodType());
-				ps.setString(11, client.getNationality());
-				ps.setString(12, client.getScholarity());
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+
+			ps.setInt(1, client.getPsychologistId());
+			ps.setString(2, client.getCpf());
+			ps.setString(3, client.getName());
+			date = new java.sql.Date(formatter.parse(client.getBirthDate()).getTime());
+			ps.setDate(4, date);
+			ps.setString(5, client.getPhone());
+			ps.setString(6, client.getCep().getCep());
+			ps.setString(7, client.getNumber());
+			ps.setString(8, client.getOccupation());
+			ps.setString(9, client.getGender());
+			ps.setString(10, client.getBloodType());
+			ps.setString(11, client.getNationality());
+			ps.setString(12, client.getScholarity());
 			ps.execute();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	@Override

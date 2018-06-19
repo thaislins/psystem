@@ -140,7 +140,7 @@
 						<li>
 							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
 							<ul aria-expanded="false" class="collapse">
-								<li><a href="#">Schedule Appointment</a></li>
+								<li><a href="/appointments/schedule">Schedule Appointment</a></li>
 								<li><a href="#">Scheduled Appointments</a></li>
 							</ul>
 						</li>
@@ -223,8 +223,8 @@
                                                 <td><span class="label label-success">active</span> </td>	
                                                 <td class="text-right">
                                                 	<a th:href="@{/clients/view/__${client.id}__}" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                                    <a th:href="@{/clients/edit/__${client.id}__}" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a th:onclick="'deleteClient(' + ${client.id} + ');'" href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+                                                    <a th:href="@{/clients/edit/__${client.id}__}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                                    <a th:onclick="'deleteClient(' + ${client.id} + ');'" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
                                                 <!--<td><span class="label label-danger">admin</span> </td>-->
                                             </tr>

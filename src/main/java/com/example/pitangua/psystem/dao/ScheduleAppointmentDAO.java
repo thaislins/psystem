@@ -3,29 +3,45 @@ package com.example.pitangua.psystem.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.pitangua.psystem.domain.ScheduleAppointment;
 import com.example.pitangua.psystem.exception.UnhandledException;
 
+@Repository
+@Transactional
 public class ScheduleAppointmentDAO extends GenericDAO<ScheduleAppointment> {
 
 	@Override
-	public void insert(ScheduleAppointment entity) {
+	public void insert(ScheduleAppointment appointment) throws SQLException {
+		String sql = "INSERT INTO schedule_appointment(psychologist_id, client_id, date) VALUES(?, ?, ?)";
+		LocalDateTime date = null;
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setInt(1, appointment.getPsychologistId());
+			ps.setInt(2, appointment.getClientId());
+			date = LocalDateTime.parse(appointment.getDate(), dateFormat);
+			ps.setTimestamp(3, Timestamp.valueOf(date));
+			ps.execute();
+		}
+
+	}
+
+	@Override
+	public void remove(ScheduleAppointment appointment) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void remove(ScheduleAppointment entity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update(ScheduleAppointment entity) {
+	public void update(ScheduleAppointment appointment) {
 		// TODO Auto-generated method stub
 
 	}
@@ -63,10 +79,10 @@ public class ScheduleAppointmentDAO extends GenericDAO<ScheduleAppointment> {
 
 	private ScheduleAppointment fromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
-		Integer psychologist_id = rs.getInt("psychologist_id");
-		Integer client_id = rs.getInt("client_id");
-		Date date = rs.getDate("date");
+		Integer psychologistId = rs.getInt("psychologist_id");
+		Integer clientId = rs.getInt("client_id");
+		String date = rs.getString("date");
 
-		return new ScheduleAppointment(id, psychologist_id, client_id, date);
+		return new ScheduleAppointment(id, psychologistId, clientId, date);
 	}
 }
