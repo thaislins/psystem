@@ -132,16 +132,35 @@ public class ClientDAO extends GenericDAO<Client> {
 		return count;
 	}
 
-	public List<Client> getAllClients() {
+	public List<Client> getAllClients(int psychologistId) {
 		List<Client> clients = new ArrayList<>();
 
-		String sql = "SELECT * FROM client";
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
-				ResultSet resultSet = stmt.executeQuery();) {
+		String sql = "SELECT * FROM client WHERE psychologist_id=?";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
+				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				clients.add(fromResultSet(resultSet));
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return clients;
+	}
+
+	public List<Client> getClientsWithAppointments(int psychologistId) {
+		List<Client> clients = new ArrayList<>();
+
+		String sql = "SELECT * \n" + "from client AS c where exists\n" + "(select * from schedule_appointment AS sa\n"
+				+ "where c.id=sa.client_id and sa.psychologist_id=?);";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				clients.add(fromResultSet(resultSet));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new UnhandledException("DB Error", e);
 		}
 

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.pitangua.psystem.domain.ScheduleAppointment;
+import com.example.pitangua.psystem.domain.User;
 import com.example.pitangua.psystem.security.IAuthenticationFacade;
 import com.example.pitangua.psystem.service.IAppointmentService;
 import com.example.pitangua.psystem.service.IClientService;
@@ -36,7 +37,7 @@ public class AppointmentController {
 		ScheduleAppointment appointmentForm = new ScheduleAppointment();
 
 		mv.addObject("user", authFacade.getUser());
-		mv.addObject("clientList", clientService.getAll());
+		mv.addObject("clientList", clientService.getAll(authFacade.getUser().getId()));
 		mv.addObject("appointmentForm", appointmentForm);
 		return mv;
 	}
@@ -48,7 +49,7 @@ public class AppointmentController {
 		ModelAndView mv = new ModelAndView("schedule-appointment");
 
 		model.addAttribute("user", authFacade.getUser());
-		model.addAttribute("clientList", clientService.getAll());
+		model.addAttribute("clientList", clientService.getAll(authFacade.getUser().getId()));
 		appointmentForm.setPsychologistId(authFacade.getUser().getId());
 
 		if (!result.hasErrors()) {
@@ -63,6 +64,16 @@ public class AppointmentController {
 		}
 
 		return new ModelAndView("schedule-appointment");
+	}
+
+	@GetMapping("/appointments")
+	public ModelAndView appointments() {
+		ModelAndView mv = new ModelAndView("appointments");
+		User user = authFacade.getUser();
+
+		mv.addObject("appointmentCount", appointmentService.getAppointmentCount(user.getId()));
+		mv.addObject("clientList", clientService.getClientsWithAppointments(user.getId()));
+		return mv;
 	}
 
 }

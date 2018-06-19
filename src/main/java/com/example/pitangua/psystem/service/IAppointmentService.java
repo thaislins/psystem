@@ -13,7 +13,7 @@ public interface IAppointmentService {
 
 	void remove(ScheduleAppointment appointment) throws SQLException;
 
-	List<ScheduleAppointment> getAll();
+	List<ScheduleAppointment> getAll(int psychologistId);
 
 	Integer getAppointmentCount(int psychologistId);
 

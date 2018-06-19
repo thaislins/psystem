@@ -226,3 +226,23 @@ COMMIT;
 INSERT INTO user(cpf, clinic_id, name, email, password, phone, ADMIN, PSYCHOLOGIST, crp)
 VALUES("111.111.111-11", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2RNDYODekYaSEmNHjpE.m/X7leE0YVLLMVETfZq", "11 1 1111-1111", true, true, "11/1111");
 
+
+
+SELECT * 
+from client AS c LEFT OUTER JOIN schedule_appointment AS sa 
+ON c.id=sa.client_id AND c.psychologist_id=sa.psychologist_id
+WHERE sa.psychologist_id=1
+GROUP BY c.id;
+
+
+
+
+
+
+
+
+
+
+
+
+

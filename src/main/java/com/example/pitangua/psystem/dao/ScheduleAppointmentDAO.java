@@ -61,12 +61,12 @@ public class ScheduleAppointmentDAO extends GenericDAO<ScheduleAppointment> {
 		return count;
 	}
 
-	public List<ScheduleAppointment> getAllAppointments() {
+	public List<ScheduleAppointment> getAllAppointments(int psychologistId) {
 		List<ScheduleAppointment> appointments = new ArrayList<>();
 
-		String sql = "SELECT * FROM schedule_appointment";
-		try (PreparedStatement stmt = ConnectionManager.getConnection().prepareStatement(sql);
-				ResultSet resultSet = stmt.executeQuery();) {
+		String sql = "SELECT * FROM schedule_appointment WHERE psychologist_id=?;";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
+				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				appointments.add(fromResultSet(resultSet));
 			}

@@ -33,15 +33,13 @@ public class AppointmentService implements IAppointmentService {
 	}
 
 	@Override
-	public List<ScheduleAppointment> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ScheduleAppointment> getAll(int psychologistId) {
+		return appointmentDAO.getAllAppointments(psychologistId);
 	}
 
 	@Override
 	public Integer getAppointmentCount(int psychologistId) {
-		// TODO Auto-generated method stub
-		return null;
+		return appointmentDAO.getAppointmentCount(psychologistId);
 	}
 
 	@Override

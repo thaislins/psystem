@@ -13,7 +13,9 @@ public interface IClientService {
 
 	void remove(Client client) throws SQLException;
 
-	List<Client> getAll();
+	List<Client> getAll(int psychologistId);
+
+	List<Client> getClientsWithAppointments(int psychologistId);
 
 	Integer getClientCount(int psychologistId);
 
