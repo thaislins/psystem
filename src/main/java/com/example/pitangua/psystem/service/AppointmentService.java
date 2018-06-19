@@ -38,6 +38,11 @@ public class AppointmentService implements IAppointmentService {
 	}
 
 	@Override
+	public List<ScheduleAppointment> getClientAppointments(int clientId) {
+		return appointmentDAO.getClientAppointments(clientId);
+	}
+
+	@Override
 	public Integer getAppointmentCount(int psychologistId) {
 		return appointmentDAO.getAppointmentCount(psychologistId);
 	}
@@ -53,5 +58,4 @@ public class AppointmentService implements IAppointmentService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

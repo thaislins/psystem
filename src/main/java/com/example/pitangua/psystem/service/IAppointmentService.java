@@ -15,6 +15,8 @@ public interface IAppointmentService {
 
 	List<ScheduleAppointment> getAll(int psychologistId);
 
+	List<ScheduleAppointment> getClientAppointments(int clientId);
+
 	Integer getAppointmentCount(int psychologistId);
 
 	ScheduleAppointment getById(int id);

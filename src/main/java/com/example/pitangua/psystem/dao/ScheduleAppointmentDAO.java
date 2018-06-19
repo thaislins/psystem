@@ -77,6 +77,23 @@ public class ScheduleAppointmentDAO extends GenericDAO<ScheduleAppointment> {
 		return appointments;
 	}
 
+	public List<ScheduleAppointment> getClientAppointments(int clientId) {
+		List<ScheduleAppointment> appointments = new ArrayList<>();
+
+		String sql = "SELECT * FROM schedule_appointment sa\n" + "WHERE EXISTS\n" + "(SELECT * FROM client c\n"
+				+ "WHERE c.id=sa.client_id AND sa.client_id=?);";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, clientId);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				appointments.add(fromResultSet(resultSet));
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return appointments;
+	}
+
 	private ScheduleAppointment fromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
 		Integer psychologistId = rs.getInt("psychologist_id");

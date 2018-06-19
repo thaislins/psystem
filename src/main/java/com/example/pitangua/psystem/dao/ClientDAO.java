@@ -152,8 +152,8 @@ public class ClientDAO extends GenericDAO<Client> {
 	public List<Client> getClientsWithAppointments(int psychologistId) {
 		List<Client> clients = new ArrayList<>();
 
-		String sql = "SELECT * \n" + "from client AS c where exists\n" + "(select * from schedule_appointment AS sa\n"
-				+ "where c.id=sa.client_id and sa.psychologist_id=?);";
+		String sql = "SELECT * \n" + "FROM client AS c WHERE exists\n" + "(select * from schedule_appointment AS sa\n"
+				+ "WHERE c.id=sa.client_id AND sa.psychologist_id=?);";
 		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
 				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {

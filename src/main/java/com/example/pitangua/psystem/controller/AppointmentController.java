@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -71,8 +72,21 @@ public class AppointmentController {
 		ModelAndView mv = new ModelAndView("appointments");
 		User user = authFacade.getUser();
 
+		mv.addObject("user", user);
 		mv.addObject("appointmentCount", appointmentService.getAppointmentCount(user.getId()));
 		mv.addObject("clientList", clientService.getClientsWithAppointments(user.getId()));
+		return mv;
+	}
+
+	@GetMapping("/appointments/client/{id}")
+	public ModelAndView clientAppointments(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("client-appointments");
+		User user = authFacade.getUser();
+
+		mv.addObject("id", id);
+		mv.addObject("user", user);
+		mv.addObject("client", clientService.getById(id));
+		mv.addObject("appointmentList", appointmentService.getClientAppointments(id));
 		return mv;
 	}
 

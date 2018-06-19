@@ -228,21 +228,4 @@ VALUES("111.111.111-11", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2
 
 
 
-SELECT * 
-from client AS c LEFT OUTER JOIN schedule_appointment AS sa 
-ON c.id=sa.client_id AND c.psychologist_id=sa.psychologist_id
-WHERE sa.psychologist_id=1
-GROUP BY c.id;
-
-
-
-
-
-
-
-
-
-
-
-
 
