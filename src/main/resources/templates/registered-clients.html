@@ -16,6 +16,7 @@
     <link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/colors/default.css" id="theme" rel="stylesheet">
+    <link href="/assets/node_modules/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="fix-header card-no-border fix-sidebar">
@@ -28,6 +29,11 @@
             <p class="loader__label">pSystem</p>
         </div>
     </div>
+    
+     <!-- Logout Form -->
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
+		<button type="submit" class="btn btn-link">Logout</button>
+	</form>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -201,7 +207,7 @@
                                 <h4 class="card-title">Registered Clients</h4>
                                 <h6 class="card-subtitle">You have <strong><span th:text="*{clientCount}"></span></strong> registered clients</h6>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped ">
+                                    <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
@@ -218,7 +224,7 @@
                                                 <td class="text-nowrap">
                                                 	<a th:href="@{/clients/view/__${client.id}__}" method="GET" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                                     <a th:href="@{/clients/edit/__${client.id}__}" method="GET" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+                                                    <a method="POST" class="remove-client" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
                                                 <!--<td><span class="label label-danger">admin</span> </td>-->
                                             </tr>
@@ -259,7 +265,33 @@
     <script src="/js/custom.min.js"></script>
     <script src="/assets/node_modules/peity/jquery.peity.min.js"></script>
     <script src="/assets/node_modules/peity/jquery.peity.init.js"></script>
-    <script src="../assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="/assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="/assets/node_modules/sweetalert/sweetalert.min.js"></script>
+    <script>
+    	
+		[].forEach.call(document.querySelectorAll('.remove-client'), function(e) {
+		  e.addEventListener('click', function(e) {
+			  swal({   
+		            title: "Remove Client",   
+		            text: "Are you sure? You will not be able to recover this client's information!", 
+		            type: "warning",   
+		            showCancelButton: true,   
+		            confirmButtonColor: "#DD6B55",   
+		            confirmButtonText: "Remove",   
+		            closeOnConfirm: false 
+		        }, function(){   
+		        	$.ajax({
+		                url: "/clients/delete/" + id,
+		                type: "POST"
+		              })
+		              .done(function(data) {
+		                swal("Deleted!", "This client was successfully removed", "success");
+		              })
+		 		 });
+			   });
+			});
+    
+    </script>
 </body>
 
 </html>

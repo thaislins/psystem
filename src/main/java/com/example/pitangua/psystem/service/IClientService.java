@@ -11,6 +11,8 @@ public interface IClientService {
 
 	void update(Client client) throws SQLException;
 
+	void remove(Client client) throws SQLException;
+
 	List<Client> getAll();
 
 	Integer getClientCount(int psychologistId);
