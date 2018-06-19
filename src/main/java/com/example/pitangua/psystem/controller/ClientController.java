@@ -59,17 +59,6 @@ public class ClientController {
 		}
 	}
 
-	@GetMapping("/clients/registered")
-	public ModelAndView registeredClients() {
-		ModelAndView mv = new ModelAndView("registered-clients");
-
-		mv.addObject("activeUser", authFacade.getUser().getName());
-		mv.addObject("userEmail", authFacade.getUser().getEmail());
-		mv.addObject("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
-		mv.addObject("clientList", clientService.getAll());
-		return mv;
-	}
-
 	@GetMapping("/clients/register")
 	public ModelAndView registerClient() {
 		ModelAndView mv = new ModelAndView("register-client");
@@ -90,7 +79,6 @@ public class ClientController {
 		if (!result.hasErrors()) {
 			try {
 				clientService.insert(clientForm);
-
 				redirectAttributes.addFlashAttribute("registerSuccess", true);
 				model.addAttribute("registerSuccess");
 				return new ModelAndView("register-client");
@@ -100,6 +88,37 @@ public class ClientController {
 		}
 
 		return new ModelAndView("register-client");
+	}
+
+	@GetMapping("/clients/registered")
+	public ModelAndView registeredClients() {
+		ModelAndView mv = new ModelAndView("registered-clients");
+
+		mv.addObject("activeUser", authFacade.getUser().getName());
+		mv.addObject("userEmail", authFacade.getUser().getEmail());
+		mv.addObject("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
+		mv.addObject("clientList", clientService.getAll());
+		return mv;
+	}
+
+	@PostMapping("/clients/delete/{id}")
+	public String deleteClient(@PathVariable int id, Model model, @ModelAttribute("client") @Validated Client client,
+			BindingResult result, final RedirectAttributes redirectAttributes) {
+
+		model.addAttribute("id", id);
+
+		try {
+			clientService.remove(client);
+			model.addAttribute("activeUser", authFacade.getUser().getName());
+			model.addAttribute("userEmail", authFacade.getUser().getEmail());
+			model.addAttribute("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
+			model.addAttribute("clientList", clientService.getAll());
+			return "redirect:/clients/registered";
+		} catch (SQLException e) {
+			model.addAttribute("errorMessage", "Error: " + e.getMessage());
+		}
+
+		return "redirect:/clients/registered";
 	}
 
 	@GetMapping("/clients/view/{id}")

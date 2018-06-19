@@ -31,7 +31,8 @@ public class ClientDAO extends GenericDAO<Client> {
 		Date date = null;
 		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 
-		String sql = "INSERT INTO client(psychologist_id, cpf, name, birth_date, phone, cep, number, occupation, gender, blood_type, nationality, scholarity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO client(psychologist_id, cpf, name, birth_date, phone, cep, number, occupation, "
+				+ "gender, blood_type, nationality, scholarity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
 			try {
 				ps.setInt(1, client.getPsychologistId());
@@ -55,9 +56,12 @@ public class ClientDAO extends GenericDAO<Client> {
 	}
 
 	@Override
-	public void remove(Client client) {
-		// TODO Auto-generated method stub
-
+	public void remove(Client client) throws SQLException {
+		String sql = "DELETE FROM client WHERE id=?;";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setInt(1, client.getId());
+			ps.execute();
+		}
 	}
 
 	@Override

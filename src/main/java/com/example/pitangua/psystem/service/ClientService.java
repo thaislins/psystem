@@ -26,6 +26,11 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
+	public void remove(Client client) throws SQLException {
+		clientDAO.remove(client);
+	}
+
+	@Override
 	public List<Client> getAll() {
 		return clientDAO.getAllClients();
 	}

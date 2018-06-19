@@ -28,6 +28,11 @@
             <p class="loader__label">pSystem</p>
         </div>
     </div>
+    
+     <!-- Logout Form -->
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
+		<button type="submit" class="btn btn-link">Logout</button>
+	</form>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
