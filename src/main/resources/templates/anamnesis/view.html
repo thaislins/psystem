@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Register Anamnesis - pSystem</title>
+	<title>View Anamnesis - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -185,11 +185,11 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 align-self-center">
-						<h3 class="text-themecolor">Register Anamnesis</h3>
+						<h3 class="text-themecolor">View Anamnesis</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
 							<li class="breadcrumb-item">Anamnesis</li>
-							<li class="breadcrumb-item active">Register Anamnesis</li>
+							<li class="breadcrumb-item active">View Anamnesis</li>
 						</ol>
 					</div>
 				</div>
@@ -204,87 +204,103 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
-								<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Anamnesis successfully updated!</div>
-								<form method="POST" th:action="@{/anamnesis/register/__${id}__}" th:object="${anamnesisForm}">
+								<form class="form-horizontal" role="form">
 									<div class="form-body">
-										<h3 class="card-title">Anamnesis Info</h3>
-										<hr>
+										<h3 class="box-title">Anamnesis Info</h3>
+										<hr class="m-t-0 m-b-40">
 										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="control-label">Client</label>
-													<input disabled type="text" class="form-control" th:value="${client.name}">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Client:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${client.name}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('humor')} ? has-danger : ''">
-													<label class="control-label">Humor</label>
-													<textarea name="humor" rows="3" class="form-control" th:field="*{humor}" th:classappend="${#fields.hasErrors('humor')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{humor}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Humor</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.humor}"></p>
+													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('perception')} ? has-danger : ''">
-													<label class="control-label">Perception</label>
-													<textarea name="perception" rows="3" class="form-control" th:field="*{perception}" th:classappend="${#fields.hasErrors('perception')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{perception}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Perception</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.perception}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('desire')} ? has-danger : ''">
-													<label class="control-label">Desire</label>
-													<textarea name="desire" rows="3" class="form-control" th:field="*{desire}" th:classappend="${#fields.hasErrors('desire')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{desire}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Desire</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.desire}"></p>
+													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('information')} ? has-danger : ''">
-													<label class="control-label">Information</label>
-													<textarea name="information" rows="3" class="form-control" th:field="*{information}" th:classappend="${#fields.hasErrors('information')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{information}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Information</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.information}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('language')} ? has-danger : ''">
-													<label class="control-label">Language</label>
-													<textarea name="language" rows="3" class="form-control" th:field="*{language}" th:classappend="${#fields.hasErrors('language')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{language}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Language</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.language}"></p>
+													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('appeareance')} ? has-danger : ''">
-													<label class="control-label">Appeareance</label>
-													<textarea name="appeareance" rows="3" class="form-control" th:field="*{appeareance}" th:classappend="${#fields.hasErrors('appeareance')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{appeareance}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Appeareance</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.appeareance}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('thought')} ? has-danger : ''">
-													<label class="control-label">Thought</label>
-													<textarea name="thought" rows="3" class="form-control" th:field="*{thought}" th:classappend="${#fields.hasErrors('thought')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{thought}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Thought</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.thought}"></p>
+													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('affection')} ? has-danger : ''">
-													<label class="control-label">Affection</label>
-													<textarea name="affection" rows="3" class="form-control" th:field="*{affection}" th:classappend="${#fields.hasErrors('affection')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{affection}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Affection</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${anamnesis.affection}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
-										<!--/row-->
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+									</div>
+									<div class="form-actions">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<a th:href="@{/anamnesis/register/__${id}__}" class="btn btn-danger"> <i class="fa fa-pencil"></i> Edit</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6"> </div>
 										</div>
 									</div>
 								</form>
@@ -292,10 +308,10 @@
 						</div>
 					</div>
 				</div>
+				<!-- ============================================================== -->
+				<!-- End PAge Content -->
+				<!-- ============================================================== -->
 			</div>
-			<!-- ============================================================== -->
-			<!-- End PAge Content -->
-			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -307,10 +323,10 @@
 			<!-- End footer -->
 			<!-- ============================================================== -->
 		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
 	</div>
-	<!-- ============================================================== -->
-	<!-- End Page wrapper  -->
-	<!-- ============================================================== -->
 	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
@@ -320,6 +336,15 @@
 	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
 	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
 	<script src="/js/custom.min.js"></script>
+	<script src="/js/countrySelect.js"></script>
+	<script src="/js/jquery.mask.js"></script>
+	<script>
+		$("#country-selector").countrySelect({
+			defaultCountry: "br",
+			onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
+			//preferredCountries: ['ca', 'gb', 'us']
+		});
+	</script>
 </body>
 
 </html>

@@ -53,6 +53,23 @@ public class AnamnesisController {
 		}
 	}
 
+	@GetMapping("/anamnesis/view/{id}")
+	public ModelAndView viewAnamnesis(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("anamnesis/view");
+		mv.addObject("id", id);
+
+		Anamnesis anamnesisForm = anamnesisService.getByClientId(id);
+		if (anamnesisForm == null) {
+			anamnesisForm = new Anamnesis();
+			anamnesisForm.setClientId(id);
+		}
+
+		mv.addObject("client", clientService.getById(id));
+		mv.addObject("anamnesis", anamnesisForm);
+		mv.addObject("user", authFacade.getUser());
+		return mv;
+	}
+
 	@GetMapping("/anamnesis/register/{id}")
 	public ModelAndView registerAnamnesis(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("anamnesis/register");
