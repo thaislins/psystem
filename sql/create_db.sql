@@ -229,6 +229,3 @@ VALUES("111.111.111-11", 1, "John Doe", "john@mail.com", "$2a$10$MGw3Gp4uL1jR9s2
 
 
 
-select cep from cep_address;
-select name from client;
-delete from client where id=7;

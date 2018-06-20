@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.pitangua.psystem.domain.CepAddress;
 import com.example.pitangua.psystem.domain.Client;
+import com.example.pitangua.psystem.domain.User;
 import com.example.pitangua.psystem.security.IAuthenticationFacade;
 import com.example.pitangua.psystem.service.IClientService;
 import com.example.pitangua.psystem.service.IUserService;
@@ -64,7 +65,6 @@ public class ClientController {
 		ModelAndView mv = new ModelAndView("register-client");
 		Client clientForm = new Client();
 		mv.addObject("clientForm", clientForm);
-
 		mv.addObject("user", authFacade.getUser());
 		return mv;
 	}
@@ -80,7 +80,7 @@ public class ClientController {
 			try {
 				clientService.insert(clientForm);
 				redirectAttributes.addFlashAttribute("registerSuccess", true);
-				model.addAttribute("registerSuccess");
+				model.addAttribute("registerSuccess", true);
 				return new ModelAndView("register-client");
 			} catch (SQLException e) {
 				model.addAttribute("errorMessage", "Error: " + e.getMessage());
@@ -90,29 +90,30 @@ public class ClientController {
 		return new ModelAndView("register-client");
 	}
 
-	@GetMapping("/clients/registered")
+	@GetMapping("/clients")
 	public ModelAndView registeredClients() {
 		ModelAndView mv = new ModelAndView("registered-clients");
+		User user = authFacade.getUser();
 
-		mv.addObject("activeUser", authFacade.getUser().getName());
-		mv.addObject("userEmail", authFacade.getUser().getEmail());
-		mv.addObject("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
-		mv.addObject("clientList", clientService.getAll());
+		mv.addObject("activeUser", user.getName());
+		mv.addObject("userEmail", user.getEmail());
+		mv.addObject("clientCount", clientService.getClientCount(user.getId()));
+		mv.addObject("clientList", clientService.getAll(user.getId()));
 		return mv;
 	}
 
 	@PostMapping("/clients/delete/{id}")
 	public String deleteClient(@PathVariable int id, Model model, @ModelAttribute("client") @Validated Client client,
 			BindingResult result, final RedirectAttributes redirectAttributes) {
-
+		User user = authFacade.getUser();
 		model.addAttribute("id", id);
 
 		try {
 			clientService.remove(client);
-			model.addAttribute("activeUser", authFacade.getUser().getName());
-			model.addAttribute("userEmail", authFacade.getUser().getEmail());
-			model.addAttribute("clientCount", clientService.getClientCount(authFacade.getUser().getId()));
-			model.addAttribute("clientList", clientService.getAll());
+			model.addAttribute("activeUser", user.getName());
+			model.addAttribute("userEmail", user.getEmail());
+			model.addAttribute("clientCount", clientService.getClientCount(user.getId()));
+			model.addAttribute("clientList", clientService.getAll(user.getId()));
 			return "redirect:/clients/registered";
 		} catch (SQLException e) {
 			model.addAttribute("errorMessage", "Error: " + e.getMessage());

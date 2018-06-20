@@ -31,8 +31,13 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
-	public List<Client> getAll() {
-		return clientDAO.getAllClients();
+	public List<Client> getAll(int psychologistId) {
+		return clientDAO.getAllClients(psychologistId);
+	}
+
+	@Override
+	public List<Client> getClientsWithAppointments(int psychologistId) {
+		return clientDAO.getClientsWithAppointments(psychologistId);
 	}
 
 	@Override
