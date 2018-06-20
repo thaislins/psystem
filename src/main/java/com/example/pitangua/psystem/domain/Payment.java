@@ -9,6 +9,7 @@ public class Payment {
 	private String notes;
 
 	public Payment() {
+		notes = "";
 	}
 
 	public Payment(Integer id, Integer psychologistId, Integer clientId, Integer value, String date, String notes) {
@@ -66,6 +67,12 @@ public class Payment {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	@Override
+	public String toString() {
+		return "id: " + id + ", psychologistId: " + psychologistId + ", clientId: " + clientId + ", value: " + value
+				+ ", date: " + date + ", notes: " + notes;
 	}
 
 }

@@ -1,10 +1,10 @@
 package com.example.pitangua.psystem.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +22,14 @@ public class PaymentDAO extends GenericDAO<Payment> {
 	@Override
 	public void insert(Payment entity) throws SQLException {
 		String sql = "INSERT INTO payment(psychologist_id, client_id, value, date, notes) VALUES(?, ?, ?, ?, ?)";
-		LocalDateTime date = null;
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
+		LocalDate date = null;
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
 			ps.setInt(1, entity.getPsychologistId());
 			ps.setInt(2, entity.getClientId());
 			ps.setInt(3, entity.getValue());
-			date = LocalDateTime.parse(entity.getDate(), dateFormat);
-			ps.setTimestamp(4, Timestamp.valueOf(date));
+			date = LocalDate.parse(entity.getDate(), dateFormat);
+			ps.setDate(4, Date.valueOf(date));
 			ps.setString(5, entity.getNotes());
 			ps.execute();
 		}
