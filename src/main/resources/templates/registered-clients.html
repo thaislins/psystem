@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Registered Clients - pSystem</title>
-    
+
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-    
+
     <link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/colors/default.css" id="theme" rel="stylesheet">
@@ -29,7 +29,7 @@
             <p class="loader__label">pSystem</p>
         </div>
     </div>
-    
+
      <!-- Logout Form -->
 	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
 		<button type="submit" class="btn btn-link">Logout</button>
@@ -59,7 +59,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                          <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->    
+                         <!-- Light Logo text -->
                          <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
@@ -156,7 +156,6 @@
 							<ul aria-expanded="false" class="collapse">
 								<li><a href="#">Issue Document</a></li>
 								<li><a href="#">Issued Document</a></li>
-								<li><a href="#">Anamnesis</a></li>
 							</ul>
 						</li>
 						<li>
@@ -220,8 +219,9 @@
                                             <tr th:each="client : ${clientList}">
                                                 <td th:text="${client.name}"></td>
                                                 <td th:text="${client.phone}" placeholder="(99)99999-9999"></td>
-                                                <td><span class="label label-success">active</span> </td>	
+                                                <td><span class="label label-success">active</span> </td>
                                                 <td class="text-right">
+                                                    <a th:href="@{/anamnesis/register/__${client.id}__}" href="#" data-toggle="tooltip" data-original-title="Edit Anamnesis"> <i class="fa fa-file text-inverse m-r-10"></i> </a>
                                                 	<a th:href="@{/clients/view/__${client.id}__}" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                                     <a th:href="@{/clients/edit/__${client.id}__}" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                                     <a th:onclick="'deleteClient(' + ${client.id} + ');'" href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>

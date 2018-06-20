@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Register Anamnesis - pSystem</title>
+	<title>Update Anamnesis - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -125,44 +125,49 @@
 				<nav class="sidebar-nav">
 					<ul id="sidebarnav">
 						<li class="nav-small-cap">--- PERSONAL</li>
-						<li> <a class="waves-effect waves-dark" href="/dashboard" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+						<li>
+							<a class="waves-effect waves-dark" href="/dashboard" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
 						</li>
-						<li> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-							<ul aria-expanded="false" class="collapse">
+						<li class="active">
+							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+							<ul aria-expanded="true" class="collapse">
 								<li><a href="/clients/register">Register Client</a></li>
 								<li><a href="/clients/registered">Registered Clients</a></li>
 							</ul>
 						</li>
-						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
 							<ul aria-expanded="false" class="collapse">
 								<li><a href="#">Registered Psychologists</a></li>
 							</ul>
 						</li>
-						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
 							<ul aria-expanded="false" class="collapse">
 								<li><a href="#">Schedule Appointment</a></li>
 								<li><a href="#">Scheduled Appointments</a></li>
 							</ul>
 						</li>
-						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
 							<ul aria-expanded="false" class="collapse">
 								<li><a href="#">Register Payment</a></li>
 								<li><a href="#">Fulfilled Payments</a></li>
 							</ul>
 						</li>
-						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
 							<ul aria-expanded="false" class="collapse">
 								<li><a href="#">Issue Document</a></li>
 								<li><a href="#">Issued Document</a></li>
-								<li><a href="#">Anamnesis</a></li>
 							</ul>
 						</li>
-						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
 							<ul aria-expanded="false" class="collapse">
 								<li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
 							</ul>
 						</li>
-
 					</ul>
 				</nav>
 				<!-- End Sidebar navigation -->
@@ -185,11 +190,11 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 align-self-center">
-						<h3 class="text-themecolor">Register Anamnesis</h3>
+						<h3 class="text-themecolor">Update Anamnesis</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
 							<li class="breadcrumb-item">Anamnesis</li>
-							<li class="breadcrumb-item active">Register Anamnesis</li>
+							<li class="breadcrumb-item active">Update Anamnesis</li>
 						</ol>
 					</div>
 				</div>
@@ -285,6 +290,7 @@
 										<!--/row-->
 										<div class="form-actions">
 											<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+											<a th:href="@{/clients/registered}" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
 										</div>
 									</div>
 								</form>

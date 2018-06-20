@@ -28,7 +28,7 @@
             <p class="loader__label">pSystem</p>
         </div>
     </div>
-    
+
      <!-- Logout Form -->
 	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
 		<button type="submit" class="btn btn-link">Logout</button>
@@ -58,7 +58,7 @@
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
                          <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->    
+                         <!-- Light Logo text -->
                          <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
@@ -149,7 +149,6 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="#">Issue Document</a></li>
                                 <li><a href="#">Issued Document</a></li>
-                                <li><a href="#">Anamnesis</a></li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
@@ -157,7 +156,7 @@
                                 <li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
                             </ul>
                         </li>
-            
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -244,7 +243,7 @@
                                             </div>
                                         </div>
                                         <!--/row-->
-                                        
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -315,7 +314,7 @@
                                             </div>
                                         	</div>
                                             <!--/span-->
-                                        
+
                                         </div>
                                         <!--/row-->
                                       <h3 class="box-title m-t-10">Address</h3>
@@ -389,6 +388,7 @@
 											</div>
                                         <div class="form-actions">
                                         	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        	<a href="#" onclick="history.back()" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
                                     	</div>
 	                             	</form>
 									</div>
