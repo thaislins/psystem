@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.pitangua.psystem.domain.CepAddress;
-import com.example.pitangua.psystem.exception.UnhandledException;;
+import com.example.pitangua.psystem.exception.UnhandledException;
 
 @Repository
 @Transactional

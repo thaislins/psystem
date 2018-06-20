@@ -41,6 +41,11 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
+	public List<Client> getClientsWithPayments(int psychologistId) {
+		return clientDAO.getClientsWithPayments(psychologistId);
+	}
+
+	@Override
 	public Integer getClientCount(int psychologistId) {
 		return clientDAO.getClientCount(psychologistId);
 	}

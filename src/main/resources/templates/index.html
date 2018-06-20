@@ -4,37 +4,24 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+
     <title>Dashboard - pSystem</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-    <link href="../assets/node_modules/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
-    <!-- This page CSS -->
-    <!-- chartist CSS -->
-    <link href="../assets/node_modules/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/chartist-js/dist/chartist-init.css" rel="stylesheet">
-    <!-- Vector CSS -->
-    <link href="../assets/node_modules/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-    <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-    <link href="css/pages/dashboard3.css" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="css/colors/default.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+
+    <link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+    <link href="/assets/node_modules/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <link href="/assets/node_modules/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="/assets/node_modules/chartist-js/dist/chartist-init.css" rel="stylesheet">
+    <link href="/assets/node_modules/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="/assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/pages/dashboard3.css" rel="stylesheet">
+    <link href="/css/colors/default.css" id="theme" rel="stylesheet">
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -47,7 +34,6 @@
             <p class="loader__label">pSystem</p>
         </div>
     </div>
-
 
     <!-- Logout Form -->
 	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
@@ -71,16 +57,16 @@
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
-                         <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                         <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                          <!-- Light Logo text -->
-                         <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                         <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -105,12 +91,12 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down"  th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down"  th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
                                                 <p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -144,54 +130,54 @@
 			<!-- Sidebar scroll-->
 			<div class="scroll-sidebar">
 				<!-- Sidebar navigation-->
-				<nav class="sidebar-nav">
-					<ul id="sidebarnav">
-						<li class="nav-small-cap">--- PERSONAL</li>
-						<li>
-							<a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
-						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-							<ul aria-expanded="false" class="collapse">
-								<li><a href="/clients/register" method="GET">Register Client</a></li>
-								<li><a href="/clients" method="GET">Registered Clients</a></li>
-							</ul>
-						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
-							<ul aria-expanded="false" class="collapse">
-								<li><a href="#">Registered Psychologists</a></li>
-							</ul>
-						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
-							<ul aria-expanded="false" class="collapse">
-								<li><a href="/appointments/schedule" method="GET">Schedule Appointment</a></li>
-								<li><a href="/appointments" method="GET">Scheduled Appointments</a></li>
-							</ul>
-						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
-							<ul aria-expanded="false" class="collapse">
-								<li><a href="#">Register Payment</a></li>
-								<li><a href="#">Fulfilled Payments</a></li>
-							</ul>
-						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-							<ul aria-expanded="false" class="collapse">
-								<li><a href="#">Issue Document</a></li>
-								<li><a href="#">Issued Document</a></li>
-							</ul>
-						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
-							<ul aria-expanded="false" class="collapse">
-								<li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-small-cap">--- PERSONAL</li>
+                        <li>
+                            <a class="waves-effect waves-dark" href="/dashboard" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="/clients/register">Register Client</a></li>
+                                <li><a href="/clients/registered">Registered Clients</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Registered Psychologists</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Schedule Appointment</a></li>
+                                <li><a href="#">Scheduled Appointments</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a th:href="@{/payments/register}">Register Payment</a></li>
+                                <li><a th:href="@{/payments}">Fulfilled Payments</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">Issue Document</a></li>
+                                <li><a href="#">Issued Document</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
 			</div>
 		</aside>
         <!-- ============================================================== -->
@@ -364,21 +350,21 @@
                                         </div>
                                     </div>
                                     <div class="sl-item">
-                                        <div class="sl-left"> <img class="img-circle" alt="user" src="../assets/images/users/1.jpg"> </div>
+                                        <div class="sl-left"> <img class="img-circle" alt="user" src="/assets/images/users/1.jpg"> </div>
                                         <div class="sl-right">
                                             <div class="font-medium">John Doe <span class="sl-date"> 5pm</span></div>
                                             <div class="desc">Call today with gohn doe </div>
                                         </div>
                                     </div>
                                     <div class="sl-item">
-                                        <div class="sl-left"> <img class="img-circle" alt="user" src="../assets/images/users/2.jpg"> </div>
+                                        <div class="sl-left"> <img class="img-circle" alt="user" src="/assets/images/users/2.jpg"> </div>
                                         <div class="sl-right">
                                             <div class="font-medium">Go to the Doctor <span class="sl-date">5 minutes ago</span></div>
                                             <div class="desc">Contrary to popular belief</div>
                                         </div>
                                     </div>
                                     <div class="sl-item">
-                                        <div class="sl-left"> <img class="img-circle" alt="user" src="../assets/images/users/3.jpg"> </div>
+                                        <div class="sl-left"> <img class="img-circle" alt="user" src="/assets/images/users/3.jpg"> </div>
                                         <div class="sl-right">
                                             <div><a href="#">Tiger Sroff</a> <span class="sl-date">5 minutes ago</span></div>
                                             <div class="desc">Approve meeting with tiger
@@ -567,7 +553,7 @@
                                                 <td>$3.9K</td>
                                             </tr>
                                             <tr class="active">
-                                                <td><span class="round"><img src="../assets/images/users/2.jpg" alt="user" width="50"></span></td>
+                                                <td><span class="round"><img src="/assets/images/users/2.jpg" alt="user" width="50"></span></td>
                                                 <td>
                                                     <h6>Andrew</h6><small class="text-muted">Project Manager</small></td>
                                                 <td>Real Homes</td>
@@ -607,7 +593,7 @@
                     <!-- Column -->
                     <div class="col-lg-4">
                         <div class="card">
-                            <div class="up-img" style="background-image:url(../assets/images/big/img1.jpg)"></div>
+                            <div class="up-img" style="background-image:url(/assets/images/big/img1.jpg)"></div>
                             <div class="card-body">
                                 <h5 class=" card-title">Business development of rules</h5>
                                 <span class="label label-info label-rounded">Technology</span>
@@ -652,14 +638,14 @@
                                 <div class="card-body">
                                     <!-- Activity item-->
                                     <div class="activity-item">
-                                        <div class="round m-r-20"><img src="../assets/images/users/2.jpg" alt="user" width="50"></div>
+                                        <div class="round m-r-20"><img src="/assets/images/users/2.jpg" alt="user" width="50"></div>
                                         <div class="m-t-10">
                                             <h5 class="m-b-0 font-medium">Mark Freeman <span class="text-muted font-14 m-l-10">| &nbsp; 6:30 PM</span></h5>
                                             <h6 class="text-muted">uploaded this file </h6>
                                             <table class="table vm b-0 m-b-0">
                                                 <tbody>
                                                     <tr>
-                                                        <td class="m-r-10 b-0"><img src="../assets/images/icon/zip.png" alt="user"></td>
+                                                        <td class="m-r-10 b-0"><img src="/assets/images/icon/zip.png" alt="user"></td>
                                                         <td class="b-0">
                                                             <h5 class="m-b-0 font-medium ">Homepage.zip</h5>
                                                             <h6>54 MB</h6></td>
@@ -671,13 +657,13 @@
                                     <!-- Activity item-->
                                     <!-- Activity item-->
                                     <div class="activity-item">
-                                        <div class="round m-r-20"><img src="../assets/images/users/3.jpg" alt="user" width="50"></div>
+                                        <div class="round m-r-20"><img src="/assets/images/users/3.jpg" alt="user" width="50"></div>
                                         <div class="m-t-10">
                                             <h5 class="m-b-5 font-medium">Emma Smith <span class="text-muted font-14 m-l-10">| &nbsp; 6:30 PM</span></h5>
                                             <h6 class="text-muted">joined projectname, and invited <a href="javascript:void(0)">@maxcage, @maxcage, @maxcage, @maxcage, @maxcage,+3</a></h6>
                                             <span class="image-list m-t-20">
-                                                <a href="javascript:void(0)"><img src="../assets/images/users/1.jpg" class="img-circle" alt="user" width="50"></a>
-                                                <a href="javascript:void(0)"><img src="../assets/images/users/2.jpg" class="img-circle" alt="user" width="50"></a>
+                                                <a href="javascript:void(0)"><img src="/assets/images/users/1.jpg" class="img-circle" alt="user" width="50"></a>
+                                                <a href="javascript:void(0)"><img src="/assets/images/users/2.jpg" class="img-circle" alt="user" width="50"></a>
                                                 <a href="javascript:void(0)"><span class="round round-warning">C</span></a>
                                             <a href="javascript:void(0)"><span class="round round-danger">D</span></a>
                                             <a href="javascript:void(0)">+3</a>
@@ -687,20 +673,20 @@
                                     <!-- Activity item-->
                                     <!-- Activity item-->
                                     <div class="activity-item">
-                                        <div class="round m-r-20"><img src="../assets/images/users/4.jpg" alt="user" width="50"></div>
+                                        <div class="round m-r-20"><img src="/assets/images/users/4.jpg" alt="user" width="50"></div>
                                         <div class="m-t-10">
                                             <h5 class="m-b-0 font-medium">David R. Jones  <span class="text-muted font-14 m-l-10">| &nbsp; 9:30 PM, July 13th</span></h5>
                                             <h6 class="text-muted">uploaded this file </h6>
                                             <span>
-                                                <a href="javascript:void(0)" class="m-r-10"><img src="../assets/images/big/img1.jpg" alt="user" width="60"></a>
-                                                <a href="javascript:void(0)" class="m-r-10"><img src="../assets/images/big/img2.jpg" alt="user" width="60"></a>
+                                                <a href="javascript:void(0)" class="m-r-10"><img src="/assets/images/big/img1.jpg" alt="user" width="60"></a>
+                                                <a href="javascript:void(0)" class="m-r-10"><img src="/assets/images/big/img2.jpg" alt="user" width="60"></a>
                                             </span>
                                         </div>
                                     </div>
                                     <!-- Activity item-->
                                     <!-- Activity item-->
                                     <div class="activity-item">
-                                        <div class="round m-r-20"><img src="../assets/images/users/6.jpg" alt="user" width="50"></div>
+                                        <div class="round m-r-20"><img src="/assets/images/users/6.jpg" alt="user" width="50"></div>
                                         <div class="m-t-10">
                                             <h5 class="m-b-5 font-medium">David R. Jones <span class="text-muted font-14 m-l-10">| &nbsp; 6:30 PM</span></h5>
                                             <h6 class="text-muted">Commented on<a href="javascript:void(0)">Test Project</a></h6>
@@ -771,10 +757,10 @@
                                                 </label>
                                             </div>
                                             <ul class="assignedto">
-                                                <li><img src="../assets/images/users/1.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Steave"></li>
-                                                <li><img src="../assets/images/users/2.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Jessica"></li>
-                                                <li><img src="../assets/images/users/3.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
-                                                <li><img src="../assets/images/users/4.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
+                                                <li><img src="/assets/images/users/1.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Steave"></li>
+                                                <li><img src="/assets/images/users/2.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Jessica"></li>
+                                                <li><img src="/assets/images/users/3.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
+                                                <li><img src="/assets/images/users/4.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
                                             </ul>
                                         </li>
                                         <li class="list-group-item" data-role="task">
@@ -794,8 +780,8 @@
                                                 </label>
                                             </div>
                                             <ul class="assignedto">
-                                                <li><img src="../assets/images/users/3.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
-                                                <li><img src="../assets/images/users/4.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
+                                                <li><img src="/assets/images/users/3.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
+                                                <li><img src="/assets/images/users/4.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
                                             </ul>
                                         </li>
                                         <li class="list-group-item" data-role="task">
@@ -815,8 +801,8 @@
                                                 </label>
                                             </div>
                                             <ul class="assignedto">
-                                                <li><img src="../assets/images/users/3.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
-                                                <li><img src="../assets/images/users/4.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
+                                                <li><img src="/assets/images/users/3.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
+                                                <li><img src="/assets/images/users/4.jpg" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
                                             </ul>
                                         </li>
                                         <li class="list-group-item" data-role="task">
@@ -861,12 +847,12 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
+    <script src="/assets/node_modules/jquery/jquery.min.js"></script>
     <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="../assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
     <!--Menu sidebar -->
@@ -878,19 +864,19 @@
     <!-- ============================================================== -->
     <!--sparkline JavaScript -->
     <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
-    <script src="../assets/node_modules/chartist-js/dist/chartist.min.js"></script>
-    <script src="../assets/node_modules/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="/assets/node_modules/d3/d3.min.js"></script>
+    <script src="/assets/node_modules/c3-master/c3.min.js"></script>
+    <script src="/assets/node_modules/chartist-js/dist/chartist.min.js"></script>
+    <script src="/assets/node_modules/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
     <!-- Vector map JavaScript -->
-    <script src="../assets/node_modules/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="../assets/node_modules/vectormap/jquery-jvectormap-us-aea-en.js"></script>
+    <script src="/assets/node_modules/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="/assets/node_modules/vectormap/jquery-jvectormap-us-aea-en.js"></script>
     <!-- Chart JS -->
     <script src="js/dashboard3.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
-    <script src="../assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="/assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
 </body>
 
 </html>
