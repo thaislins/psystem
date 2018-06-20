@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+
+	<title>Update Anamnesis - pSystem</title>
+
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+
+	<link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/colors/default.css" id="theme" rel="stylesheet">
+	<link href="/css/countrySelect.css" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border fix-sidebar">
+	<!-- ============================================================== -->
+	<!-- Preloader - style you can find in spinners.css -->
+	<!-- ============================================================== -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="loader__figure"></div>
+			<p class="loader__label">pSystem</p>
+		</div>
+	</div>
+
+	<!-- Logout Form -->
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden="true">
+		<button type="submit" class="btn btn-link">Logout</button>
+	</form>
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper">
+		<!-- ============================================================== -->
+		<!-- Topbar header - style you can find in pages.scss -->
+		<!-- ============================================================== -->
+		<header class="topbar">
+			<nav class="navbar top-navbar navbar-expand-md navbar-light">
+				<!-- ============================================================== -->
+				<!-- Logo -->
+				<!-- ============================================================== -->
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">
+						<!-- Logo icon -->
+						<b>
+							<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+							<!-- Dark Logo icon -->
+							<img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+							<!-- Light Logo icon -->
+							<img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+						</b>
+						<!--End Logo icon -->
+						<!-- Logo text -->
+						<span>
+							<!-- dark Logo text -->
+							<img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+							<!-- Light Logo text -->
+							<img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+						</span>
+					</a>
+				</div>
+				<!-- ============================================================== -->
+				<!-- End Logo -->
+				<!-- ============================================================== -->
+				<div class="navbar-collapse">
+					<!-- ============================================================== -->
+					<!-- toggle and nav items -->
+					<!-- ============================================================== -->
+					<ul class="navbar-nav mr-auto">
+						<!-- This is  -->
+						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
+						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
+					</ul>
+					<!-- ============================================================== -->
+					<!-- User profile and search -->
+					<!-- ============================================================== -->
+					<ul class="navbar-nav my-lg-0">
+						<!-- ============================================================== -->
+						<!-- Profile -->
+						<!-- ============================================================== -->
+						<li class="nav-item dropdown u-pro">
+							<a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span></a>
+							<div class="dropdown-menu dropdown-menu-right animated flipInY">
+								<ul class="dropdown-user">
+									<li>
+										<div class="dw-user-box">
+											<div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
+											<div class="u-text">
+												<h4 th:text="${user.name}"></h4>
+												<p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+											</div>
+										</div>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+									<li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+									<li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="#" onclick="document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>&nbsp; Logout</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- ============================================================== -->
+		<!-- End Topbar header -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- Left Sidebar - style you can find in sidebar.scss  -->
+		<!-- ============================================================== -->
+		<aside class="left-sidebar">
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav">
+						<li class="nav-small-cap">--- PERSONAL</li>
+						<li>
+							<a class="waves-effect waves-dark" href="/dashboard" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+						</li>
+						<li class="active">
+							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+							<ul aria-expanded="true" class="collapse">
+								<li><a href="/clients/register">Register Client</a></li>
+								<li><a href="/clients/registered">Registered Clients</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Registered Psychologists</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Schedule Appointment</a></li>
+								<li><a href="#">Scheduled Appointments</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Register Payment</a></li>
+								<li><a href="#">Fulfilled Payments</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a href="#">Issue Document</a></li>
+								<li><a href="#">Issued Document</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+							<ul aria-expanded="false" class="collapse">
+								<li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<!-- End Sidebar navigation -->
+			</div>
+			<!-- End Sidebar scroll-->
+		</aside>
+		<!-- ============================================================== -->
+		<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+				<!-- ============================================================== -->
+				<!-- Bread crumb and right sidebar toggle -->
+				<!-- ============================================================== -->
+				<div class="row page-titles">
+					<div class="col-md-5 align-self-center">
+						<h3 class="text-themecolor">Update Anamnesis</h3>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+							<li class="breadcrumb-item">Anamnesis</li>
+							<li class="breadcrumb-item active">Update Anamnesis</li>
+						</ol>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- End Bread crumb and right sidebar toggle -->
+				<!-- ============================================================== -->
+				<!-- ============================================================== -->
+				<!-- Start Page Content -->
+				<!-- ============================================================== -->
+				<!-- Row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
+								<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Anamnesis successfully updated!</div>
+								<form method="POST" th:action="@{/anamnesis/register/__${id}__}" th:object="${anamnesisForm}">
+									<div class="form-body">
+										<h3 class="card-title">Anamnesis Info</h3>
+										<hr>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label class="control-label">Client</label>
+													<input disabled type="text" class="form-control" th:value="${client.name}">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('humor')} ? has-danger : ''">
+													<label class="control-label">Humor</label>
+													<textarea name="humor" rows="3" class="form-control" th:field="*{humor}" th:classappend="${#fields.hasErrors('humor')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{humor}">...</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('perception')} ? has-danger : ''">
+													<label class="control-label">Perception</label>
+													<textarea name="perception" rows="3" class="form-control" th:field="*{perception}" th:classappend="${#fields.hasErrors('perception')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{perception}">...</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('desire')} ? has-danger : ''">
+													<label class="control-label">Desire</label>
+													<textarea name="desire" rows="3" class="form-control" th:field="*{desire}" th:classappend="${#fields.hasErrors('desire')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{desire}">...</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('information')} ? has-danger : ''">
+													<label class="control-label">Information</label>
+													<textarea name="information" rows="3" class="form-control" th:field="*{information}" th:classappend="${#fields.hasErrors('information')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{information}">...</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('language')} ? has-danger : ''">
+													<label class="control-label">Language</label>
+													<textarea name="language" rows="3" class="form-control" th:field="*{language}" th:classappend="${#fields.hasErrors('language')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{language}">...</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('appeareance')} ? has-danger : ''">
+													<label class="control-label">Appeareance</label>
+													<textarea name="appeareance" rows="3" class="form-control" th:field="*{appeareance}" th:classappend="${#fields.hasErrors('appeareance')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{appeareance}">...</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('thought')} ? has-danger : ''">
+													<label class="control-label">Thought</label>
+													<textarea name="thought" rows="3" class="form-control" th:field="*{thought}" th:classappend="${#fields.hasErrors('thought')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{thought}">...</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group" th:classappend="${#fields.hasErrors('affection')} ? has-danger : ''">
+													<label class="control-label">Affection</label>
+													<textarea name="affection" rows="3" class="form-control" th:field="*{affection}" th:classappend="${#fields.hasErrors('affection')} ? is-invalid : ''"></textarea>
+													<div class="invalid-feedback" th:errors="*{affection}">...</div>
+												</div>
+											</div>
+										</div>
+										<!--/row-->
+										<div class="form-actions">
+											<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+											<a th:href="@{/clients/registered}" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- End PAge Content -->
+			<!-- ============================================================== -->
+			<!-- ============================================================== -->
+			<!-- End Container fluid  -->
+			<!-- ============================================================== -->
+			<!-- ============================================================== -->
+			<!-- footer -->
+			<!-- ============================================================== -->
+			<footer class="footer">&copy; 2018 - pSystem. All Rights Reserved;</footer>
+			<!-- ============================================================== -->
+			<!-- End footer -->
+			<!-- ============================================================== -->
+		</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page wrapper  -->
+	<!-- ============================================================== -->
+	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
+	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
+	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/js/waves.js"></script>
+	<script src="/js/sidebarmenu.js"></script>
+	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
+	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
+	<script src="/js/custom.min.js"></script>
+</body>
+
+</html>
