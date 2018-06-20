@@ -37,6 +37,7 @@ public class ClinicDAO extends GenericDAO<Clinic> {
 
 	@Override
 	public void remove(Clinic entity) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
