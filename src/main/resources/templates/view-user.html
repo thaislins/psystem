@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Update Anamnesis - pSystem</title>
+	<title>Registered Clients - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -30,7 +30,7 @@
 	</div>
 
 	<!-- Logout Form -->
-	<form th:action="@{/logout}" method="POST" id="logout-form" hidden="true">
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
 		<button type="submit" class="btn btn-link">Logout</button>
 	</form>
 	<!-- ============================================================== -->
@@ -47,8 +47,7 @@
 				<!-- ============================================================== -->
 				<div class="navbar-header">
 					<a class="navbar-brand" th:href="@{/}">
-						<!-- Logo icon -->
-						<b>
+						<!-- Logo icon --><b>
 							<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 							<!-- Dark Logo icon -->
 							<img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
@@ -56,14 +55,11 @@
 							<img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
 						</b>
 						<!--End Logo icon -->
-						<!-- Logo text -->
-						<span>
-							<!-- dark Logo text -->
-							<img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-							<!-- Light Logo text -->
-							<img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-						</span>
-					</a>
+						<!-- Logo text --><span>
+						 <!-- dark Logo text -->
+						 <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+						 <!-- Light Logo text -->
+						 <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
 				</div>
 				<!-- ============================================================== -->
 				<!-- End Logo -->
@@ -74,8 +70,8 @@
 					<!-- ============================================================== -->
 					<ul class="navbar-nav mr-auto">
 						<!-- This is  -->
-						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
-						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
+						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
 					</ul>
 					<!-- ============================================================== -->
 					<!-- User profile and search -->
@@ -109,7 +105,7 @@
 		<!-- ============================================================== -->
 		<!-- End Topbar header -->
 		<!-- ============================================================== -->
-		<!-- ============================================================== -->
+	   <!-- ============================================================== -->
 		<!-- Left Sidebar - style you can find in sidebar.scss  -->
 		<!-- ============================================================== -->
 		<aside class="left-sidebar">
@@ -121,9 +117,9 @@
 						<li>
 							<a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
 						</li>
-						<li class="active">
-							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="true"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-							<ul aria-expanded="true" class="collapse in">
+						<li>
+							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+							<ul aria-expanded="false" class="collapse">
 								<li><a th:href="@{/clients/register}">Register Client</a></li>
 								<li><a th:href="@{/clients}">Registered Clients</a></li>
 							</ul>
@@ -183,11 +179,11 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 align-self-center">
-						<h3 class="text-themecolor">Update Anamnesis</h3>
+						<h3 class="text-themecolor">Registered Client</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item">Anamnesis</li>
-							<li class="breadcrumb-item active">Update Anamnesis</li>
+							<li class="breadcrumb-item">Psychologists</li>
+							<li class="breadcrumb-item active">Registered Psychologists</li>
 						</ol>
 					</div>
 				</div>
@@ -198,92 +194,60 @@
 				<!-- Start Page Content -->
 				<!-- ============================================================== -->
 				<!-- Row -->
-				<div class="row">
+
+
+								<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
-								<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Anamnesis successfully updated!</div>
-								<form method="POST" th:action="@{/anamnesis/register/__${id}__}" th:object="${anamnesisForm}">
+								<form class="form-horizontal" role="form" method="GET" th:action="@{/psychologists/edit/__${user.cpf}__}"  th:object="${user}">
 									<div class="form-body">
-										<h3 class="card-title">Anamnesis Info</h3>
-										<hr>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="control-label">Client</label>
-													<input disabled type="text" class="form-control" th:value="${client.name}">
-												</div>
-											</div>
-										</div>
+										<h3 class="box-title">Psychologist Info</h3>
+										<hr class="m-t-0 m-b-40">
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('humor')} ? has-danger : ''">
-													<label class="control-label">Humor</label>
-													<textarea name="humor" rows="3" class="form-control" th:field="*{humor}" th:classappend="${#fields.hasErrors('humor')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{humor}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Name:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${user.name}"></p>
+													</div>
 												</div>
 											</div>
+											<!--/span-->
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('perception')} ? has-danger : ''">
-													<label class="control-label">Perception</label>
-													<textarea name="perception" rows="3" class="form-control" th:field="*{perception}" th:classappend="${#fields.hasErrors('perception')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{perception}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">CPF</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${user.cpf}"></p>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('desire')} ? has-danger : ''">
-													<label class="control-label">Desire</label>
-													<textarea name="desire" rows="3" class="form-control" th:field="*{desire}" th:classappend="${#fields.hasErrors('desire')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{desire}">...</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('information')} ? has-danger : ''">
-													<label class="control-label">Information</label>
-													<textarea name="information" rows="3" class="form-control" th:field="*{information}" th:classappend="${#fields.hasErrors('information')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{information}">...</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('language')} ? has-danger : ''">
-													<label class="control-label">Language</label>
-													<textarea name="language" rows="3" class="form-control" th:field="*{language}" th:classappend="${#fields.hasErrors('language')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{language}">...</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('appeareance')} ? has-danger : ''">
-													<label class="control-label">Appeareance</label>
-													<textarea name="appeareance" rows="3" class="form-control" th:field="*{appeareance}" th:classappend="${#fields.hasErrors('appeareance')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{appeareance}">...</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('thought')} ? has-danger : ''">
-													<label class="control-label">Thought</label>
-													<textarea name="thought" rows="3" class="form-control" th:field="*{thought}" th:classappend="${#fields.hasErrors('thought')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{thought}">...</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('affection')} ? has-danger : ''">
-													<label class="control-label">Affection</label>
-													<textarea name="affection" rows="3" class="form-control" th:field="*{affection}" th:classappend="${#fields.hasErrors('affection')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{affection}">...</div>
-												</div>
-											</div>
+											<!--/span-->
 										</div>
 										<!--/row-->
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-											<a th:href="@{/clients/registered}" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Phone Number</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${user.phone}"></p>
+													</div>
+												</div>
+											</div>
+										</div>
+											<!--/span-->
+										</div>
+									</div>
+									<div class="form-actions">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<button type="submit" class="btn btn-danger"> <i class="fa fa-pencil"></i> Edit</button>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6"> </div>
 										</div>
 									</div>
 								</form>
@@ -291,10 +255,10 @@
 						</div>
 					</div>
 				</div>
+				<!-- ============================================================== -->
+				<!-- End PAge Content -->
+				<!-- ============================================================== -->
 			</div>
-			<!-- ============================================================== -->
-			<!-- End PAge Content -->
-			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -306,10 +270,10 @@
 			<!-- End footer -->
 			<!-- ============================================================== -->
 		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
 	</div>
-	<!-- ============================================================== -->
-	<!-- End Page wrapper  -->
-	<!-- ============================================================== -->
 	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
@@ -319,6 +283,17 @@
 	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
 	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
 	<script src="/js/custom.min.js"></script>
+	<script src="/js/countrySelect.js"></script>
+	<script src="/js/jquery.mask.js"></script>
+	<script>
+
+	$("#country-selector").countrySelect({
+		defaultCountry: "br",
+		onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
+		//preferredCountries: ['ca', 'gb', 'us']
+	});
+
+	</script>
 </body>
 
 </html>

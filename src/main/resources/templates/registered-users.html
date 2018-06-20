@@ -2,21 +2,20 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Registered Clients - pSystem</title>
 
-	<title>Register Client - pSystem</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
 
-	<!-- Favicon icon -->
-	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-
-	<link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/style.css" rel="stylesheet">
-	<link href="/css/colors/default.css" id="theme" rel="stylesheet">
-	<link href="/css/countrySelect.css" rel="stylesheet">
-	<link href="/assets/node_modules/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/colors/default.css" id="theme" rel="stylesheet">
 </head>
 
 <body class="fix-header card-no-border fix-sidebar">
@@ -106,14 +105,14 @@
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
-       <!-- ============================================================== -->
+        <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
                             <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
@@ -160,10 +159,8 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+			</div>
+		</aside>
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -180,11 +177,11 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Schedule Appointment</h3>
+                        <h3 class="text-themecolor">Registered Psychologists</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item">Appointments</li>
-                            <li class="breadcrumb-item active">Schedule Appointment</li>
+                            <li class="breadcrumb-item">Psychologists</li>
+                            <li class="breadcrumb-item active">Registered Psychologists</li>
                         </ol>
                     </div>
                 </div>
@@ -194,112 +191,73 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
+                    <!-- column -->
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                            <div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
-                			<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Appointment successfully scheduled!</div>
-                                <form method="POST" th:action="@{/appointments/schedule}" th:object="${appointmentForm}">
-                                    <div class="form-body">
-                                        <h3 class="card-title">Appointment Info</h3>
-                                        <hr>
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label">Client</label>
-                                                    <select name="clientId" th:field="*{clientId}" class="form-control custom-select" tabindex="1" required>
-                                                        <option selected value=""></option>
-                                                        <option th:each="client : ${clientList}" th:value="${client.id}" th:text="${client.name}"></option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <!-- row -->
-                                        <div class="row">
-                                            <div class='col-sm-6'>
-									            <div class="form-group" th:classappend="${#fields.hasErrors('date')} ? has-danger : ''">
-									            <label class='input-group date'>Appointment Date</label>
-		                                            <div class="input-group date" id="datetimepicker">
-														<div class="input-group-prepend">
-															<div class="input-group-text input-group-addon"><span class="fa fa-calendar"></span></div>
-														</div>
-														<input type="text" name="date" class="form-control" placeholder="dd/mm/yyyy hh:mm" th:field="*{date}" th:classappend="${#fields.hasErrors('date')} ? is-invalid : ''" required>
-														<div class="invalid-feedback" th:errors="*{date}">...</div>
-													</div>
-									            </div>
-									        </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Psychologist</label>
-                                                    <input readonly th:value="${user.name}" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <!--/span-->
-
-                                        </div>
-                                        <div class="form-actions">
-                                        	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                    	</div>
-	                                	</form>
-                                    </div>
-                              </div>
-                         </div>
+                                <h4 class="card-title">Registered Psychologists</h4>
+                                <h6 class="card-subtitle">You have <strong><span th:text="*{userCount}"></span></strong> registered psychologists</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Phone Number</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="user : ${userList}">
+                                                <td th:text="${user.name}"></td>
+                                                <td th:text="${user.phone}" placeholder="(99)99999-9999"></td>
+                                                <td><span class="label label-success">active</span> </td>
+                                                <td class="text-nowrap">
+                                                	<a th:href="@{/psychologists/view/__${user.cpf}__}" method="GET" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                    <a th:href="@{/psychologists/edit/__${user.cpf}__}" method="GET" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                                    <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+                                                </td>
+                                                <!--<td><span class="label label-danger">admin</span> </td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
-
+            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-             <footer class="footer">&copy; 2018 - pSystem. All Rights Reserved;</footer>
+          <footer class="footer">&copy; 2018 - pSystem. All Rights Reserved;</footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
+        </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
- 	</div>
- </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
 
-	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
-	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
-	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
-	<script src="/assets/node_modules/moment/min/moment-with-locales.min.js"></script>
-	<script src="/assets/node_modules/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="/js/sidebarmenu.js"></script>
-	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
-	<script src="/js/custom.min.js"></script>
-	<script src="/js/countrySelect.js"></script>
-	<script>
-		$(function () {
-	        $('#datetimepicker').datetimepicker({
-	            icons: {
-	                time: "fa fa-clock-o",
-	                date: "fa fa-calendar",
-	                up: "fa fa-arrow-up",
-	                down: "fa fa-arrow-down"
-	            },
-	            format: "MM/DD/YYYY HH:mm"
-	        });
-	    });
-
-		$("#country-selector").countrySelect({
-			defaultCountry: "br",
-			onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
-			//preferredCountries: ['ca', 'gb', 'us']
-		});
-	</script>
+    <script src="/assets/node_modules/jquery/jquery.min.js"></script>
+    <script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
+    <script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/js/waves.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
+    <script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
+    <script src="/js/custom.min.js"></script>
+    <script src="/assets/node_modules/peity/jquery.peity.min.js"></script>
+    <script src="/assets/node_modules/peity/jquery.peity.init.js"></script>
+    <script src="/assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
 </body>
 
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -100,4 +101,79 @@ public class UserController {
 		return mv;
 	}
 
+	@GetMapping("/psychologists")
+	public ModelAndView listPsychologists() {
+		ModelAndView mv = new ModelAndView("registered-users");
+		User user = authFacade.getUser();
+
+		mv.addObject("user", user);
+		mv.addObject("userCount", userService.getCountByClinic(user.getClinicId()));
+		mv.addObject("userList", userService.getByClinic(user.getClinicId()));
+
+		return mv;
+	}
+
+	@PostMapping("/psychologists/delete/{cpf}")
+	public String deleteUser(@PathVariable String cpf, Model model, @ModelAttribute("user") @Validated User user,
+			BindingResult result, final RedirectAttributes redirectAttributes) {
+		User activeUser = authFacade.getUser();
+		model.addAttribute("cpf", cpf);
+
+		try {
+			userService.remove(user);
+			model.addAttribute("activeUser", activeUser.getName());
+			model.addAttribute("userEmail", activeUser.getEmail());
+			model.addAttribute("userCount", userService.getCountByClinic(authFacade.getUser().getClinicId()));
+			model.addAttribute("userList", userService.getByClinic(activeUser.getClinicId()));
+			return "redirect:/psychologists";
+		} catch (SQLException e) {
+			model.addAttribute("errorMessage", "Error: " + e.getMessage());
+		}
+
+		return "redirect:/psychologists";
+	}
+
+	@GetMapping("/psychologists/view/{cpf}")
+	public ModelAndView viewUser(@PathVariable String cpf) {
+		ModelAndView mv = new ModelAndView("view-user");
+		mv.addObject("cpf", cpf);
+
+		mv.addObject("user", userService.getByCpf(cpf));
+		mv.addObject("activeUser", authFacade.getUser().getName());
+		mv.addObject("userEmail", authFacade.getUser().getEmail());
+		return mv;
+	}
+
+	@GetMapping("/psychologists/edit/{cpf}")
+	public ModelAndView editUser(@PathVariable String cpf) {
+		ModelAndView mv = new ModelAndView("edit-user");
+		mv.addObject("cpf", cpf);
+
+		mv.addObject("user", authFacade.getUser());
+		mv.addObject("userForm", userService.getByCpf(cpf));
+		return mv;
+	}
+
+	@PostMapping("/psychologists/edit/{cpf}")
+	public ModelAndView editUserRequest(@PathVariable String cpf, Model model,
+			@ModelAttribute("userForm") @Validated User userForm, BindingResult result,
+			final RedirectAttributes redirectAttributes) {
+
+		model.addAttribute("cpf", cpf);
+		model.addAttribute("user", authFacade.getUser());
+		userForm.setCpf(cpf);
+
+		if (!result.hasErrors()) {
+			try {
+				userService.update(userForm);
+				model.addAttribute("userForm", userService.getByCpf(cpf));
+				model.addAttribute("updateSuccess", true);
+				return new ModelAndView("edit-user");
+			} catch (SQLException e) {
+				model.addAttribute("errorMessage", "Error: " + e.getMessage());
+			}
+		}
+
+		return new ModelAndView("edit-user");
+	}
 }
