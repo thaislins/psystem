@@ -110,4 +110,17 @@ public class PaymentController {
 
 		return "payments/register";
 	}
+
+	@PostMapping("/payments/delete/{id}")
+	public String deletePayment(@PathVariable int id, Model model,
+			@ModelAttribute("payment") @Validated Payment payment,
+			BindingResult result, final RedirectAttributes redirectAttributes) {
+		try {
+			paymentService.remove(payment);
+		} catch (SQLException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+		}
+
+		return "redirect:/payments";
+	}
 }

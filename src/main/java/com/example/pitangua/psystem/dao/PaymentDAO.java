@@ -37,7 +37,11 @@ public class PaymentDAO extends GenericDAO<Payment> {
 
 	@Override
 	public void remove(Payment entity) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM payment WHERE id=?;";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setInt(1, entity.getId());
+			ps.execute();
+		}
 	}
 
 	@Override

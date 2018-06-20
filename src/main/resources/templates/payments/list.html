@@ -268,28 +268,6 @@
 	<script src="/assets/node_modules/peity/jquery.peity.min.js"></script>
 	<script src="/assets/node_modules/peity/jquery.peity.init.js"></script>
 	<script src="/assets/node_modules/sweetalert/sweetalert.min.js"></script>
-	<script>
-		function deletePayment(id) {
-			swal({
-				title: "Remove Payment",
-				text: "Are you sure? You will not be able to recover this payment's information!",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Remove",
-				closeOnConfirm: false
-			}, function(){
-				$.ajax({
-					url: "/payments/delete/" + id,
-					type: "POST"
-				})
-				.done(function(data) {
-					swal("Deleted!", "This payment was successfully removed", "success");
-					location.reload();
-				})
-			});
-		}
-	</script>
 </body>
 
 </html>

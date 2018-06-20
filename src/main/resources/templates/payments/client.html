@@ -219,7 +219,7 @@
                                                 <td th:text="${payment.date}"></td>
                                                 <td th:text="${payment.notes}"></td>
                                                 <td class="text-right">
-                                                    <a data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger"></i></a>
+                                                    <a th:onclick="'deletePayment(' + ${payment.id} + ');'" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -260,26 +260,26 @@
     <script src="/assets/node_modules/peity/jquery.peity.init.js"></script>
     <script src="/assets/node_modules/sweetalert/sweetalert.min.js"></script>
     <script>
-		function deleteAppointment(id) {
-			swal({
-				title: "Remove Client",
-				text: "Are you sure? You will not be able to recover this client's information!",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Remove",
-				closeOnConfirm: false
-			}, function(){
-				$.ajax({
-					url: "/appointments/delete/" + id,
-					type: "POST"
-				})
-				.done(function(data) {
-					swal("Deleted!", "This client was successfully removed", "success");
-					location.reload();
-				})
-			});
-		}
+		function deletePayment(id) {
+            swal({
+                title: "Remove Payment",
+                text: "Are you sure? You will not be able to recover this payment's information!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Remove",
+                closeOnConfirm: false
+            }, function(){
+                $.ajax({
+                    url: "/payments/delete/" + id,
+                    type: "POST"
+                })
+                .done(function(data) {
+                    swal("Deleted!", "This payment was successfully removed", "success");
+                    location.reload();
+                })
+            });
+        }
     </script>
 </body>
 
