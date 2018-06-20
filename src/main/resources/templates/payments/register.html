@@ -247,8 +247,13 @@
 											<div class="col-md-6">
 												<div class="form-group" th:classappend="${#fields.hasErrors('value')} ? has-danger : ''">
 													<label class="control-label">Payment Value*</label>
-													<input name="value" type="text" class="form-control" th:field="*{value}" th:classappend="${#fields.hasErrors('value')} ? is-invalid : ''" required>
-													<div class="invalid-feedback" th:errors="*{value}">...</div>
+													<div class="input-group">
+														<div class="input-group-prepend">
+															<div class="input-group-text">$</div>
+														</div>
+														<input name="value" type="text" class="form-control" th:field="*{value}" th:classappend="${#fields.hasErrors('value')} ? is-invalid : ''" required>
+														<div class="invalid-feedback" th:errors="*{value}">...</div>
+													</div>
 												</div>
 											</div>
 										</div>
