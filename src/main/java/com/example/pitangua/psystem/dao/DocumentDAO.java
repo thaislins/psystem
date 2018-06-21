@@ -36,8 +36,12 @@ public class DocumentDAO extends GenericDAO<Document> {
 	}
 
 	@Override
-	public void remove(Document entity) {
-		// TODO Auto-generated method stub
+	public void remove(Document entity) throws SQLException {
+		String sql = "DELETE FROM document WHERE id=?;";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setInt(1, entity.getId());
+			ps.execute();
+		}
 	}
 
 	@Override

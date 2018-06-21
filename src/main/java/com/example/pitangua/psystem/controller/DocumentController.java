@@ -111,4 +111,18 @@ public class DocumentController {
 		mv.addObject("documentsList", documentService.getClientDocuments(id));
 		return mv;
 	}
+
+	@PostMapping("/documents/delete/{id}")
+	public String deletePayment(@PathVariable int id, Model model,
+			@ModelAttribute("document") @Validated Document document, BindingResult result,
+			final RedirectAttributes redirectAttributes) {
+		document.setId(id);
+		try {
+			documentService.remove(document);
+		} catch (SQLException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Error: " + e.getMessage());
+		}
+
+		return "redirect:/documents";
+	}
 }

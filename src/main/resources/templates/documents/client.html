@@ -265,7 +265,7 @@
                 closeOnConfirm: false
             }, function(){
                 $.ajax({
-                    url: "/document/delete/" + id,
+                    url: "/documents/delete/" + id,
                     type: "POST"
                 })
                 .done(function(data) {

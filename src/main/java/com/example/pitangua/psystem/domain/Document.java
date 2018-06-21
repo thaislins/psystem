@@ -22,6 +22,10 @@ public class Document {
 		this.text = text;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getPsychologistId() {
 		return psychologistId;
 	}
