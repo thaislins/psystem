@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Registered Clients - pSystem</title>
+    <title>Registered Payments - pSystem</title>
 
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -16,6 +16,7 @@
     <link href="/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/colors/default.css" id="theme" rel="stylesheet">
+    <link href="/assets/node_modules/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="fix-header card-no-border fix-sidebar">
@@ -89,7 +90,7 @@
                                             <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.id}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.cpf}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -144,9 +145,9 @@
                                 <li><a th:href="@{/payments}">Fulfilled Payments</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-                            <ul aria-expanded="false" class="collapse">
+                        <li class="active">
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+                            <ul aria-expanded="true" class="collapse in">
                                 <li><a th:href="@{/documents/issue}">Issue Document</a></li>
                                 <li><a th:href="@{/documents}">Issued Document</a></li>
                             </ul>
@@ -177,11 +178,11 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Registered Psychologists</h3>
+                        <h3 class="text-themecolor">Issued Documents</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item">Psychologists</li>
-                            <li class="breadcrumb-item active">Registered Psychologists</li>
+                            <li class="breadcrumb-item">Documents</li>
+                            <li class="breadcrumb-item active">Issued Documents</li>
                         </ol>
                     </div>
                 </div>
@@ -196,29 +197,24 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Registered Psychologists</h4>
-                                <h6 class="card-subtitle">You have <strong><span th:text="*{userCount}"></span></strong> registered psychologists</h6>
+                                <h4 class="card-title">Issued Documents for <span th:text="*{client.name}"></span></h4>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped ">
+                                    <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Phone Number</th>
-                                                <th>Status</th>
-                                                <th>Actions</th>
+                                                <th>Issued Date</th>
+                                                <th>Type</th>
+                                                <th class="text-right">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="user : ${userList}">
-                                                <td th:text="${user.name}"></td>
-                                                <td th:text="${user.phone}" placeholder="(99)99999-9999"></td>
-                                                <td><span class="label label-success">active</span> </td>
-                                                <td class="text-nowrap">
-                                                	<a th:href="@{/psychologists/view/__${user.id}__}" method="GET" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                                    <!--<a th:href="@{/psychologists/edit/__${user.id}__}" method="GET" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>-->
-                                                    <!--<a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>-->
-                                                </td>
-                                                <!--<td><span class="label label-danger">admin</span> </td>-->
+                                            <tr th:each="document : ${documentsList}">
+                                                <td th:text="${document.date}"></td>
+                                                <td th:text="${document.type}"></td>
+												<td class="text-right">
+													<a data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye text-inverse m-r-10"></i></a>
+													<a th:onclick="'deleteDocument(' + ${document.id} + ');'" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+												</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -250,14 +246,35 @@
     <script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
     <script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/js/waves.js"></script>
     <script src="/js/sidebarmenu.js"></script>
     <script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
     <script src="/js/custom.min.js"></script>
     <script src="/assets/node_modules/peity/jquery.peity.min.js"></script>
     <script src="/assets/node_modules/peity/jquery.peity.init.js"></script>
-    <script src="/assets/node_modules/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="/assets/node_modules/sweetalert/sweetalert.min.js"></script>
+    <script>
+		function deleteDocument(id) {
+            swal({
+                title: "Remove Document",
+                text: "Are you sure? You will not be able to recover this documents's information!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Remove",
+                closeOnConfirm: false
+            }, function(){
+                $.ajax({
+                    url: "/document/delete/" + id,
+                    type: "POST"
+                })
+                .done(function(data) {
+                    swal("Deleted!", "This document was successfully removed", "success");
+                    location.reload();
+                })
+            });
+        }
+    </script>
 </body>
 
 </html>

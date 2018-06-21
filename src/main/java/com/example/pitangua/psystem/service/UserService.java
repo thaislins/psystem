@@ -29,7 +29,7 @@ public class UserService implements IUserService {
 	public void remove(User user) throws SQLException {
 		userDAO.remove(user);
 	}
-	
+
 	@Override
 	public List<User> getAll() {
 		return userDAO.getAllUsers();
@@ -46,6 +46,11 @@ public class UserService implements IUserService {
 	}
 
 	@Override
+	public User getById(int id) {
+		return userDAO.getById(id);
+	}
+
+	@Override
 	public User getByCrp(String crp) {
 		return userDAO.getByCrp(crp);
 	}
@@ -59,4 +64,5 @@ public class UserService implements IUserService {
 	public Integer getCountByClinic(int clinicId) {
 		return userDAO.getPsychologistCount(clinicId);
 	}
+
 }

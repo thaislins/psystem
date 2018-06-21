@@ -307,9 +307,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Psychologist</label>
-                                                    <select readonly name="psychologistId" class="form-control custom-select" data-placeholder="" tabindex="1">
-                                                        <option th:value="${user.id}" th:text="${user.name}"></option>
-                                                    </select>
+                                                    <input readonly th:value="${user.name}" type="text" class="form-control">
                                                 </div>
                                             </div>
                                         	</div>

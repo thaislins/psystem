@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Registered Psychologists - pSystem</title>
+	<title>Issue Document - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -16,6 +16,7 @@
 	<link href="/css/style.css" rel="stylesheet">
 	<link href="/css/colors/default.css" id="theme" rel="stylesheet">
 	<link href="/css/countrySelect.css" rel="stylesheet">
+	<link href="/assets/node_modules/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 </head>
 
 <body class="fix-header card-no-border fix-sidebar">
@@ -30,7 +31,7 @@
 	</div>
 
 	<!-- Logout Form -->
-	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden="true">
 		<button type="submit" class="btn btn-link">Logout</button>
 	</form>
 	<!-- ============================================================== -->
@@ -47,7 +48,8 @@
 				<!-- ============================================================== -->
 				<div class="navbar-header">
 					<a class="navbar-brand" th:href="@{/}">
-						<!-- Logo icon --><b>
+						<!-- Logo icon -->
+						<b>
 							<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 							<!-- Dark Logo icon -->
 							<img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
@@ -55,11 +57,14 @@
 							<img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
 						</b>
 						<!--End Logo icon -->
-						<!-- Logo text --><span>
-						 <!-- dark Logo text -->
-						 <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-						 <!-- Light Logo text -->
-						 <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+						<!-- Logo text -->
+						<span>
+							<!-- dark Logo text -->
+							<img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+							<!-- Light Logo text -->
+							<img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+						</span>
+					</a>
 				</div>
 				<!-- ============================================================== -->
 				<!-- End Logo -->
@@ -70,8 +75,8 @@
 					<!-- ============================================================== -->
 					<ul class="navbar-nav mr-auto">
 						<!-- This is  -->
-						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
-						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
+						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
 					</ul>
 					<!-- ============================================================== -->
 					<!-- User profile and search -->
@@ -105,7 +110,7 @@
 		<!-- ============================================================== -->
 		<!-- End Topbar header -->
 		<!-- ============================================================== -->
-	   <!-- ============================================================== -->
+		<!-- ============================================================== -->
 		<!-- Left Sidebar - style you can find in sidebar.scss  -->
 		<!-- ============================================================== -->
 		<aside class="left-sidebar">
@@ -124,9 +129,9 @@
 								<li><a th:href="@{/clients}">Registered Clients</a></li>
 							</ul>
 						</li>
-						<li class="active">
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
-							<ul aria-expanded="true" class="collapse in">
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+							<ul aria-expanded="false" class="collapse">
 								<li><a th:href="@{/psychologists}">Registered Psychologists</a></li>
 							</ul>
 						</li>
@@ -179,11 +184,11 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 align-self-center">
-						<h3 class="text-themecolor">Registered Client</h3>
+						<h3 class="text-themecolor">Issue Document</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item">Psychologists</li>
-							<li class="breadcrumb-item active">Registered Psychologists</li>
+							<li class="breadcrumb-item">Documents</li>
+							<li class="breadcrumb-item active">Issue Document</li>
 						</ol>
 					</div>
 				</div>
@@ -194,61 +199,86 @@
 				<!-- Start Page Content -->
 				<!-- ============================================================== -->
 				<!-- Row -->
-
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<form class="form-horizontal" role="form" method="GET" th:action="@{/psychologists/edit/__${user.id}__}"  th:object="${user}">
+							<!-- th:action="@{/anamnesis/register/__${id}__}" th:object="${anamnesisForm} -->
+								<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
+								<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Document successfully issued!</div>
+								<form method="POST" th:action="@{/documents/issue/}" th:object="${documentForm}">
 									<div class="form-body">
-										<h3 class="box-title">Psychologist Info</h3>
-										<hr class="m-t-0 m-b-40">
+										<h3 class="card-title">Issue a Document</h3>
+										<hr>
 										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group row">
-													<label class="control-label text-right col-md-3">Name:</label>
-													<div class="col-md-9">
-														<p class="form-control-static" th:text="${user.name}"></p>
-													</div>
-												</div>
-											</div>
-											<!--/span-->
-											<div class="col-md-6">
-												<div class="form-group row">
-													<label class="control-label text-right col-md-3">Email</label>
-													<div class="col-md-9">
-														<p class="form-control-static" th:text="${user.email}"></p>
-													</div>
-												</div>
-											</div>
-											<!--/span-->
-										</div>
+                                            <div class="col-md-6">
+                                        	<div class="form-group">
+                                            	<label class="control-label">Psychologist</label>
+                                            		<input readonly th:value="${user.name}" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Client</label>
+                                                    <select name="clientId" th:field="*{clientId}" class="form-control custom-select" tabindex="1" required>
+                                                        <option selected value=""></option>
+                                                        <option th:each="client : ${clientList}" th:value="${client.id}" th:text="${client.name}"></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
 										<!--/row-->
+										
 										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group row">
-													<label class="control-label text-right col-md-3">Phone Number</label>
-													<div class="col-md-9">
-														<p class="form-control-static" th:text="${user.phone}"></p>
+										<div class='col-md-6'>
+									            <div class="form-group">
+									            <label class='input-group date'>Appointment Date</label>
+		                                            <div class="input-group date" id="datetimepicker">
+														<div class="input-group-prepend">
+															<div class="input-group-text input-group-addon"><span class="fa fa-calendar"></span></div>
+														</div>
+														<input name="date" th:field="*{date}" type="text" class="form-control" placeholder="dd/mm/yyyy hh:mm" required>
+														<div class="invalid-feedback">...</div>
 													</div>
-												</div>
-											</div>
+									            </div>
+									        </div>
+									    <div class="col-md-6">
+                                        	<div class="form-group">
+                                            	<label class="control-label">Type of Document</label>
+                                            		<select name="type" th:field="*{type}" class="form-control custom-select" tabindex="1" required>
+                                                        <option selected value=""></option>
+                                                        <option value="1">Statement</option>
+                                                        <option value="2">Declaration</option>
+                                                        <option value="3">Report</option>
+                                                        <option value="4">Receipt</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 										</div>
-											<!--/span-->
-										</div>
+									    
+										 <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label class="control-label"></label>
+                                                    <textarea class="form-control" rows="4" required></textarea>
+                                                    <div class="invalid-feedback">...</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
 									<div class="form-actions">
-                                        	<a href="#" onclick="history.back()" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
-                                    </div>
+										<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+									</div>
 								</form>
-								</div>
+								</div>   
+							  </div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- ============================================================== -->
-				<!-- End PAge Content -->
-				<!-- ============================================================== -->
+			<!-- ============================================================== -->
+			<!-- End PAge Content -->
+			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -261,24 +291,33 @@
 			<!-- ============================================================== -->
 		</div>
 	</div>
-		<!-- ============================================================== -->
-		<!-- End Page wrapper  -->
-		<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- End Page wrapper  -->
+	<!-- ============================================================== -->
 	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/assets/node_modules/ps/perfect-scrollbar.jquery.min.js"></script>
-	<script src="/js/waves.js"></script>
+	<script src="/assets/node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script src="/assets/node_modules/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="/js/sidebarmenu.js"></script>
 	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
-	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
 	<script src="/js/custom.min.js"></script>
 	<script src="/js/countrySelect.js"></script>
-	<script src="/js/jquery.mask.js"></script>
 	<script>
-
+	$(function () {
+        $('#datetimepicker').datetimepicker({
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            },
+            format: "MM/DD/YYYY HH:mm"
+        });
+    });
 	
-
+	
 	</script>
 </body>
 
