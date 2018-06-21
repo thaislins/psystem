@@ -49,6 +49,36 @@ public class DocumentDAO extends GenericDAO<Document> {
 		// TODO Auto-generated method stub
 	}
 
+	public Document getById(int id) {
+		String sql = "SELECT * FROM document WHERE id=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, id);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
+	}
+
+	public Document getByClientId(int id) {
+		String sql = "SELECT * FROM document WHERE client_id=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, id);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
+	}
+
 	public Integer getDocumentCount(int psychologistId) {
 		int count = 0;
 		String sql = "SELECT count(*) FROM document WHERE psychologist_id=?;";

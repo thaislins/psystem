@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Update Anamnesis - pSystem</title>
+	<title>View Document - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -121,9 +121,9 @@
 						<li>
 							<a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
 						</li>
-						<li class="active">
-							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="true"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-							<ul aria-expanded="true" class="collapse in">
+						<li>
+							<a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+							<ul aria-expanded="false" class="collapse">
 								<li><a th:href="@{/clients/register}">Register Client</a></li>
 								<li><a th:href="@{/clients}">Registered Clients</a></li>
 							</ul>
@@ -148,9 +148,9 @@
 								<li><a th:href="@{/payments}">Fulfilled Payments</a></li>
 							</ul>
 						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-							<ul aria-expanded="false" class="collapse">
+						<li class="active">
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+							<ul aria-expanded="true" class="collapse in">
 								<li><a th:href="@{/documents/issue}">Issue Document</a></li>
 								<li><a th:href="@{/documents}">Issued Document</a></li>
 							</ul>
@@ -183,11 +183,11 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 align-self-center">
-						<h3 class="text-themecolor">Update Anamnesis</h3>
+						<h3 class="text-themecolor">View Document</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item">Anamnesis</li>
-							<li class="breadcrumb-item active">Update Anamnesis</li>
+							<li class="breadcrumb-item">Documents</li>
+							<li class="breadcrumb-item active">View Document</li>
 						</ol>
 					</div>
 				</div>
@@ -202,88 +202,69 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
-								<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Anamnesis successfully updated!</div>
-								<form method="POST" th:action="@{/anamnesis/register/__${id}__}" th:object="${anamnesisForm}">
+								<form class="form-horizontal" role="form">
 									<div class="form-body">
-										<h3 class="card-title">Anamnesis Info</h3>
-										<hr>
+										<h3 class="box-title">Document Info</h3>
+										<hr class="m-t-0 m-b-40">
 										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="control-label">Client</label>
-													<input disabled type="text" class="form-control" th:value="${client.name}">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Client:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${client.name}"></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Psychologist:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${user.name}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
+										
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('humor')} ? has-danger : ''">
-													<label class="control-label">Humor</label>
-													<textarea name="humor" rows="3" class="form-control" th:field="*{humor}" th:classappend="${#fields.hasErrors('humor')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{humor}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Type:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${document.type}"></p>
+													</div>
 												</div>
 											</div>
+												
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('perception')} ? has-danger : ''">
-													<label class="control-label">Perception</label>
-													<textarea name="perception" rows="3" class="form-control" th:field="*{perception}" th:classappend="${#fields.hasErrors('perception')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{perception}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Date:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${document.date}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
+										
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('desire')} ? has-danger : ''">
-													<label class="control-label">Desire</label>
-													<textarea name="desire" rows="3" class="form-control" th:field="*{desire}" th:classappend="${#fields.hasErrors('desire')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{desire}">...</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('information')} ? has-danger : ''">
-													<label class="control-label">Information</label>
-													<textarea name="information" rows="3" class="form-control" th:field="*{information}" th:classappend="${#fields.hasErrors('information')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{information}">...</div>
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Text:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${document.text}"></p>
+													</div>
 												</div>
 											</div>
 										</div>
+									<div class="form-actions">
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('language')} ? has-danger : ''">
-													<label class="control-label">Language</label>
-													<textarea name="language" rows="3" class="form-control" th:field="*{language}" th:classappend="${#fields.hasErrors('language')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{language}">...</div>
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<a  href="#" onclick="history.back()" class="btn btn-info" role="button"><i class="fa fa-chevron-left"></i> Back</a>
+													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('appeareance')} ? has-danger : ''">
-													<label class="control-label">Appeareance</label>
-													<textarea name="appeareance" rows="3" class="form-control" th:field="*{appeareance}" th:classappend="${#fields.hasErrors('appeareance')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{appeareance}">...</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('thought')} ? has-danger : ''">
-													<label class="control-label">Thought</label>
-													<textarea name="thought" rows="3" class="form-control" th:field="*{thought}" th:classappend="${#fields.hasErrors('thought')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{thought}">...</div>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group" th:classappend="${#fields.hasErrors('affection')} ? has-danger : ''">
-													<label class="control-label">Affection</label>
-													<textarea name="affection" rows="3" class="form-control" th:field="*{affection}" th:classappend="${#fields.hasErrors('affection')} ? is-invalid : ''"></textarea>
-													<div class="invalid-feedback" th:errors="*{affection}">...</div>
-												</div>
-											</div>
-										</div>
-										<!--/row-->
-										<div class="form-actions">
-											<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-											<a th:href="@{/clients}" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
+											<div class="col-md-6"> </div>
 										</div>
 									</div>
 								</form>
@@ -291,10 +272,10 @@
 						</div>
 					</div>
 				</div>
+				<!-- ============================================================== -->
+				<!-- End PAge Content -->
+				<!-- ============================================================== -->
 			</div>
-			<!-- ============================================================== -->
-			<!-- End PAge Content -->
-			<!-- ============================================================== -->
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -306,10 +287,10 @@
 			<!-- End footer -->
 			<!-- ============================================================== -->
 		</div>
+		<!-- ============================================================== -->
+		<!-- End Page wrapper  -->
+		<!-- ============================================================== -->
 	</div>
-	<!-- ============================================================== -->
-	<!-- End Page wrapper  -->
-	<!-- ============================================================== -->
 	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
@@ -319,6 +300,15 @@
 	<script src="/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js"></script>
 	<script src="/assets/node_modules/sparkline/jquery.sparkline.min.js"></script>
 	<script src="/js/custom.min.js"></script>
+	<script src="/js/countrySelect.js"></script>
+	<script src="/js/jquery.mask.js"></script>
+	<script>
+		$("#country-selector").countrySelect({
+			defaultCountry: "br",
+			onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
+			//preferredCountries: ['ca', 'gb', 'us']
+		});
+	</script>
 </body>
 
 </html>

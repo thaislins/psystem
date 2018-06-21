@@ -35,4 +35,14 @@ public class DocumentService implements IDocumentService {
 		return documentDAO.getDocumentCount(id);
 	}
 
+	@Override
+	public Document getByClientId(int id) {
+		return documentDAO.getByClientId(id);
+	}
+
+	@Override
+	public Document getById(int id) {
+		return documentDAO.getById(id);
+	}
+
 }

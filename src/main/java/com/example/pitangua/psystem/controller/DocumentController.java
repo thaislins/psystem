@@ -66,9 +66,8 @@ public class DocumentController {
 	}
 
 	@PostMapping("/documents/issue")
-	public ModelAndView issueDocumentRequest(Model model,
-			@ModelAttribute("documentForm") @Validated Document documentForm, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+	public String issueDocumentRequest(Model model, @ModelAttribute("documentForm") @Validated Document documentForm,
+			BindingResult result, final RedirectAttributes redirectAttributes) {
 		User user = authFacade.getUser();
 		model.addAttribute("user", authFacade.getUser());
 		documentForm.setPsychologistId(authFacade.getUser().getId());
@@ -79,14 +78,13 @@ public class DocumentController {
 				redirectAttributes.addFlashAttribute("registerSuccess", true);
 				model.addAttribute("registerSuccess", true);
 				model.addAttribute("clientList", clientService.getAll(user.getId()));
-				return new ModelAndView("documents/issue");
+				return "redirect:/documents/issue";
 			} catch (SQLException e) {
 				model.addAttribute("errorMessage", "Error: " + e.getMessage());
 			}
 		}
 
-		return new ModelAndView("documents/issue");
-
+		return "redirect:/documents/issue";
 	}
 
 	@GetMapping("/documents")
@@ -109,6 +107,23 @@ public class DocumentController {
 		mv.addObject("user", user);
 		mv.addObject("client", clientService.getById(id));
 		mv.addObject("documentsList", documentService.getClientDocuments(id));
+		return mv;
+	}
+
+	@GetMapping("/documents/view/{id}")
+	public ModelAndView viewAnamnesis(@PathVariable int id) {
+		ModelAndView mv = new ModelAndView("documents/view");
+		mv.addObject("id", id);
+
+		Document documentForm = documentService.getById(id);
+		if (documentForm == null) {
+			documentForm = new Document();
+			documentForm.setId(id);
+		}
+
+		mv.addObject("client", clientService.getById(documentForm.getClientId()));
+		mv.addObject("document", documentForm);
+		mv.addObject("user", authFacade.getUser());
 		return mv;
 	}
 

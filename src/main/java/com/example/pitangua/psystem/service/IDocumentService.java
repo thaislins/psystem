@@ -15,4 +15,8 @@ public interface IDocumentService {
 
 	Integer getDocumentCount(int id);
 
+	Document getByClientId(int id);
+
+	Document getById(int id);
+
 }
