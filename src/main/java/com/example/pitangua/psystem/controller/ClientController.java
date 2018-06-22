@@ -75,6 +75,7 @@ public class ClientController {
 
 		model.addAttribute("user", authFacade.getUser());
 		model.addAttribute("userList", userService.getAll());
+		clientForm.setPsychologistId(authFacade.getUser().getId());
 
 		if (!result.hasErrors()) {
 			try {
@@ -95,8 +96,7 @@ public class ClientController {
 		ModelAndView mv = new ModelAndView("registered-clients");
 		User user = authFacade.getUser();
 
-		mv.addObject("activeUser", user.getName());
-		mv.addObject("userEmail", user.getEmail());
+		mv.addObject("user", user);
 		mv.addObject("clientCount", clientService.getClientCount(user.getId()));
 		mv.addObject("clientList", clientService.getAll(user.getId()));
 		return mv;
@@ -110,8 +110,7 @@ public class ClientController {
 
 		try {
 			clientService.remove(client);
-			model.addAttribute("activeUser", user.getName());
-			model.addAttribute("userEmail", user.getEmail());
+			model.addAttribute("user", user);
 			model.addAttribute("clientCount", clientService.getClientCount(user.getId()));
 			model.addAttribute("clientList", clientService.getAll(user.getId()));
 			return "redirect:/clients/registered";
@@ -125,20 +124,21 @@ public class ClientController {
 	@GetMapping("/clients/view/{id}")
 	public ModelAndView viewClient(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("view-client");
+		User user = authFacade.getUser();
 		mv.addObject("id", id);
 
 		mv.addObject("client", clientService.getById(id));
-		mv.addObject("activeUser", authFacade.getUser().getName());
-		mv.addObject("userEmail", authFacade.getUser().getEmail());
+		mv.addObject("user", user);
 		return mv;
 	}
 
 	@GetMapping("/clients/edit/{id}")
 	public ModelAndView editClient(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("edit-client");
+		User user = authFacade.getUser();
 		mv.addObject("id", id);
 
-		mv.addObject("user", authFacade.getUser());
+		mv.addObject("user", user);
 		mv.addObject("clientForm", clientService.getById(id));
 		return mv;
 	}
@@ -147,9 +147,9 @@ public class ClientController {
 	public ModelAndView editClientRequest(@PathVariable int id, Model model,
 			@ModelAttribute("clientForm") @Validated Client clientForm, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
-
+		User user = authFacade.getUser();
 		model.addAttribute("id", id);
-		model.addAttribute("user", authFacade.getUser());
+		model.addAttribute("user", user);
 		clientForm.setId(id);
 
 		if (!result.hasErrors()) {

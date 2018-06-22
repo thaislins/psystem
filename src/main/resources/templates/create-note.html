@@ -29,11 +29,6 @@
             <p class="loader__label">pSystem</p>
         </div>
     </div>
-
-    <!-- Logout Form -->
-    <form th:action="@{/logout}" method="POST" id="logout-form" hidden>
-        <button type="submit" class="btn btn-link">Logout</button>
-    </form>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -47,20 +42,20 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" th:href="@{/}">
+                    <a class="navbar-brand" href="index.html">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
                          <!-- dark Logo text -->
-                         <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                         <!-- Light Logo text -->
-                         <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                         <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                         <!-- Light Logo text -->    
+                         <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -82,18 +77,23 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="" /> <span class="hidden-md-down" th:text="${user.name}"> &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.id}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-                                            </div>
+                                                <p class="text-muted" th:text="${user.email}"></p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#" onclick="document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>&nbsp; Logout</a></li>
                                 </ul>
@@ -115,49 +115,46 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li>
-                            <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
+                        <li class="nav-small-cap">--- PERSONAL</li>
+                        <li> <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" method="GET" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a th:href="@{/clients/register}">Register Client</a></li>
-                                <li><a th:href="@{/clients}">Registered Clients</a></li>
+                                <li><a href="/clients/register" method="GET">Register Client</a></li>
+                                <li><a href="/clients" method="GET">Registered Clients</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a th:href="@{/psychologists}">Registered Psychologists</a></li>
+                                <li><a href="#">Registered Psychologists</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments</span></a>
+                        <li class="active">
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="icon-Calendar-4"></i><span class="hide-menu">Appointments <span class="label label-rounded label-success">25</span></span></a>
+							<ul aria-expanded="true" class="collapse in">
+								<li><a href="/appointments/schedule" method="GET">Schedule Appointment</a></li>
+								<li><a href="/appointments" method="GET">Scheduled Appointments</a></li>
+							</ul>
+						</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a th:href="@{/appointments/schedule}">Schedule Appointment</a></li>
-                                <li><a th:href="@{/appointments}">Scheduled Appointments</a></li>
+                                <li><a href="#">Register Payment</a></li>
+                                <li><a href="#">Fulfilled Payments</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Credit-Card"></i><span class="hide-menu">Payments</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a th:href="@{/payments/register}">Register Payment</a></li>
-                                <li><a th:href="@{/payments}">Fulfilled Payments</a></li>
+                                <li><a href="#">Issue Document</a></li>
+                                <li><a href="#">Issued Document</a></li>
+                                <li><a href="#">Anamnesis</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a th:href="@{/documents/issue}">Issue Document</a></li>
-                                <li><a th:href="@{/documents}">Issued Document</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Gear-2"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a th:href="@{/admin/clinic}">Edit Clinic</a></li>
                             </ul>
                         </li>
+            
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -184,7 +181,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item">Appointments</li>
-                            <li class="breadcrumb-item active">Schedule Appointment</li>
+                            <li class="breadcrumb-item active">Register Appointment Note</li>
                         </ol>
                     </div>
                 </div>
@@ -200,48 +197,26 @@
                         <div class="card">
                             <div class="card-body">
                             <div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
-                			<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Appointment successfully scheduled!</div>
-                                <form method="POST" th:action="@{/appointments/schedule}" th:object="${appointmentForm}">
+                			<div class="alert alert-success" role="alert" th:if="${registerSuccess}">Note successfully registered!</div>
+                                <form method="POST" th:action="@{/appointments/notes}" th:object="${notesForm}" >
                                     <div class="form-body">
-                                        <h3 class="card-title">Appointment Info</h3>
+                                        <h3 class="card-title">Appointment Note</h3>
                                         <hr>
-
+                                 
                                         <div class="row">
                                             <div class="col-md-12">
+                                            <div class="form-group" th:classappend="${#fields.hasErrors('notes')} ? has-danger : ''">
                                                 <div class="form-group">
-                                                    <label class="control-label">Client</label>
-                                                    <select name="clientId" th:field="*{clientId}" class="form-control custom-select" tabindex="1" required>
-                                                        <option selected value=""></option>
-                                                        <option th:each="client : ${clientList}" th:value="${client.id}" th:text="${client.name}"></option>
-                                                    </select>
+                                                    <label class="control-label"></label>
+                                                    <textarea name="notes" th: class="form-control" rows="5" th:field="*{notes}" th:classappend="${#fields.hasErrors('notes')} ? is-invalid : ''" required></textarea>
+                                                    <div class="invalid-feedback" th:errors="*{notes}">...</div>
                                                 </div>
                                             </div>
                                         </div>
-                                            <!-- row -->
-                                        <div class="row">
-                                            <div class='col-sm-6'>
-									            <div class="form-group" th:classappend="${#fields.hasErrors('date')} ? has-danger : ''">
-									            <label class='input-group date'>Appointment Date</label>
-		                                            <div class="input-group date" id="datetimepicker">
-														<div class="input-group-prepend">
-															<div class="input-group-text input-group-addon"><span class="fa fa-calendar"></span></div>
-														</div>
-														<input type="text" name="date" class="form-control" placeholder="dd/mm/yyyy hh:mm" th:field="*{date}" th:classappend="${#fields.hasErrors('date')} ? is-invalid : ''" required>
-														<div class="invalid-feedback" th:errors="*{date}">...</div>
-													</div>
-									            </div>
-									        </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Psychologist</label>
-                                                    <input readonly th:value="${user.name}" type="text" class="form-control">
-                                                </div>
-                                            </div>
                                         </div>
-                                            <!--/span-->
-
-                                        </div>
+                                        
+                                        <input hidden></input>
+                                        
                                         <div class="form-actions">
                                         	<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                     	</div>
@@ -254,7 +229,7 @@
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
-
+           
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

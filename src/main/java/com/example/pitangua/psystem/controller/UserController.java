@@ -113,11 +113,11 @@ public class UserController {
 		return mv;
 	}
 
-	@PostMapping("/psychologists/delete/{cpf}")
-	public String deleteUser(@PathVariable String cpf, Model model, @ModelAttribute("user") @Validated User user,
+	@PostMapping("/psychologists/delete/{id}")
+	public String deleteUser(@PathVariable Integer id, Model model, @ModelAttribute("user") @Validated User user,
 			BindingResult result, final RedirectAttributes redirectAttributes) {
 		User activeUser = authFacade.getUser();
-		model.addAttribute("cpf", cpf);
+		model.addAttribute("id", id);
 
 		try {
 			userService.remove(user);
@@ -133,40 +133,41 @@ public class UserController {
 		return "redirect:/psychologists";
 	}
 
-	@GetMapping("/psychologists/view/{cpf}")
-	public ModelAndView viewUser(@PathVariable String cpf) {
+	@GetMapping("/psychologists/view/{id}")
+	public ModelAndView viewUser(@PathVariable Integer id) {
 		ModelAndView mv = new ModelAndView("view-user");
-		mv.addObject("cpf", cpf);
+		mv.addObject("id", id);
 
-		mv.addObject("user", userService.getByCpf(cpf));
+		mv.addObject("user", userService.getById(id));
 		mv.addObject("activeUser", authFacade.getUser().getName());
 		mv.addObject("userEmail", authFacade.getUser().getEmail());
 		return mv;
 	}
 
-	@GetMapping("/psychologists/edit/{cpf}")
-	public ModelAndView editUser(@PathVariable String cpf) {
+	@GetMapping("/psychologists/edit/{id}")
+	public ModelAndView editUser(@PathVariable Integer id) {
 		ModelAndView mv = new ModelAndView("edit-user");
-		mv.addObject("cpf", cpf);
+		mv.addObject("id", id);
 
+		mv.addObject("clinicList", clinicService.getAll());
 		mv.addObject("user", authFacade.getUser());
-		mv.addObject("userForm", userService.getByCpf(cpf));
+		mv.addObject("userForm", userService.getById(id));
 		return mv;
 	}
 
-	@PostMapping("/psychologists/edit/{cpf}")
-	public ModelAndView editUserRequest(@PathVariable String cpf, Model model,
+	@PostMapping("/psychologists/edit/{id}")
+	public ModelAndView editUserRequest(@PathVariable Integer id, Model model,
 			@ModelAttribute("userForm") @Validated User userForm, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 
-		model.addAttribute("cpf", cpf);
+		model.addAttribute("id", id);
 		model.addAttribute("user", authFacade.getUser());
-		userForm.setCpf(cpf);
+		userForm.setId(id);
 
 		if (!result.hasErrors()) {
 			try {
 				userService.update(userForm);
-				model.addAttribute("userForm", userService.getByCpf(cpf));
+				model.addAttribute("userForm", userService.getById(id));
 				model.addAttribute("updateSuccess", true);
 				return new ModelAndView("edit-user");
 			} catch (SQLException e) {

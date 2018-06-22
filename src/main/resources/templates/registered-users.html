@@ -89,7 +89,7 @@
                                             <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.cpf}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.id}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -214,9 +214,9 @@
                                                 <td th:text="${user.phone}" placeholder="(99)99999-9999"></td>
                                                 <td><span class="label label-success">active</span> </td>
                                                 <td class="text-nowrap">
-                                                	<a th:href="@{/psychologists/view/__${user.cpf}__}" method="GET" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                                    <a th:href="@{/psychologists/edit/__${user.cpf}__}" method="GET" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>
+                                                	<a th:href="@{/psychologists/view/__${user.id}__}" method="GET" data-toggle="tooltip" data-original-title="View"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                    <!--<a th:href="@{/psychologists/edit/__${user.id}__}" method="GET" href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>-->
+                                                    <!--<a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger"></i> </a>-->
                                                 </td>
                                                 <!--<td><span class="label label-danger">admin</span> </td>-->
                                             </tr>

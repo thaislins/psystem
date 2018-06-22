@@ -89,7 +89,7 @@
                                             <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.cpf}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.id}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -117,9 +117,9 @@
                         <li>
                             <a class="waves-effect waves-dark" href="/dashboard" th:action="@{/dashboard}" aria-expanded="false"><i class="icon-Home"></i><span class="hide-menu">Dashboard</span></a>
                         </li>
-                        <li>
-                            <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="false"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
-                            <ul aria-expanded="false" class="collapse">
+                        <li class="active">
+                            <a class="has-arrow waves-effect waves-dark"  href="#" aria-expanded="true"><i class="icon-Conference"></i><span class="hide-menu">Clients</span></a>
+                            <ul aria-expanded="true" class="collapse in">
                                 <li><a th:href="@{/clients/register}">Register Client</a></li>
                                 <li><a th:href="@{/clients}">Registered Clients</a></li>
                             </ul>

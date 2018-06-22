@@ -99,7 +99,7 @@
                                             <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.cpf}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.id}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -203,39 +203,42 @@
         <!-- ============================================================== -->
         <!-- Info box -->
         <!-- ============================================================== -->
-        <div class="row">
-            <!-- Column -->
-            <div class="col-lg-3 col-md-6">
-                <a href="/clients/registered">
-                    <div class="card card-count">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="round align-self-center round-success icon-wrapper"><i class="fa fa-users" aria-hidden="true"></i></div>
-                                <div class="m-l-10 align-self-center">
-                                    <h3 class="m-b-0" th:text="*{clientCount}"></h3>
-                                    <h5 class="text-muted m-b-0" th:text="${client}"></h5></div>
+<div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                    <a href="/clients" method="GET">
+                        <div class="card card-count">
+                            <div class="card-body">
+                                <div class="d-flex flex-row">
+                                    <div class="round align-self-center round-success icon-wrapper"><i class="fa fa-users" aria-hidden="true"></i></div>
+                                    <div class="m-l-10 align-self-center">
+                                        <h3 class="m-b-0" th:text="*{clientCount}"></h3>
+                                        <h5 class="text-muted m-b-0" th:text="${client}"></h5></div>
                                 </div>
                             </div>
                         </div>
                     </a>
-                </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card card-count">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="round align-self-center round-info icon-wrapper"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                <div class="m-l-10 align-self-center">
-                                    <h3 class="m-b-0" th:text="${psychologistCount}"></h3>
-                                    <h5 class="text-muted m-b-0" th:text="${psychologist}"></h5></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- Column -->
                     <!-- Column -->
                     <div class="col-lg-3 col-md-6">
+                     <a method="GET" href="/psychologists">
+                        <div class="card card-count">
+                            <div class="card-body">
+                                <div class="d-flex flex-row">
+                                    <div class="round align-self-center round-info icon-wrapper"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                    <div class="m-l-10 align-self-center">
+                                        <h3 class="m-b-0" th:text="${psychologistCount}"></h3>
+                                        <h5 class="text-muted m-b-0" th:text="${psychologist}"></h5></div>
+                                </div>
+                            </div>
+                        </div>
+                      </a>
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                     <a href="/appointments" method="GET">
                         <div class="card card-count">
                             <div class="card-body">
                                 <div class="d-flex flex-row">
@@ -243,27 +246,29 @@
                                     <div class="m-l-10 align-self-center">
                                         <h3 class="m-b-0" th:text="${appointmentCount}"></h3>
                                         <h5 class="text-muted m-b-0" th:text="${appointment}"></h5></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Column -->
-                        <!-- Column -->
-                        <div class="col-lg-3 col-md-6">
-                            <div class="card card-count">
-                                <div class="card-body">
-                                    <div class="d-flex flex-row">
-                                        <div class="round align-self-center round-danger icon-wrapper"><i class="fa fa-file-text"></i></div>
-                                        <div class="m-l-10 align-self-center">
-                                            <h3 class="m-b-0" th:text="${documentCount}"></h3>
-                                            <h5 class="text-muted m-b-0" th:text="${document}"></h5></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Column -->
-                        </div>
+                       </a>
                     </div>
+                    <!-- Column -->
+                    <!-- Column -->
+                    <div class="col-lg-3 col-md-6">
+                     <a method="GET" href="/documents">
+                        <div class="card card-count">
+                            <div class="card-body">
+                                <div class="d-flex flex-row">
+                                    <div class="round align-self-center round-danger icon-wrapper"><i class="fa fa-file-text"></i></div>
+                                    <div class="m-l-10 align-self-center">
+                                        <h3 class="m-b-0" th:text="${documentCount}"></h3>
+                                        <h5 class="text-muted m-b-0" th:text="${document}"></h5></div>
+                                </div>
+                            </div>
+                        </div>
+                       </a>
+                    </div>
+                    <!-- Column -->
+                </div>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Comment - chats -->

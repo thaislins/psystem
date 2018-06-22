@@ -31,12 +31,6 @@ public class UserValidator implements Validator {
 		// Name validation
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required", "Name is required.");
 
-		// Clinic validation
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "clinicId", "field.required.clinic", "Clinic is required.");
-		if (clinicService.getById(user.getClinicId()) == null) {
-			errors.rejectValue("clinicId", "field.invalid", "This Clinic doesn't exists.");
-		}
-
 		// Email validation
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required.email", "Email is required.");
 		if (userService.getByEmail(user.getEmail()) != null) {

@@ -89,7 +89,7 @@
                                             <div class="u-img"><img src="/assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
                                                 <h4 th:text="${user.name}"></h4>
-                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.cpf}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                <p class="text-muted" th:text="${user.email}"></p><a th:href="@{/psychologists/view/__${user.id}__}" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                             </div>
                                         </div>
                                     </li>
@@ -200,7 +200,7 @@
                             <div class="card-body">
                                 <div class="alert alert-danger" role="alert" th:if="${errorMessage}" th:text="${errorMessage}">Invalid Register!</div>
                                 <div class="alert alert-success" role="alert" th:if="${updateSuccess}">Psychologist information successfully updated!</div>
-                                <form th:object="${userForm}" th:value="${cpf}" method="POST" th:action="@{/psychologists/edit/__${cpf}__}">
+                                <form th:object="${userForm}" th:value="${cpf}" method="POST" th:action="@{/psychologists/edit/__${id}__}">
                                  <div class="form-body">
                                     <h3 class="card-title">Psychologist Info</h3>
                                     <hr>
@@ -214,13 +214,39 @@
                                         </div>
                                         <!--/span-->
                                         <div class="col-md-6">
-                                            <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-danger : ''">
-                                                <label class="control-label">CPF</label>
-                                                <input name="cpf" type="text" data-mask="999.999.999-99" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                            <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-danger : ''">
+                                                <label class="control-label">Email</label>
+                                                <input name="email" type="text" class="form-control" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''" required>
                                                 <div class="invalid-feedback" th:errors="*{cpf}">...</div></div>
                                             </div>
                                             <!--/span-->
                                         </div>
+                                        
+                                        
+                                        <div class="row p-t-20">
+                                        <div class="col-md-6">
+                                            <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? has-danger : ''">
+                                                <label class="control-label">CPF</label>
+                                                <input name="cpf" type="text" data-mask="999.999.999-99" class="form-control" th:field="*{cpf}" th:classappend="${#fields.hasErrors('cpf')} ? is-invalid : ''" required>
+                                                <div class="invalid-feedback" th:errors="*{cpf}">...</div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group" name="clinicId" th:field="*{clinicId}" th:classappend="${#fields.hasErrors('clinicId')} ? has-danger : ''">
+                                                <label class="control-label">Clinic</label>
+                                                <select class="form-control custom-select" required>
+                                                	<option th:each="clinic : ${clinicList}" th:value="${clinic.id}" th:text="${clinic.name}"></option>
+                                                </select>
+                                                <div class="invalid-feedback" th:errors="*{clinicId}">...</div></div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        
+                                        <input hidden name="phone" type="text" th:value="${user.password}" class="form-control" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? is-invalid : ''" required>
+                                        <input hidden name="phone" type="text" th:value="${user.passwordConfirm}" class="form-control" th:field="*{passwordConfirm}" th:classappend="${#fields.hasErrors('passwordConfirm')} ? is-invalid : ''" required>
+                                        
+                                        
                                         <!--/span-->
                                         <div class="row">
                                             <div class="col-md-6">
@@ -278,11 +304,6 @@
      <script src="/js/countrySelect.js"></script>
      <script src="/js/jquery.mask.js"></script>
      <script>
-
-         $("#country-selector").countrySelect({
-          defaultCountry: "br",
-          onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
-		//preferredCountries: ['ca', 'gb', 'us']
 	});
 
 </script>

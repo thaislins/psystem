@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 
-	<title>Registered Psychologists - pSystem</title>
+	<title>View Document - pSystem</title>
 
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
@@ -30,7 +30,7 @@
 	</div>
 
 	<!-- Logout Form -->
-	<form th:action="@{/logout}" method="POST" id="logout-form" hidden>
+	<form th:action="@{/logout}" method="POST" id="logout-form" hidden="true">
 		<button type="submit" class="btn btn-link">Logout</button>
 	</form>
 	<!-- ============================================================== -->
@@ -47,7 +47,8 @@
 				<!-- ============================================================== -->
 				<div class="navbar-header">
 					<a class="navbar-brand" th:href="@{/}">
-						<!-- Logo icon --><b>
+						<!-- Logo icon -->
+						<b>
 							<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 							<!-- Dark Logo icon -->
 							<img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
@@ -55,11 +56,14 @@
 							<img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
 						</b>
 						<!--End Logo icon -->
-						<!-- Logo text --><span>
-						 <!-- dark Logo text -->
-						 <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-						 <!-- Light Logo text -->
-						 <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+						<!-- Logo text -->
+						<span>
+							<!-- dark Logo text -->
+							<img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+							<!-- Light Logo text -->
+							<img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+						</span>
+					</a>
 				</div>
 				<!-- ============================================================== -->
 				<!-- End Logo -->
@@ -70,8 +74,8 @@
 					<!-- ============================================================== -->
 					<ul class="navbar-nav mr-auto">
 						<!-- This is  -->
-						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
-						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a> </li>
+						<li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
+						<li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="sl-icon-menu"></i></a></li>
 					</ul>
 					<!-- ============================================================== -->
 					<!-- User profile and search -->
@@ -105,7 +109,7 @@
 		<!-- ============================================================== -->
 		<!-- End Topbar header -->
 		<!-- ============================================================== -->
-	   <!-- ============================================================== -->
+		<!-- ============================================================== -->
 		<!-- Left Sidebar - style you can find in sidebar.scss  -->
 		<!-- ============================================================== -->
 		<aside class="left-sidebar">
@@ -124,9 +128,9 @@
 								<li><a th:href="@{/clients}">Registered Clients</a></li>
 							</ul>
 						</li>
-						<li class="active">
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
-							<ul aria-expanded="true" class="collapse in">
+						<li>
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-User"></i><span class="hide-menu">Psychologists</span></a>
+							<ul aria-expanded="false" class="collapse">
 								<li><a th:href="@{/psychologists}">Registered Psychologists</a></li>
 							</ul>
 						</li>
@@ -144,9 +148,9 @@
 								<li><a th:href="@{/payments}">Fulfilled Payments</a></li>
 							</ul>
 						</li>
-						<li>
-							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
-							<ul aria-expanded="false" class="collapse">
+						<li class="active">
+							<a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="icon-File-TXT"></i><span class="hide-menu">Documents</span></a>
+							<ul aria-expanded="true" class="collapse in">
 								<li><a th:href="@{/documents/issue}">Issue Document</a></li>
 								<li><a th:href="@{/documents}">Issued Document</a></li>
 							</ul>
@@ -179,11 +183,11 @@
 				<!-- ============================================================== -->
 				<div class="row page-titles">
 					<div class="col-md-5 align-self-center">
-						<h3 class="text-themecolor">Registered Client</h3>
+						<h3 class="text-themecolor">View Document</h3>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-							<li class="breadcrumb-item">Psychologists</li>
-							<li class="breadcrumb-item active">Registered Psychologists</li>
+							<li class="breadcrumb-item">Documents</li>
+							<li class="breadcrumb-item active">View Document</li>
 						</ol>
 					</div>
 				</div>
@@ -194,54 +198,76 @@
 				<!-- Start Page Content -->
 				<!-- ============================================================== -->
 				<!-- Row -->
-
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-body">
-								<form class="form-horizontal" role="form" method="GET" th:action="@{/psychologists/edit/__${user.id}__}"  th:object="${user}">
+								<form class="form-horizontal" role="form">
 									<div class="form-body">
-										<h3 class="box-title">Psychologist Info</h3>
+										<h3 class="box-title">Document Info</h3>
 										<hr class="m-t-0 m-b-40">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group row">
-													<label class="control-label text-right col-md-3">Name:</label>
+													<label class="control-label text-right col-md-3">Client:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${client.name}"></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Psychologist:</label>
 													<div class="col-md-9">
 														<p class="form-control-static" th:text="${user.name}"></p>
 													</div>
 												</div>
 											</div>
-											<!--/span-->
-											<div class="col-md-6">
-												<div class="form-group row">
-													<label class="control-label text-right col-md-3">Email</label>
-													<div class="col-md-9">
-														<p class="form-control-static" th:text="${user.email}"></p>
-													</div>
-												</div>
-											</div>
-											<!--/span-->
 										</div>
-										<!--/row-->
+										
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group row">
-													<label class="control-label text-right col-md-3">Phone Number</label>
+													<label class="control-label text-right col-md-3">Type:</label>
 													<div class="col-md-9">
-														<p class="form-control-static" th:text="${user.phone}"></p>
+														<p class="form-control-static" th:text="${document.type}"></p>
+													</div>
+												</div>
+											</div>
+												
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Date:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${document.date}"></p>
 													</div>
 												</div>
 											</div>
 										</div>
-											<!--/span-->
+										
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group row">
+													<label class="control-label text-right col-md-3">Text:</label>
+													<div class="col-md-9">
+														<p class="form-control-static" th:text="${document.text}"></p>
+													</div>
+												</div>
+											</div>
 										</div>
 									<div class="form-actions">
-                                        	<a href="#" onclick="history.back()" class="btn btn-dark" role="button"><i class="fa fa-chevron-left"></i> Back</a>
-                                    </div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<a  href="#" onclick="history.back()" class="btn btn-info" role="button"><i class="fa fa-chevron-left"></i> Back</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6"> </div>
+										</div>
+									</div>
 								</form>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -249,6 +275,7 @@
 				<!-- ============================================================== -->
 				<!-- End PAge Content -->
 				<!-- ============================================================== -->
+			</div>
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -260,10 +287,10 @@
 			<!-- End footer -->
 			<!-- ============================================================== -->
 		</div>
-	</div>
 		<!-- ============================================================== -->
 		<!-- End Page wrapper  -->
 		<!-- ============================================================== -->
+	</div>
 	<script src="/assets/node_modules/jquery/jquery.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/popper.min.js"></script>
 	<script src="/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
@@ -276,9 +303,11 @@
 	<script src="/js/countrySelect.js"></script>
 	<script src="/js/jquery.mask.js"></script>
 	<script>
-
-	
-
+		$("#country-selector").countrySelect({
+			defaultCountry: "br",
+			onlyCountries: ['us', 'br', 'ch', 'ca', 'mx'],
+			//preferredCountries: ['ca', 'gb', 'us']
+		});
 	</script>
 </body>
 

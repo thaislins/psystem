@@ -8,16 +8,18 @@ import com.example.pitangua.psystem.domain.User;
 public interface IUserService {
 
 	void insert(User user) throws SQLException;
-	
+
 	void update(User client) throws SQLException;
 
-	void remove(User client) throws SQLException;	
+	void remove(User client) throws SQLException;
 
 	List<User> getAll();
 
 	User getByEmail(String email);
 
 	User getByCpf(String cpf);
+
+	User getById(int id);
 
 	User getByCrp(String crp);
 

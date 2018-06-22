@@ -183,6 +183,23 @@ public class ClientDAO extends GenericDAO<Client> {
 		return clients;
 	}
 
+	public List<Client> getClientsWithDocuments(int psychologistId) {
+		List<Client> clients = new ArrayList<>();
+
+		String sql = "SELECT * FROM client AS c WHERE EXISTS (SELECT * from document AS d WHERE c.id=d.client_id AND d.psychologist_id=?)";
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, psychologistId);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				clients.add(fromResultSet(resultSet));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return clients;
+	}
+
 	private Client fromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
 		Integer psychologistId = rs.getInt("psychologist_id");

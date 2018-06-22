@@ -19,6 +19,8 @@ public interface IClientService {
 
 	List<Client> getClientsWithPayments(int psychologistId);
 
+	List<Client> getClientsWithDocuments(int psychologistId);
+
 	Integer getClientCount(int psychologistId);
 
 	Client getByCpf(String cpf);

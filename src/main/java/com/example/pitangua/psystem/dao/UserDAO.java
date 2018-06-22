@@ -43,8 +43,21 @@ public class UserDAO extends GenericDAO<User> {
 	}
 
 	@Override
-	public void update(User user) {
-		// TODO Auto-generated method stub
+	public void update(User user) throws SQLException {
+		String sql = "UPDATE user SET cpf=?, clinic_id=?, name=?, email=?, password=?, phone=?, "
+				+ "admin=?, psychologist=?, crp=? WHERE id=?";
+		try (PreparedStatement ps = ConnectionManager.getConnection().prepareStatement(sql)) {
+			ps.setString(1, user.getCpf());
+			ps.setInt(2, user.getClinicId());
+			ps.setString(3, user.getName());
+			ps.setString(4, user.getEmail());
+			ps.setString(5, user.getPassword());
+			ps.setString(6, user.getPhone());
+			ps.setBoolean(7, user.isAdmin());
+			ps.setBoolean(8, user.isPsychologist());
+			ps.setString(9, user.getCrp());
+			ps.execute();
+		}
 	}
 
 	public User getByEmail(String email) {
@@ -66,6 +79,21 @@ public class UserDAO extends GenericDAO<User> {
 		String sql = "SELECT * FROM user WHERE crp=?";
 
 		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, crp);
+				ResultSet resultSet = ps.executeQuery()) {
+			while (resultSet.next()) {
+				return fromResultSet(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new UnhandledException("DB Error", e);
+		}
+
+		return null;
+	}
+
+	public User getById(int id) {
+		String sql = "SELECT * FROM user WHERE id=?";
+
+		try (PreparedStatement ps = createPreparedStatement(ConnectionManager.getConnection(), sql, id);
 				ResultSet resultSet = ps.executeQuery()) {
 			while (resultSet.next()) {
 				return fromResultSet(resultSet);

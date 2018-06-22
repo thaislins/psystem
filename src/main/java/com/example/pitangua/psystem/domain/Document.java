@@ -1,16 +1,18 @@
 package com.example.pitangua.psystem.domain;
 
-import java.sql.Date;
-
 public class Document {
 	private Integer id;
 	private Integer psychologistId;
 	private Integer clientId;
 	private Integer type;
-	private Date date;
+	private String date;
 	private String text;
 
-	public Document(Integer id, Integer psychologistId, Integer clientId, Integer type, Date date, String text) {
+	public Document() {
+
+	}
+
+	public Document(Integer id, Integer psychologistId, Integer clientId, Integer type, String date, String text) {
 		super();
 		this.id = id;
 		this.psychologistId = psychologistId;
@@ -18,6 +20,10 @@ public class Document {
 		this.type = type;
 		this.date = date;
 		this.text = text;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getPsychologistId() {
@@ -44,11 +50,11 @@ public class Document {
 		this.type = type;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
